@@ -1,0 +1,136 @@
+.navbar{
+    color:#aaa;
+    background-color:rgba(0,0,0,0.5);
+    padding:3px;
+    display:flex;
+    align-items: center;
+    /* gap:30px; */
+    /* margin-left:30px; */
+    margin:0;
+    padding:0;
+    overflow: hidden;
+
+    box-sizing:border-box;
+    font-size: 12px;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index: 1000;
+    /* justify-content: space-between; */
+   
+}
+main{
+    /* background:url('https://rajaneditz.com/wp-content/uploads/2023/04/Background-HD-Images-Download-Stock-819x1024.jpg'); */
+    width:100%;
+    /* height:100vh; */
+    background-size:cover;
+    background-position: center;   
+    overflow: hidden;
+    
+}
+
+.third{
+    display: flex;
+    gap:25px;
+    margin-left:auto;
+    margin-right:30px;
+    align-items: center;
+}
+/* .third-img{
+margin-right:30px;
+} */
+nav img{
+    width:30px;
+    height:30px;
+    /* margin-left:35px; */
+}
+.smart-hook-separetor{
+    width:0px;
+    height:24px;
+    border:1px solid #ffffff;
+    margin-left:30px;
+    opacity: 0.3;
+}
+.second{
+    display:flex;
+    gap:10px;
+    cursor:pointer;
+    padding:0 20px;
+    
+}
+.second div{
+    padding:12px;
+    text-decoration: none;
+    /* Add this line to set the default color */
+    color: #aaa;
+    border-bottom:3px solid transparent;
+    
+}
+.first{
+    margin-left:30px;
+    display:flex;
+    align-items: center;
+    gap:5px;
+}
+.subscribe{
+    background-image:url('https://images.slivcdn.com/UI_icons/smart_hook/rectangleCopy_smart_Hook_Background.png?w=110&q=high&fr=webp');
+    color:white;
+}
+.second div:hover{
+    color:white;
+    border-color:white;
+    
+}
+/* .second:hover{
+    text-decoration: underline;
+} */
+
+/* Original styles */
+
+/* Add responsive styles */
+@media screen and (max-width: 773px) {
+    .navbar {
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 20px;
+      gap: 10px;
+    }
+  
+    .navbar img {
+      margin-bottom: 10px;
+    }
+  
+    .smart-hook-separetor {
+      display: none;
+    }
+  
+    .second {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    } 
+  .third{
+    display:flex;
+    flex-direction: column;
+   margin-right:50%;
+       
+        
+    }
+   
+  }
+  @media screen and (max-width:200px){
+    .first{
+        flex-wrap: wrap;
+    }
+  }
+  @media screen and (max-width:1000px){
+    .second{
+        flex-wrap: wrap;
+        /* flex-direction: column; */
+    }
+  }
+
+
+
