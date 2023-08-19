@@ -3,6 +3,8 @@ import {  useNavigate } from 'react-router';
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
 import { useDispatch,useSelector } from 'react-redux';
 
+
+
 const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: '#11284b',
@@ -106,6 +108,8 @@ export function HeroImageRight(props) {
 
 //   console.log('HeroHeader/107',Items)
 
+// const masthu=dispatch({type:'ADD_ITEM',payload:datat.data})
+
   const { classes } = useStyles();
   const HandleClick=()=>{
      navigate('/video',{state:{
@@ -114,7 +118,15 @@ export function HeroImageRight(props) {
   }
   const addToMyList=(e)=>{
     // console.log('heroheader/116',datat)
-    dispatch({type:'ADD_ITEM',payload:datat})
+    // navigate('/additem',{state:{
+    //     masthu
+    // }}) 
+    const datas=JSON.parse(localStorage.getItem('show'))||[]
+    dispatch({type:'ADD_ITEM',payload:datat.data})
+    // localStorage.setItem('show',JSON.stringify(result)) 
+    const updateData=[...datas,datat.data]
+    localStorage.setItem('show',JSON.stringify(updateData)) 
+
   }
   return (
     <div className={classes.root}  style={{
@@ -179,4 +191,5 @@ export function HeroImageRight(props) {
       </Container>
     </div>
   );
+  
 }

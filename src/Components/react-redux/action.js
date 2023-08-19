@@ -1,7 +1,6 @@
 // import { useSelector } from 'react-redux';
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
-import { useSelector } from "react-redux"
 const ActionDetails=()=>{
     const dispatch=useDispatch()
     useEffect(() => {

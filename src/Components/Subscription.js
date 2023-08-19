@@ -1,7 +1,10 @@
 import { Table } from "@mantine/core";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { useSelector } from "react-redux";
 
 export function Subscription() {
+    const one=useSelector(state=>state)
+    console.log(one)
   return (
     <div style={{backgroundColor:'#141414'}}>
     <div
@@ -14,7 +17,7 @@ export function Subscription() {
         margin:'auto',
         // color:'white'
         // backgroundColor:'#141414',
-        webkitTapHighlightColor: 'rgba(0,0,0,0)'
+        // webkitTapHighlightColor: 'rgba(0,0,0,0)'
       }}
     >
       <Table

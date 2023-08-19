@@ -2,11 +2,10 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { HeroImageRight } from "../Components/HeroHeader";
-import { Demo } from "../Components/Caurosel";
 import { Carousel } from '@mantine/carousel';
 import { useDispatch, useSelector } from "react-redux";
-import { CheckingCom } from "./component/checkingStore";
-// import ActionDetails from "./react-redux/action";
+// import { CheckingCom } from "./component/checkingStore";
+import { VideoSong } from "./component/video_song";
 
 
 const Home = () => {
@@ -15,9 +14,9 @@ const Home = () => {
   const dispatch=useDispatch()
   const randomNumber = Math.floor(Math.random() * 100);
   const n = randomNumber - 10;
-  console.log(randomNumber);
+  // console.log(randomNumber);
   const MainStore=useSelector(state=>state)
-  console.log('Home/20',MainStore)
+  console.log('store/20',MainStore)
 
   useEffect(() => {
     try {
@@ -31,7 +30,6 @@ const Home = () => {
         // console.log('home/24',datas.data[0].thumbnail);
         setData(datas.data);
         dispatch({type:'FETCH_SHOW_DETAILS_SUCCESS',payload:datas.data})
-        // dispatch({type:'FETCH_SHOW_DETAILS_SUCCESS',payload:'MassOfmasses'})
 
 
       })();
@@ -39,6 +37,7 @@ const Home = () => {
       console.log(e);
     }
   }, []);
+
     const handleVideo = (index) => {
       // navigate('/video')
       console.log("Home/92", datai[index]);
@@ -52,6 +51,7 @@ const Home = () => {
 
   
     return (
+        <>
         <Carousel
           maw='100%'
           mx="auto"
@@ -68,8 +68,12 @@ const Home = () => {
           {/* <Carousel.Slide>3</Carousel.Slide> */}
           {/* ...other slides */}
           {/* <ActionDetails/> */}
-          <CheckingCom/>
+          {/* <CheckingCom/> */}
         </Carousel>
+        {/* <div style={{height:'300px',width:'100%',backgroundColor:'#151515'}}></div> */}
+        {/* <VideoSong/> */}
+        </>
+        
 
       );
   
