@@ -5,9 +5,9 @@ const initialValue={
 }
 export const regisReducer=(state=initialValue,action)=>{
     switch(action.type){
-        case 'username':return {...state,name:action.payload}
-        case 'email':return {...state,email:action.payload}
-        case 'password': return {...state,password:action.payload}
+        case 'usernamegis':return {...state,name:action.payload}
+        case 'emailgis':return {...state,email:action.payload}
+        case 'passwordgis': return {...state,password:action.payload}
         default:return state
     }
 }

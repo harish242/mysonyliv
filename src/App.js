@@ -37,13 +37,13 @@ export default function App() {
        <BrowserRouter>
     <MantineProvider withGlobalStyles withNormalizeCSS>
     <Routes>
-      <Route path="/" element={<LayOut><Home/></LayOut>}/>
+      <Route path="/home" element={<LayOut><Home/></LayOut>}/>
       <Route path='/video' element={<LayOut><VideoDetails /></LayOut>}/>
       <Route path='/subscription' element={<LayOut><Subscription/></LayOut>}/>
       <Route path='/data' element={<LayOut><ActionDetails/></LayOut>}/>
       <Route path='/check' element={<LayOut><CheckingCom/></LayOut>}/>
       <Route path='additem' element={<LayOut><AddedItems/></LayOut>}/>
-      <Route path='/regis' element={<LayOut><Regis/></LayOut>}/>
+      <Route path='/' element={<LayOut><Regis/></LayOut>}/>
       <Route path='/login' element={<LayOut><Login/></LayOut>}/>
       <Route path='/detailsmore' element={<LayOut><MoreDetails/></LayOut>}/>
       <Route path='/resetpass' element={<LayOut><ResetPassword/></LayOut>}/>

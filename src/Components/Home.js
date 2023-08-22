@@ -21,8 +21,8 @@ const Home = () => {
     (state) => state.showDetailsReducer.showDetails
   );
   const AllStore = useSelector((state) => state.mainDataReducer.showdata);
-  console.log("Home/23", AllStore);
-  console.log("Home/22", miniStore);
+  // console.log("Home/23", AllStore);
+  // console.log("Home/22", miniStore);
 
   useEffect(() => {
     try {
@@ -44,7 +44,7 @@ const Home = () => {
 
   const handleVideo = (index) => {
     // navigate('/video')
-    console.log("Home/92", datai[index]);
+    // console.log("Home/92", datai[index]);
     navigate("/video", {
       state: {
         data: datai[index],
@@ -68,7 +68,7 @@ const Home = () => {
       }
       return acc;
     }, []);
-    console.log("Home/chec/71", moviesData);
+    // console.log("Home/chec/71", moviesData);
   }
   if (AllStore) {
     var webSeriesData = AllStore.reduce((acc, curr) => {
@@ -77,11 +77,11 @@ const Home = () => {
       }
       return acc;
     }, []);
-    console.log("Home/wbS", webSeriesData);
+    // console.log("Home/wbS", webSeriesData);
   }
   const documentaryDetails =
     AllStore && AllStore.filter((item) => item.type === "documentary");
-  console.log("Home/doc/82", documentaryDetails);
+  // console.log("Home/doc/82", documentaryDetails);
   if(AllStore){
   var videoSongDetails=AllStore.reduce((acc,curr)=>{
           if(curr.type==="video song"){
@@ -89,7 +89,7 @@ const Home = () => {
           }
           return acc
   },[])
-  console.log('Home/vsD/91',videoSongDetails)
+  // console.log('Home/vsD/91',videoSongDetails)
 
   }
   if(AllStore){

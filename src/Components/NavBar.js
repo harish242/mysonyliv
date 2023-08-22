@@ -14,7 +14,10 @@ const NavBar = () => {
       <nav className="navbar">
         <div className="first">
           <img src="https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp" />
+          <Link to='/resetpass'>
           <button className="subscribe">Subscribe</button>
+          </Link>
+          
         </div>
 
         <div className="smart-hook-separetor"></div>

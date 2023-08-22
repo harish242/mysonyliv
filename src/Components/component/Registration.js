@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 export function Regis() {
     const store=useSelector(state=>state.regisReducer)
-    console.log(store)
+    console.log('regis/7',store)
     const dispatch=useDispatch()
     const handleInput=(e)=>{
         const idn=e.target.id
         console.log(idn)
         switch(idn){
-            case 'username':return dispatch({type:'username',payload:e.target.value})
-            case 'email':return dispatch({type:'email',payload:e.target.value})
-            case 'password':return dispatch({type:'password',payload:e.target.value})
+            case 'username':return dispatch({type:'usernamegis',payload:e.target.value})
+            case 'email':return dispatch({type:'emailgis',payload:e.target.value})
+            case 'password':return dispatch({type:'passwordgis',payload:e.target.value})
         }
     } 
     const doPost=(e)=>{
