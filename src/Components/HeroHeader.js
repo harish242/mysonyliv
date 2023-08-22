@@ -9,6 +9,7 @@ const useStyles = createStyles((theme) => ({
   root: {
     backgroundColor: '#11284b',
     backgroundSize: 'cover',
+    backgroundRepeat:'no-repeat',
     backgroundPosition: 'center',
     // backgroundImage:
     //   'linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(data.thumbnail)',
@@ -133,7 +134,7 @@ export function HeroImageRight(props) {
   }
   return (
     <div className={classes.root}  style={{
-        backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(${datat.data.thumbnail})`,height:600
+        backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 30%, #062343 100%), url(${datat.data.thumbnail})`,height:800
       }}>
       <Container size="lg">
         <div className={classes.inner}>
@@ -164,6 +165,7 @@ export function HeroImageRight(props) {
               gradient={{ from: 'pink', to: 'yellow' }}
               size="xl"
               className={classes.add}
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               mt={60}
               style={{marginRight:20,marginTop:90}}
               onClick={addToMyList}
@@ -182,6 +184,7 @@ export function HeroImageRight(props) {
               size="xl"
               className={classes.control}
               mt={60}
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={HandleClick}
             >
               {/* Get started */}
