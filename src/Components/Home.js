@@ -30,8 +30,6 @@ const Home = () => {
         // console.log('home/24',datas.data[0].thumbnail);
         setData(datas.data);
         dispatch({type:'FETCH_SHOW_DETAILS_SUCCESS',payload:datas.data})
-
-
       })();
     } catch (e) {
       console.log(e);
@@ -62,7 +60,7 @@ const Home = () => {
           align="start"
         >
          {datai.map((item,index)=>{
-           return <Carousel.Slide key={item._id}><HeroImageRight data={item}/></Carousel.Slide>
+           return <Carousel.Slide key={item._id} onClick={()=>navigate('/detailsmore',{state:{id:item._id}})}><HeroImageRight data={item}/></Carousel.Slide>
          })} 
           {/* <Carousel.Slide>2</Carousel.Slide> */}
           {/* <Carousel.Slide>3</Carousel.Slide> */}

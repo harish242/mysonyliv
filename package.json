@@ -7,7 +7,9 @@
     "@emotion/styled": "^11.11.0",
     "@mantine/carousel": "^6.0.19",
     "@mantine/core": "^6.0.19",
+    "@mantine/form": "^6.0.19",
     "@mantine/hooks": "^6.0.19",
+    "@mantine/notifications": "^6.0.19",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -21,7 +23,8 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "redux": "^4.2.1",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "zod": "^3.22.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -46,5 +49,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }

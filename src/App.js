@@ -8,7 +8,11 @@ import { Subscription } from "./Components/Subscription";
 import ActionDetails from '../src/Components/react-redux/action'
 import { CheckingCom } from "./Components/component/checkingStore";
 import AddedItems from "./Components/component/addedItemDetails";
+import { Regis } from "./Components/component/Registration";
+import  Login from "./Components/component/login";
+import { MoreDetails } from "./Components/component/MoreDetails";
 import { useDispatch } from "react-redux";
+import ResetPassword from "./Components/component/resetPassword";
 
 export default function App() {
   const dispatch=useDispatch()
@@ -39,6 +43,10 @@ export default function App() {
       <Route path='/data' element={<LayOut><ActionDetails/></LayOut>}/>
       <Route path='/check' element={<LayOut><CheckingCom/></LayOut>}/>
       <Route path='additem' element={<LayOut><AddedItems/></LayOut>}/>
+      <Route path='/regis' element={<LayOut><Regis/></LayOut>}/>
+      <Route path='/login' element={<LayOut><Login/></LayOut>}/>
+      <Route path='/detailsmore' element={<LayOut><MoreDetails/></LayOut>}/>
+      <Route path='/resetpass' element={<LayOut><ResetPassword/></LayOut>}/>
     </Routes>     
     </MantineProvider>
     </BrowserRouter>

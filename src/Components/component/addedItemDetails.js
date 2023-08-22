@@ -7,26 +7,27 @@ export default function AddedItems() {
   // const result = addItem.AddItems.cartItems;
 
 
-  const data=JSON.parse(localStorage.getItem('show'))||[]
-  console.log('addItems/17',data)
-  const master=data.map(item=>item)
-  console.log('addI/161',master)
-  const uniqData =data.reduce((acc,obj) => {
-    const found = acc.find(item => item._id === obj._id)    
-    if(!found){    
-    acc.push(obj)    
-    }    
-    return acc    
-    },[])
-    const removeItem=(index)=>{
-      const updatedRemovedItems=data.filter(item=>item._id===data[index]._id)
-      // console.log('addI/rI',updatedRemovedItems)
-      if(updatedRemovedItems!==-1){
-        data.splice(updatedRemovedItems,1)
-      }
-      localStorage.setItem('show',JSON.stringify(updatedRemovedItems))
-    }
-  console.log('addItem/26',uniqData)
+  // const data=JSON.parse(localStorage.getItem('show'))||[]
+  // console.log('addItems/17',data)
+  // const master=data.map(item=>item)
+  // console.log('addI/161',master)
+  // const uniqData =data.reduce((acc,obj) => {
+  //   const found = acc.find(item => item._id === obj._id)    
+  //   if(!found){    
+  //   acc.push(obj)    
+  //   }    
+  //   return acc    
+  //   },[])
+    // const removeItem=(index)=>{
+    //   const updatedRemovedItems=data.findIndex(item=>item._id===data[index]._id)
+    //   console.log('addI/rI',updatedRemovedItems)
+    //  console.log('addedtd24',data[index]) 
+    //   if(updatedRemovedItems!==-1){
+    //    uniqData.splice(updatedRemovedItems,1)
+    //   }
+    //   localStorage.setItem('show',JSON.stringify(updatedRemovedItems))
+    // }
+  // console.log('addItem/26',uniqData)
 
   return (
     <div
@@ -37,7 +38,7 @@ export default function AddedItems() {
         marginTop: "30px",
       }}
     >
-      {uniqData&&uniqData.map((item,index) => (
+      {/* {map((item,index) => ( */}
         <Card
           shadow="sm"
           padding="xl"
@@ -45,12 +46,12 @@ export default function AddedItems() {
           
           // href={item.video_url}
           target="_self"
-          onClick={()=>removeItem(index)}
-          key={item._id}
+          // onClick={()=>removeItem(index)}
+          // key={item._id}
         >
           <Card.Section>
             <Image
-              src={item.thumbnail}
+              // src={item.thumbnail}
               height={260}
               alt="No way!"
               width={220}
@@ -58,7 +59,7 @@ export default function AddedItems() {
           </Card.Section>
 
           <Text weight={500} size="sm" mt="md">
-            {item.title.slice(0, 25)}
+            {/* {item.title.slice(0, 25)} */}
           </Text>
           <button>
             remove
@@ -69,7 +70,7 @@ export default function AddedItems() {
             {/* {item.description} */}
           </Text>
         </Card>
-      ))}
+      {/* ))} */}
        
 
     </div>

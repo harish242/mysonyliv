@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react'
-import {  useNavigate } from 'react-router';
+import {  useNavigate,useLocation } from 'react-router';
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
 import { useDispatch,useSelector } from 'react-redux';
 
@@ -100,39 +100,40 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeroImageRight(props) {
+export function MoreDetails(props) {
     const datat=props
     const navigate=useNavigate()
     const dispatch=useDispatch()
-    const Items=useSelector(state=>state.AddItems)
-
-//   console.log('HeroHeader/107',Items)
-
-// const masthu=dispatch({type:'ADD_ITEM',payload:datat.data})
-
+    const datai=useSelector(state=>state.moreDetailsReducer.itemDetails)
+    console.log('moreD/108',datai)
+    const data=useLocation()
+    const id=data.state.id
+    console.log('MoreDetails',data)
   const { classes } = useStyles();
   const HandleClick=()=>{
      navigate('/video',{state:{
         videoURL:datat.data.video_url
      }})
   }
-  // const addToMyList=(e)=>{
-  //   // console.log('heroheader/116',datat)
-  //   // navigate('/additem',{state:{
-  //   //     masthu
-  //   // }}) 
-  //   const datas=JSON.parse(localStorage.getItem('show'))||[]
-  //   dispatch({type:'ADD_ITEM',payload:datat.data})
-  //   // localStorage.setItem('show',JSON.stringify(result)) 
-  //   const updateData=[...datas,datat.data]
-  //   localStorage.setItem('show',JSON.stringify(updateData)) 
-
-  // }
+  useEffect(()=>{
+    try{
+        (async()=>{
+            const response=await fetch(`https://academics.newtonschool.co/api/v1/ott/show/${id}`,{method:"GET",headers:{'projectId':"xybcw190kyb8"}})
+            const datat=await response.json()
+            console.log('donedone',datat)
+            dispatch({type:'ITem',payload:datat})
+        })()
+    }catch(err){
+        console.log('ourerr',err)
+    }
+  },[dispatch])
+ 
   const addToMyList=()=>{
    
   }
   return (
-    <div className={classes.root}  style={{
+    <>
+    {<div className={classes.root}  style={{
         backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(${datat.data.thumbnail})`,height:600
       }}>
       <Container size="lg">
@@ -193,6 +194,10 @@ export function HeroImageRight(props) {
         </div>
       </Container>
     </div>
-  );
+            }
+            </>
+
+
+  )
   
 }
