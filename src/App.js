@@ -13,6 +13,7 @@ import  Login from "./Components/component/login";
 import { MoreDetails } from "./Components/component/MoreDetails";
 import { useDispatch } from "react-redux";
 import ResetPassword from "./Components/component/resetPassword";
+import Show from '../src/Components/component/showDetails'
 
 export default function App() {
   const dispatch=useDispatch()
@@ -38,7 +39,7 @@ export default function App() {
     <MantineProvider withGlobalStyles withNormalizeCSS>
     <Routes>
       <Route path="/home" element={<LayOut><Home/></LayOut>}/>
-      <Route path='/video' element={<LayOut><VideoDetails /></LayOut>}/>
+      <Route path='/video/:id' element={<LayOut><VideoDetails /></LayOut>}/>
       <Route path='/subscription' element={<LayOut><Subscription/></LayOut>}/>
       <Route path='/data' element={<LayOut><ActionDetails/></LayOut>}/>
       <Route path='/check' element={<LayOut><CheckingCom/></LayOut>}/>
@@ -47,6 +48,7 @@ export default function App() {
       <Route path='/login' element={<LayOut><Login/></LayOut>}/>
       <Route path='/detailsmore' element={<LayOut><MoreDetails/></LayOut>}/>
       <Route path='/resetpass' element={<LayOut><ResetPassword/></LayOut>}/>
+      <Route path='/showdetails/:id' element={<LayOut><Show/></LayOut>}/>
     </Routes>     
     </MantineProvider>
     </BrowserRouter>

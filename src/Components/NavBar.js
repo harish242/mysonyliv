@@ -31,6 +31,10 @@ const NavBar = () => {
           <div id="7">Orginals</div>
           <div id="8">#WatchFree</div>
           <div id="9">Premium</div>
+          <Link to='/additem'>
+          <div id="10">my list</div>
+          </Link>
+          
         </div>
         <div className="third">
           <div>

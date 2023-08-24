@@ -1,34 +1,28 @@
 import { Card, Image, Text } from "@mantine/core";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function AddedItems() {
    
-  // const addItem = useSelector((state) => state);
-  // const result = addItem.AddItems.cartItems;
+  const addItem = useSelector((state) => state.AddItems);
+  const token=useSelector(state=>state.resetPassword.token)
+  const result = addItem.AddItems;
+  console.log(token)
+  useEffect(()=>{
+    try{
+          (async()=>{
+            const response=await fetch('https://academics.newtonschool.co/api/v1/ott/watchlist/like',
+            {method:"GET",headers:{'Authorization':`Bearer ${token}`,"projectid":"xybcw190kyb8"}})
+            const data=await response.json()
+            console.log('addedItem/17',data)
 
-
-  // const data=JSON.parse(localStorage.getItem('show'))||[]
-  // console.log('addItems/17',data)
-  // const master=data.map(item=>item)
-  // console.log('addI/161',master)
-  // const uniqData =data.reduce((acc,obj) => {
-  //   const found = acc.find(item => item._id === obj._id)    
-  //   if(!found){    
-  //   acc.push(obj)    
-  //   }    
-  //   return acc    
-  //   },[])
-    // const removeItem=(index)=>{
-    //   const updatedRemovedItems=data.findIndex(item=>item._id===data[index]._id)
-    //   console.log('addI/rI',updatedRemovedItems)
-    //  console.log('addedtd24',data[index]) 
-    //   if(updatedRemovedItems!==-1){
-    //    uniqData.splice(updatedRemovedItems,1)
-    //   }
-    //   localStorage.setItem('show',JSON.stringify(updatedRemovedItems))
-    // }
-  // console.log('addItem/26',uniqData)
-
+          })()
+    }catch(err){
+      console.log(err)
+    }
+  })
+  
+   
   return (
     <div
       style={{

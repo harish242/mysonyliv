@@ -9,26 +9,29 @@ import { resetPassword } from "../reducers/resetPassword";
 import {combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
+import {localJwtReducer} from '../reducers/localjwt'
 
 const persistConfig = {
     key: 'root',
     storage,
   }
 
-const reducer=combineReducers({
+const reducers=combineReducers({
     showDetailsReducer:showDetailsReducer,
     mainDataReducer,
     AddItems:AddItems,
     moreDetailsReducer,
     loginReducer,
     regisReducer,
-    resetPassword:resetPassword
+    resetPassword,
+    // localJwtReducer
 })
+
 
 // const store=configureStore({
 //     reducer:combinedReducers
 // })
-const persistedReducer = persistReducer(persistConfig, reducer)
+const persistedReducer = persistReducer(persistConfig, reducers)
 
-const store = configureStore({ reducer: persistedReducer })
+const store = configureStore({ reducer:persistedReducer })
 export default store

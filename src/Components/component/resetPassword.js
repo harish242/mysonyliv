@@ -7,10 +7,10 @@ const ResetPassword=()=>{
         const idn=e.target.id
         console.log(idn)
         switch(idn){
-            case 'name' :return dispatch({type:'namere',payload:e.target.value})
-            case 'email':return dispatch({type:'emailre',payload:e.target.value})
-            case 'passwordCurrent':return dispatch({type:'passwordCurrentre',payload:e.target.value})
-            case 'password':return dispatch({type:'passwordre',payload:e.target.value})
+            case 'name' :return dispatch({type:'nameret',payload:e.target.value})
+            case 'email':return dispatch({type:'emailret',payload:e.target.value})
+            case 'passwordCurrent':return dispatch({type:'passwordCurrentret',payload:e.target.value})
+            case 'password':return dispatch({type:'passwordret',payload:e.target.value})
         }
     }
     const doPost=(e)=>{
@@ -18,7 +18,7 @@ const ResetPassword=()=>{
         try{
              (async()=>{
                 const response=await fetch('https://academics.newtonschool.co/api/v1/user/updateMyPassword',
-                {method:"PATCH",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8',Authorization:store.token},
+                {method:"PATCH",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8','Authorization':`Bearer ${store.token}`},
                 body:JSON.stringify({name:store.name,email:store.email,passwordCurrent:store.passwordCurrent,password:store.password,"appType":"ott"})
             }
                 )

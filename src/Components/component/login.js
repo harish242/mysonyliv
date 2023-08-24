@@ -2,7 +2,9 @@ import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 const Login=()=>{
     const store=useSelector(state=>state.loginReducer)
-    console.log(store)
+    console.log('login/5',store)
+    const MainSore=useSelector(state=>state)
+    console.log('login/7',MainSore)
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const handleInput=(e)=>{
@@ -23,11 +25,14 @@ const Login=()=>{
             }
                 )
                 const data=await response.json()
-                dispatch({type:'updatePassword',payload:data})
+                const token=data.token
+                // dispatch({type:'updatepasswords',payload:token})
+
+                dispatch({type:'updatePassword',payload:token})
                 if(response.ok){
-                //   navigate('/home')
+                  navigate('/home')
                 }
-                console.log(data)
+                console.log(token)
              })()
         }catch(err){
          console.log(err)

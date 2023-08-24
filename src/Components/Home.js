@@ -149,7 +149,10 @@ const Home = () => {
           backgroundColor: "#151515",
           color: "white",
           // marginLeft:'60px'
+          
         }}
+        // onClick={()=>navigate(`/showdetails/${item._id}`)}
+
       >
         <h1>Movies </h1>
         <Carousel
@@ -166,7 +169,10 @@ const Home = () => {
             moviesData.map((item) => {
               return (
                 <Carousel.Slide>
+                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
                   <img src={item.thumbnail} />
+
+                  </div>
                 </Carousel.Slide>
               );
             })}
@@ -195,7 +201,10 @@ const Home = () => {
             webSeriesData.map((item) => {
               return (
                 <Carousel.Slide>
+                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
                   <img src={item.thumbnail} />
+
+                  </div>
                 </Carousel.Slide>
               );
             })}
@@ -224,7 +233,10 @@ const Home = () => {
             documentaryDetails.map((item) => {
               return (
                 <Carousel.Slide>
+                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
                   <img src={item.thumbnail} />
+
+                  </div>
                 </Carousel.Slide>
               );
             })}
@@ -253,7 +265,10 @@ const Home = () => {
             trailerDetails.map((item) => {
               return (
                 <Carousel.Slide>
+                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
                   <img src={item.thumbnail} />
+
+                  </div>
                 </Carousel.Slide>
               );
             })}
@@ -282,7 +297,10 @@ const Home = () => {
             videoSongDetails.map((item) => {
               return (
                 <Carousel.Slide>
+                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
                   <img src={item.thumbnail} />
+
+                  </div>
                 </Carousel.Slide>
               );
             })}
@@ -311,7 +329,10 @@ const Home = () => {
             shortFlimData.map((item) => {
               return (
                 <Carousel.Slide>
+                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
                   <img src={item.thumbnail} />
+
+                  </div>
                 </Carousel.Slide>
               );
             })}
@@ -340,7 +361,10 @@ const Home = () => {
             tvData.map((item) => {
               return (
                 <Carousel.Slide>
+                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
                   <img src={item.thumbnail} />
+                  
+                  </div>
                 </Carousel.Slide>
               );
             })}

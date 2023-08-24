@@ -2,6 +2,7 @@ import React,{useEffect} from 'react'
 import {  useNavigate } from 'react-router';
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
 import { useDispatch,useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 
@@ -106,10 +107,8 @@ export function HeroImageRight(props) {
     const navigate=useNavigate()
     const dispatch=useDispatch()
     const Items=useSelector(state=>state.AddItems)
-
-//   console.log('HeroHeader/107',Items)
-
-// const masthu=dispatch({type:'ADD_ITEM',payload:datat.data})
+    const store=useSelector(store=>store.resetPassword)
+    // console.log('Herohead/110',store.token)
 
   const { classes } = useStyles();
   const HandleClick=()=>{
@@ -117,26 +116,35 @@ export function HeroImageRight(props) {
         videoURL:datat.data.video_url
      }})
   }
-  // const addToMyList=(e)=>{
-  //   // console.log('heroheader/116',datat)
-  //   // navigate('/additem',{state:{
-  //   //     masthu
-  //   // }}) 
-  //   const datas=JSON.parse(localStorage.getItem('show'))||[]
-  //   dispatch({type:'ADD_ITEM',payload:datat.data})
-  //   // localStorage.setItem('show',JSON.stringify(result)) 
-  //   const updateData=[...datas,datat.data]
-  //   localStorage.setItem('show',JSON.stringify(updateData)) 
+  // console.log('hero/head/117',datat.data._id)
+  const ids=datat.data._id
+  console.log('hh/121',ids)
+ 
+  const addToMyList=async (ab)=>{
+  console.log('lastthing/123',ab)
+  console.log('hh/124',store.token)
+  console.log('hh/126',ids)
 
-  // }
-  const addToMyList=()=>{
-   
+  if(store.token){
+    try{
+      (async()=>{
+          const response=await fetch(`https://academics.newtonschool.co/api/v1/social_media/watchlist/${ab}`,
+         {method:"PATCH",headers:{'Authorization': `Bearer ${store.token}`,'projectid':'xybcw190kyb8'},body:JSON.stringify({'showId':ab})}
+          )
+          const resdata=await response.json()
+          console.log('heroheader/130',resdata)
+     })()
+    
+  }catch(err){
+    console.log('HeroH',datat)
+   }
   }
+}
   return (
     <div className={classes.root}  style={{
         backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 30%, #062343 100%), url(${datat.data.thumbnail})`,height:800
-      }}>
-      <Container size="lg">
+      }} onClick={()=>navigate(`/showdetails/${datat.data._id}`)}>
+      <Container size="lg" >
         <div className={classes.inner}>
           <div className={classes.content}>
             <Title className={classes.title}>
@@ -168,17 +176,14 @@ export function HeroImageRight(props) {
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               mt={60}
               style={{marginRight:20,marginTop:90}}
-              onClick={addToMyList}
+              onClick={()=>addToMyList(datat.data._id)}
             >
-              {/* Get started */}
+             
               +    Add To Whishlist
-            </Button>
-                
+            </Button>              
                
                 
-            {/* </Text> */}
-             
-             <Button
+            <Button
               variant="gradient"
               gradient={{ from: 'pink', to: 'yellow' }}
               size="xl"
@@ -187,9 +192,21 @@ export function HeroImageRight(props) {
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               onClick={HandleClick}
             >
-              {/* Get started */}
+              
               PLAY NOW
             </Button>
+            {/* <Button
+              variant="gradient"
+              gradient={{ from: 'pink', to: 'yellow' }}
+              size="xl"
+              className={classes.control}
+              mt={60}
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={()=>navigate(`/showdetails/${datat.data._id}`)}
+            >
+              
+              PLAY Details
+            </Button> */}
             
           
           </div>
@@ -197,5 +214,5 @@ export function HeroImageRight(props) {
       </Container>
     </div>
   );
+            }
   
-}
