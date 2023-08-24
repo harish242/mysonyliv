@@ -118,32 +118,49 @@ export function HeroImageRight(props) {
   }
   // console.log('hero/head/117',datat.data._id)
   const ids=datat.data._id
-  console.log('hh/121',ids)
+  // console.log('hh/121',ids)
  
   const addToMyList=async (ab)=>{
-  console.log('lastthing/123',ab)
-  console.log('hh/124',store.token)
-  console.log('hh/126',ids)
+  // console.log('lastthing/123',ab)
+  // console.log('hh/124',store.token)
+  // console.log('hh/126',ids)
 
-  if(store.token){
+  // if(store.token){
     try{
-      (async()=>{
-          const response=await fetch(`https://academics.newtonschool.co/api/v1/social_media/watchlist/${ab}`,
-         {method:"PATCH",headers:{'Authorization': `Bearer ${store.token}`,'projectid':'xybcw190kyb8'},body:JSON.stringify({'showId':ab})}
-          )
-          const resdata=await response.json()
-          console.log('heroheader/130',resdata)
-     })()
-    
+    //   (async()=>{
+    //       const response=await fetch(`https://academics.newtonschool.co/api/v1/social_media/watchlist/${ab}`,
+    //      {method:"PATCH",headers:{'Authorization': `Bearer ${store.token}`,'projectid':'xybcw190kyb8'},body:JSON.stringify({'showId':ab})}
+    //       )
+    //       const resdata=await response.json()
+    //       console.log('heroheader/130',resdata)
+    //       console.log('i runned')
+    //  })()
+    const response = await axios.patch(
+      `https://academics.newtonschool.co/api/v1/social_media/watchlist/${ab}`,
+      { 'showId':ab }, // Pass the showId in the request body
+      {
+        headers: {
+          Authorization: `Bearer ${store.token}`,
+          projectId: 'xybcw190kyb8',
+        },
+      }
+    );
+    const favItems=response?.data.data.shows
+    console.log('hh/147',favItems)
+    if(favItems){
+      dispatch({type:'ADD_ITEM',payload:favItems})
+
+    }
   }catch(err){
     console.log('HeroH',datat)
    }
-  }
+  // }
 }
   return (
+    // onClick={()=>navigate(`/showdetails/${datat.data._id}`)}
     <div className={classes.root}  style={{
         backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 30%, #062343 100%), url(${datat.data.thumbnail})`,height:800
-      }} onClick={()=>navigate(`/showdetails/${datat.data._id}`)}>
+      }} >
       <Container size="lg" >
         <div className={classes.inner}>
           <div className={classes.content}>
@@ -175,7 +192,7 @@ export function HeroImageRight(props) {
               className={classes.add}
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               mt={60}
-              style={{marginRight:20,marginTop:90}}
+              style={{marginRight:20,marginTop:90,zIndex:1000}}
               onClick={()=>addToMyList(datat.data._id)}
             >
              
@@ -195,18 +212,20 @@ export function HeroImageRight(props) {
               
               PLAY NOW
             </Button>
-            {/* <Button
+            {}
+            <Button
               variant="gradient"
               gradient={{ from: 'pink', to: 'yellow' }}
               size="xl"
               className={classes.control}
               mt={60}
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              style={{marginLeft:'20px'}}
               onClick={()=>navigate(`/showdetails/${datat.data._id}`)}
             >
               
-              PLAY Details
-            </Button> */}
+              More Details
+            </Button>
             
           
           </div>

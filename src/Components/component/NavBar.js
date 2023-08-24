@@ -1,11 +1,11 @@
 import React from "react-dom";
 import { useState, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
-import "../Styles/NavBar.css";
-import store from "./react-redux/store";
+import "../../Styles/NavBar.css"
+import store from "../react-redux/store";
 // import { MyComponent } from "./react-redux/action";
 import { Link } from "react-router-dom";
-import { CheckingCom } from "./component/checkingStore";
+import { CheckingCom } from "./checkingStore";
 const NavBar = () => {
   // console.log('navbar/20',store)
 
@@ -14,7 +14,7 @@ const NavBar = () => {
       <nav className="navbar">
         <div className="first">
           <img src="https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp" />
-          <Link to='/resetpass'>
+          <Link to='/home'>
           <button className="subscribe">Subscribe</button>
           </Link>
           
@@ -23,14 +23,14 @@ const NavBar = () => {
         <div className="smart-hook-separetor"></div>
         <div className="second">
           <div id="1">TvShows</div>
-          <div id="2">QOTY</div>
-          <div id="3">New</div>
-          <div id="4">WWE</div>
-          <div id="5">Sports</div>
-          <div id="6">Movies</div>
-          <div id="7">Orginals</div>
-          <div id="8">#WatchFree</div>
-          <div id="9">Premium</div>
+          <div id="2">Movies</div>
+          <div id="3">Web Series</div>
+          <div id="4">shortFilm</div>
+          <div id="5">Trailer</div>
+          <div id="6">videoSong</div>
+          <div id="7">Doucmentary</div>
+          {/* <div id="8">#WatchFree</div>
+          <div id="9">Premium</div> */}
           <Link to='/additem'>
           <div id="10">my list</div>
           </Link>

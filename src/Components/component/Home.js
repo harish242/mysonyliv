@@ -1,12 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { HeroImageRight } from "../Components/HeroHeader";
+import { HeroImageRight } from "./HeroHeader";
 import { Carousel } from "@mantine/carousel";
 import { useDispatch, useSelector } from "react-redux";
 // import { CheckingCom } from "./component/checkingStore";
-import { VideoSong } from "./component/video_song";
-import store from "./react-redux/store";
+import { VideoSong } from "./video_song";
+import store from "../react-redux/store";
 
 const Home = () => {
   const [datai, setData] = useState([]);

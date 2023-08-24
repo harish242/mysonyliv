@@ -1,13 +1,13 @@
 import React,{useEffect} from "react";
 import { MantineProvider, Text } from "@mantine/core";
-import Home from "../src/Components/Home";
+import Home from "./Components/component/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LayOut from './Components/Layout'
-import { VideoDetails } from "./Components/VideoDetails";
-import { Subscription } from "./Components/Subscription";
+import LayOut from './Components/component/Layout'
+import { VideoDetails } from "./Components/component/VideoDetails";
+import { Subscription } from "./Components/component/Subscription";
 import ActionDetails from '../src/Components/react-redux/action'
 import { CheckingCom } from "./Components/component/checkingStore";
-import AddedItems from "./Components/component/addedItemDetails";
+import AddedItems from "./Components/component/addedItems";
 import { Regis } from "./Components/component/Registration";
 import  Login from "./Components/component/login";
 import { MoreDetails } from "./Components/component/MoreDetails";
