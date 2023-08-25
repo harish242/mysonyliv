@@ -14,6 +14,7 @@ import { MoreDetails } from "./Components/component/MoreDetails";
 import { useDispatch } from "react-redux";
 import ResetPassword from "./Components/component/resetPassword";
 import Show from '../src/Components/component/showDetails'
+import Accordions from "./Components/otherComfol/accodrian";
 
 export default function App() {
   const dispatch=useDispatch()
@@ -49,6 +50,7 @@ export default function App() {
       <Route path='/detailsmore' element={<LayOut><MoreDetails/></LayOut>}/>
       <Route path='/resetpass' element={<LayOut><ResetPassword/></LayOut>}/>
       <Route path='/showdetails/:id' element={<LayOut><Show/></LayOut>}/>
+      <Route path='/accod' element={<Accordions/>}/>
     </Routes>     
     </MantineProvider>
     </BrowserRouter>

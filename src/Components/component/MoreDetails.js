@@ -104,7 +104,7 @@ export function MoreDetails(props) {
     const datat=props
     const navigate=useNavigate()
     const dispatch=useDispatch()
-    const datai=useSelector(state=>state.moreDetailsReducer.itemDetails)
+    const datai=useSelector(state=>state.others.moreDetailsReducer.itemDetails)
     console.log('moreD/108',datai)
     const data=useLocation()
     const id=data.state.id
@@ -130,6 +130,10 @@ export function MoreDetails(props) {
  
   const addToMyList=()=>{
    
+  }
+
+  if(!datai){
+    return null
   }
   return (
     <>

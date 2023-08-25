@@ -4,8 +4,8 @@ import { useNavigate } from "react-router";
 import { HeroImageRight } from "./HeroHeader";
 import { Carousel } from "@mantine/carousel";
 import { useDispatch, useSelector } from "react-redux";
-// import { CheckingCom } from "./component/checkingStore";
-import { VideoSong } from "./video_song";
+import '../../Styles/home.css'
+import { Card, Image, Text } from "@mantine/core";
 import store from "../react-redux/store";
 
 const Home = () => {
@@ -18,9 +18,12 @@ const Home = () => {
   const store = useSelector((state) => state);
   console.log("store/20", store);
   const miniStore = useSelector(
-    (state) => state.showDetailsReducer.showDetails
+    (state) => state.showDetailsReducer
   );
-  const AllStore = useSelector((state) => state.mainDataReducer.showdata);
+  const manStore = useSelector((state) => state.mainDataReducer);
+  var AllStore = useSelector((state) => state.others.mainDataReducer.showdata);
+
+  
   // console.log("Home/23", AllStore);
   // console.log("Home/22", miniStore);
 
@@ -144,35 +147,56 @@ const Home = () => {
       <div style={{backgroundColor:'black',overflow:'hidden',paddingLeft:'60px'}}>
       <div
         style={{
-          height: "251px",
-          width: "100%",
+          
           backgroundColor: "#151515",
           color: "white",
-          // marginLeft:'60px'
           
         }}
-        // onClick={()=>navigate(`/showdetails/${item._id}`)}
 
       >
         <h1>Movies </h1>
         <Carousel
-          withIndicators
-          height={200}
-          // slideSize="33.333333%"
-          slideSize="15%"
+          
+          height={250}
+          slideSize="10%"
           slideGap="md"
           loop
           align="start"
-          slidesToScroll={8}
+          slidesToScroll={6}
+          
+         
         >
           {moviesData &&
             moviesData.map((item) => {
               return (
-                <Carousel.Slide>
-                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} />
+                <Carousel.Slide >
+                  {/* <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
+                  <img src={item.thumbnail} className="card-image"/>
 
-                  </div>
+                  </div> */}
+                    <Card
+              shadow="sm"
+              padding="xl"
+              component="a"
+              
+              // href={item.video_url}
+              // target="_self"
+              key={item._id}
+              onClick={()=>navigate(`/showdetails/${item._id}`)}
+            >
+              <Card.Section>
+                <Image
+                  src={item.thumbnail}
+                  height={235}
+                  alt="No way!"
+                  width={160}
+                />
+              </Card.Section>
+    
+              {/* <Text weight={500} size="sm" mt="md">
+                {item.title?.slice(0, 25)}
+              </Text>           */}
+            </Card>
                 </Carousel.Slide>
               );
             })}
@@ -180,7 +204,7 @@ const Home = () => {
       </div>
       <div
         style={{
-          height: "251px",
+          height: "350px",
           width: "100%",
           backgroundColor: "#151515",
           color: "white",
@@ -189,7 +213,7 @@ const Home = () => {
         <h1>Web Series</h1>
         <Carousel
           withIndicators
-          height={200}
+          height={250}
           // slideSize="33.333333%"
           slideSize="15%"
           slideGap="md"
@@ -201,8 +225,8 @@ const Home = () => {
             webSeriesData.map((item) => {
               return (
                 <Carousel.Slide>
-                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} />
+                  <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
+                  <img className='card-image' src={item.thumbnail} />
 
                   </div>
                 </Carousel.Slide>
@@ -212,16 +236,16 @@ const Home = () => {
       </div>
       <div
         style={{
-          height: "251px",
+          height: "350px",
           width: "100%",
           backgroundColor: "#151515",
           color: "white",
         }}
       >
-        <h2>Documentary</h2>
+        <h1>Documentary</h1>
         <Carousel
           withIndicators
-          height={200}
+          height={250}
           // slideSize="33.333333%"
           slideSize="15%"
           slideGap="md"
@@ -233,8 +257,8 @@ const Home = () => {
             documentaryDetails.map((item) => {
               return (
                 <Carousel.Slide>
-                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} />
+                  <div className='card' onClick={()=>navigate(`/showdetails/${item._id}`)}>
+                  <img className='card-image' src={item.thumbnail} />
 
                   </div>
                 </Carousel.Slide>
@@ -244,16 +268,16 @@ const Home = () => {
       </div>
       <div
         style={{
-          height: "251px",
+          height: "350px",
           width: "100%",
           backgroundColor: "#151515",
           color: "white",
         }}
       >
-        <h2>Trailer</h2>
+        <h1>Trailer</h1>
         <Carousel
           withIndicators
-          height={200}
+          height={250}
           // slideSize="33.333333%"
           slideSize="15%"
           slideGap="md"
@@ -265,8 +289,8 @@ const Home = () => {
             trailerDetails.map((item) => {
               return (
                 <Carousel.Slide>
-                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} />
+                  <div className='card' onClick={()=>navigate(`/showdetails/${item._id}`)}>
+                  <img className='card-image' src={item.thumbnail} />
 
                   </div>
                 </Carousel.Slide>
@@ -276,16 +300,16 @@ const Home = () => {
       </div>
       <div
         style={{
-          height: "251px",
+          height: "350px",
           width: "100%",
           backgroundColor: "#151515",
           color: "white",
         }}
       >
-        <h2>videoSongDetails</h2>
+        <h1>videoSongDetails</h1>
         <Carousel
           withIndicators
-          height={200}
+          height={250}
           // slideSize="33.333333%"
           slideSize="15%"
           slideGap="md"
@@ -297,8 +321,8 @@ const Home = () => {
             videoSongDetails.map((item) => {
               return (
                 <Carousel.Slide>
-                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} />
+                  <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
+                  <img className="card-image"src={item.thumbnail} />
 
                   </div>
                 </Carousel.Slide>
@@ -308,16 +332,16 @@ const Home = () => {
       </div>
       <div
         style={{
-          height: "251px",
+          height: "350px",
           width: "100%",
           backgroundColor: "#151515",
           color: "white",
         }}
       >
-        <h2>Short film</h2>
+        <h1>Short film</h1>
         <Carousel
           withIndicators
-          height={200}
+          height={250}
           // slideSize="33.333333%"
           slideSize="15%"
           slideGap="md"
@@ -329,8 +353,8 @@ const Home = () => {
             shortFlimData.map((item) => {
               return (
                 <Carousel.Slide>
-                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} />
+                  <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
+                  <img className="card-image" src={item.thumbnail} />
 
                   </div>
                 </Carousel.Slide>
@@ -340,16 +364,16 @@ const Home = () => {
       </div>
       <div
         style={{
-          height: "251px",
+          height: "350px",
           width: "100%",
           backgroundColor: "#151515",
           color: "white",
         }}
       >
-        <h2>Tv shows</h2>
+        <h1>Tv shows</h1>
         <Carousel
           withIndicators
-          height={200}
+          height={250}
           // slideSize="33.333333%"
           slideSize="15%"
           slideGap="md"
@@ -361,8 +385,8 @@ const Home = () => {
             tvData.map((item) => {
               return (
                 <Carousel.Slide>
-                  <div onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} />
+                  <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
+                  <img className="card-image" src={item.thumbnail} />
                   
                   </div>
                 </Carousel.Slide>

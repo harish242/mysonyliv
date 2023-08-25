@@ -1,7 +1,10 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {  useNavigate } from 'react-router';
 import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core';
 import { useDispatch,useSelector } from 'react-redux';
+import { FiCheck } from 'react-icons/fi'
+import { BsPlusLg } from 'react-icons/bs'
+
 import axios from 'axios';
 
 
@@ -108,6 +111,8 @@ export function HeroImageRight(props) {
     const dispatch=useDispatch()
     const Items=useSelector(state=>state.AddItems)
     const store=useSelector(store=>store.resetPassword)
+  const [isToggled, setIsToggled] = useState(false);
+
     // console.log('Herohead/110',store.token)
 
   const { classes } = useStyles();
@@ -117,7 +122,7 @@ export function HeroImageRight(props) {
      }})
   }
   // console.log('hero/head/117',datat.data._id)
-  const ids=datat.data._id
+  // const ids=datat.data._id
   // console.log('hh/121',ids)
  
   const addToMyList=async (ab)=>{
@@ -127,34 +132,37 @@ export function HeroImageRight(props) {
 
   // if(store.token){
     try{
-    //   (async()=>{
-    //       const response=await fetch(`https://academics.newtonschool.co/api/v1/social_media/watchlist/${ab}`,
+    //   if(datat.data._id){
+    //     (async()=>{
+    //       const response=await fetch("https://academics.newtonschool.co/api/v1/ott/watchlist/like",
     //      {method:"PATCH",headers:{'Authorization': `Bearer ${store.token}`,'projectid':'xybcw190kyb8'},body:JSON.stringify({'showId':ab})}
     //       )
     //       const resdata=await response.json()
     //       console.log('heroheader/130',resdata)
-    //       console.log('i runned')
+    //       // console.log('i runned')
     //  })()
+    //   }
+     
     const response = await axios.patch(
-      `https://academics.newtonschool.co/api/v1/social_media/watchlist/${ab}`,
+      `https://academics.newtonschool.co/api/v1/social_media/watchlist`,
       { 'showId':ab }, // Pass the showId in the request body
       {
         headers: {
-          Authorization: `Bearer ${store.token}`,
-          projectId: 'xybcw190kyb8',
+          "Authorization": `Bearer ${store.token}`,
+          "projectID": 'xybcw190kyb8',
         },
       }
     );
-    const favItems=response?.data.data.shows
-    console.log('hh/147',favItems)
-    if(favItems){
-      dispatch({type:'ADD_ITEM',payload:favItems})
-
-    }
+    // if(response.data.status!="200"){
+    //   return null
+    // }
+    console.log('response/hh',response)
+  
   }catch(err){
-    console.log('HeroH',datat)
+    console.log('HeroH',err)
+    return null
    }
-  // }
+   setIsToggled(!isToggled);
 }
   return (
     // onClick={()=>navigate(`/showdetails/${datat.data._id}`)}
@@ -185,47 +193,44 @@ export function HeroImageRight(props) {
             </Text>
             {/* <Text className={classes.whishlist}> */}
            {}
+           <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <div>
             <Button
               variant="gradient"
               gradient={{ from: 'pink', to: 'yellow' }}
               size="xl"
               className={classes.add}
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              mt={60}
-              style={{marginRight:20,marginTop:90,zIndex:1000}}
+              mt={51}
+              style={{marginRight:100,marginTop:90,zIndex:1000}}
               onClick={()=>addToMyList(datat.data._id)}
             >
+              {isToggled ? <span><FiCheck style={{ width: "23px", height: "23px", fontWeight: "700" }} /></span> : <span><BsPlusLg style={{ width: "23px", height: "23px", fontWeight: "700" }} /></span>  }
+          
              
-              +    Add To Whishlist
-            </Button>              
+                 Add To Whishlist
+            </Button> 
+            </div>
+                    
                
-                
-            <Button
+               <div style={{position:'relative',top:'45px'}}>
+               <Button
               variant="gradient"
               gradient={{ from: 'pink', to: 'yellow' }}
               size="xl"
               className={classes.control}
-              mt={60}
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={HandleClick}
-            >
-              
-              PLAY NOW
-            </Button>
-            {}
-            <Button
-              variant="gradient"
-              gradient={{ from: 'pink', to: 'yellow' }}
-              size="xl"
-              className={classes.control}
-              mt={60}
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              style={{marginLeft:'20px'}}
+              mt={110}
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded"
+              // mb={110}
               onClick={()=>navigate(`/showdetails/${datat.data._id}`)}
             >
               
               More Details
-            </Button>
+            </Button> 
+                </div> 
+          
+           </div>
+              
             
           
           </div>

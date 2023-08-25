@@ -40,6 +40,13 @@ main{
 /* .third-img{
 margin-right:30px;
 } */
+.outdiv{
+  width:200px;
+  height:200px;
+  background-color:yellow;
+  /* display:none; */
+}
+
 nav img{
     width:30px;
     height:30px;
@@ -77,16 +84,14 @@ nav img{
     background-image:url('https://images.slivcdn.com/UI_icons/smart_hook/rectangleCopy_smart_Hook_Background.png?w=110&q=high&fr=webp');
     color:white;
 }
-.second div:hover{
+.second > div:hover{
     color:white;
-    border-color:white;
-    
+    border-color:white;    
 }
-/* .second:hover{
-    text-decoration: underline;
-} */
 
-/* Original styles */
+
+
+
 
 /* Add responsive styles */
 @media screen and (max-width: 773px) {
@@ -120,6 +125,7 @@ nav img{
     }
    
   }
+
   @media screen and (max-width:200px){
     .first{
         flex-wrap: wrap;

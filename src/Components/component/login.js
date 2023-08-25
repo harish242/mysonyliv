@@ -1,7 +1,7 @@
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 const Login=()=>{
-    const store=useSelector(state=>state.loginReducer)
+    const store=useSelector(state=>state.persisted.loginReducer)
     console.log('login/5',store)
     const MainSore=useSelector(state=>state)
     console.log('login/7',MainSore)
@@ -25,14 +25,17 @@ const Login=()=>{
             }
                 )
                 const data=await response.json()
+                console.log('login/28',data)
                 const token=data.token
                 // dispatch({type:'updatepasswords',payload:token})
 
-                dispatch({type:'updatePassword',payload:token})
-                if(response.ok){
+                dispatch({type:'token',payload:token})
+    // case 'updatePassword':return {...state,token:action.payload}
+
+                if(data.status==='success'){
                   navigate('/home')
                 }
-                console.log(token)
+                console.log('login/37token',token)
              })()
         }catch(err){
          console.log(err)
