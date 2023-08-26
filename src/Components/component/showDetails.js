@@ -20,7 +20,8 @@ import axios from 'axios';
 const Show = () => {
   const { id } = useParams();
   const showDetails = useSelector(state => state.others.mainDataReducer.showdata);
-  const token=useSelector(state=>state.resetPassword.token)
+  const token=useSelector(state=>state.persisted.loginReducer.token)
+  console.log('sd/24',token)
   const selectedShow = showDetails?.find(item => item._id === id);
   const movie = showDetails?.filter(item => item.type === 'movie');
   const videoSong = showDetails?.filter(item => item.type === 'video song');

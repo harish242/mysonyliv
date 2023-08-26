@@ -4,6 +4,8 @@ import { createStyles, Container, Title, Text, Button, rem } from '@mantine/core
 import { useDispatch,useSelector } from 'react-redux';
 import { FiCheck } from 'react-icons/fi'
 import { BsPlusLg } from 'react-icons/bs'
+// import { useState } from 'react'
+import { Modal, Group } from '@mantine/core';
 
 import axios from 'axios';
 
@@ -106,12 +108,15 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function HeroImageRight(props) {
+  const [noTransitionOpened, setNoTransitionOpened] = useState(false);
+  const [slowTransitionOpened, setSlowTransitionOpened] = useState(false);
     const datat=props
     const navigate=useNavigate()
     const dispatch=useDispatch()
-    const Items=useSelector(state=>state.AddItems)
-    const store=useSelector(store=>store.resetPassword)
-  const [isToggled, setIsToggled] = useState(false);
+    // const Items=useSelector(state=>state.AddItems)
+    // const store=useSelector(store=>store.resetPassword)
+    const store=useSelector(state=>state.persisted.loginReducer)
+  const [isToggled, setIsToggled] = useState(true);
 
     // console.log('Herohead/110',store.token)
 
@@ -121,41 +126,23 @@ export function HeroImageRight(props) {
         videoURL:datat.data.video_url
      }})
   }
-  // console.log('hero/head/117',datat.data._id)
-  // const ids=datat.data._id
-  // console.log('hh/121',ids)
+
  
   const addToMyList=async (ab)=>{
-  // console.log('lastthing/123',ab)
-  // console.log('hh/124',store.token)
-  // console.log('hh/126',ids)
-
-  // if(store.token){
-    try{
-    //   if(datat.data._id){
-    //     (async()=>{
-    //       const response=await fetch("https://academics.newtonschool.co/api/v1/ott/watchlist/like",
-    //      {method:"PATCH",headers:{'Authorization': `Bearer ${store.token}`,'projectid':'xybcw190kyb8'},body:JSON.stringify({'showId':ab})}
-    //       )
-    //       const resdata=await response.json()
-    //       console.log('heroheader/130',resdata)
-    //       // console.log('i runned')
-    //  })()
-    //   }
+ 
+    try{  
      
     const response = await axios.patch(
       `https://academics.newtonschool.co/api/v1/social_media/watchlist`,
       { 'showId':ab }, // Pass the showId in the request body
       {
         headers: {
-          "Authorization": `Bearer ${store.token}`,
+          "Authorization": `Bearer ${store.tokens}`,
           "projectID": 'xybcw190kyb8',
         },
       }
     );
-    // if(response.data.status!="200"){
-    //   return null
-    // }
+  
     console.log('response/hh',response)
   
   }catch(err){
@@ -195,6 +182,26 @@ export function HeroImageRight(props) {
            {}
            <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
             <div>
+            <Modal
+        opened={slowTransitionOpened}
+        onClose={() => setSlowTransitionOpened(false)}
+        title="Please consider this"
+        transitionProps={{ transition: 'rotate-left' }}
+        // style={{marginTop:'20px'}}
+        position="down"
+        size="100%"
+      >
+        ADDED
+      </Modal>
+
+      {/* <Modal
+        opened={noTransitionOpened}
+        onClose={() => setNoTransitionOpened(false)}
+        title="Please consider this"
+        transitionProps={{ transition: 'fade', duration: 600, timingFunction: 'linear' }}
+      >
+        Item
+      </Modal> */}
             <Button
               variant="gradient"
               gradient={{ from: 'pink', to: 'yellow' }}
@@ -203,7 +210,11 @@ export function HeroImageRight(props) {
               class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
               mt={51}
               style={{marginRight:100,marginTop:90,zIndex:1000}}
-              onClick={()=>addToMyList(datat.data._id)}
+              // onClick={() => setSlowTransitionOpened(true)} color="pink"
+              onClick={()=>(
+                addToMyList(datat.data._id),
+                setSlowTransitionOpened(true)
+               )}
             >
               {isToggled ? <span><FiCheck style={{ width: "23px", height: "23px", fontWeight: "700" }} /></span> : <span><BsPlusLg style={{ width: "23px", height: "23px", fontWeight: "700" }} /></span>  }
           

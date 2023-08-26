@@ -7,9 +7,10 @@ import { useNavigate } from "react-router";
 export default function AddedItems() {
   const navigate=useNavigate()
    
-  const addItem = useSelector((state) => state.AddItems);
+  const addItem = useSelector((state) => state.others.AddItems);
 
-  const token=useSelector(state=>state.resetPassword.token)
+  const token=useSelector(state=>state.persisted.loginReducer.tokens)
+  console.log('at/13',token)
   const dispatch=useDispatch()
   const result = addItem.cartItems;
 
@@ -19,15 +20,15 @@ export default function AddedItems() {
             const response=await fetch('https://academics.newtonschool.co/api/v1/ott/watchlist/like',
             {method:"GET",headers:{'Authorization':`Bearer ${token}`,"projectID":"xybcw190kyb8"}})
             const datat=await response.json()
-            // dispatch({type:'ADD_ITEM',payload:datat.data.shows})
-            // console.log('addedItem/17',datat.data.shows)
+            dispatch({type:'ADD_ITEM',payload:datat.data.shows})
+            console.log('addedItem/17',datat.data.shows)
             
           })()
     }catch(err){
       console.log('runnningerr',err)
 
     }
-  },[dispatch])
+  },[])
  
   if(result.length===0){
     return <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'100vh'}}><span>Your whishlist Is Empty</span></div>
