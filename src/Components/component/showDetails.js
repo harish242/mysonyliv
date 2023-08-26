@@ -20,7 +20,7 @@ import axios from 'axios';
 const Show = () => {
   const { id } = useParams();
   const showDetails = useSelector(state => state.others.mainDataReducer.showdata);
-  const token=useSelector(state=>state.persisted.loginReducer.token)
+  const token=useSelector(state=>state.persisted.loginReducer.tokens)
   console.log('sd/24',token)
   const selectedShow = showDetails?.find(item => item._id === id);
   const movie = showDetails?.filter(item => item.type === 'movie');
@@ -34,6 +34,8 @@ const Show = () => {
   const [isToggled, setIsToggled] = useState(false);
   const handleAddToWatchlist = async() => {
     // dispatch(addToWatchlist(id));
+    setIsToggled(!isToggled); 
+
     try{
     
       const response = await axios.patch(
@@ -51,7 +53,6 @@ const Show = () => {
       console.log('my con',err)
       return null
     }
-    setIsToggled(!isToggled); 
   };
   return (
     <div className='show_container'>
