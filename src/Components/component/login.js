@@ -1,10 +1,10 @@
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 const Login=()=>{
-    const store=useSelector(state=>state.persisted.loginReducer)
+    const store=useSelector(state=>state.persisted.localJwtReducer.tokens)
     console.log('login/5',store)
-    const MainSore=useSelector(state=>state)
-    console.log('login/7',MainSore)
+    const MainStore=useSelector(state=>state.others.loginReducer)
+    console.log('login/7',MainStore)
     const dispatch=useDispatch()
     const navigate=useNavigate()
     const handleInput=(e)=>{
@@ -21,7 +21,7 @@ const Login=()=>{
              (async()=>{
                 const response=await fetch('https://academics.newtonschool.co/api/v1/user/login',
                 {method:"POST",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8'},
-                body:JSON.stringify({...store,"appType":"ott"})
+                body:JSON.stringify({...MainStore,"appType":"ott"})
             }
                 )
                 const data=await response.json()

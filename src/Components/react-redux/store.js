@@ -47,7 +47,7 @@ import { resetPassword } from "../reducers/resetPassword";
 import {combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage'
 import { persistReducer } from 'redux-persist'
-// import {localJwtReducer} from '../reducers/localjwt'
+import {localJwtReducer} from '../reducers/localjwt'
 
 // import { combineReducers } from '@reduxjs/toolkit';
 // import { persistReducer } from 'redux-persist';
@@ -63,7 +63,8 @@ const persistConfig = {
 // Include only the reducers you want to persist
 const selectedReducers = combineReducers({
   resetPassword,
-  loginReducer,
+  // loginReducer,
+  localJwtReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, selectedReducers);
@@ -76,6 +77,7 @@ const otherReducers = combineReducers({
   AddItems,
   moreDetailsReducer,
   regisReducer,
+  loginReducer,
   // ... other reducers
 });
 

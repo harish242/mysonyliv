@@ -20,7 +20,7 @@ import axios from 'axios';
 const Show = () => {
   const { id } = useParams();
   const showDetails = useSelector(state => state.others.mainDataReducer.showdata);
-  const token=useSelector(state=>state.persisted.loginReducer.tokens)
+  const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
   console.log('sd/24',token)
   const selectedShow = showDetails?.find(item => item._id === id);
   const movie = showDetails?.filter(item => item.type === 'movie');
@@ -134,11 +134,33 @@ const Show = () => {
         >
           {movie?.map(item => (
             <Carousel.Slide key={item._id} >
-              <div className="thumbnail_item">
+              {/* <div className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
                   <img src={item.thumbnail} alt={item.title} className='card-image' />
                 </Link>
-              </div>
+              </div> */}
+               <Card
+              shadow="sm"
+              padding="xl"
+              component="a"
+              
+              // href={item.video_url}
+              // target="_self"
+              key={item._id}
+            >
+              <Card.Section>
+                <Image
+                  src={item.thumbnail}
+                  height={260}
+                  alt="No way!"
+                  width={190}
+                />
+              </Card.Section>
+    
+              {/* <Text weight={500} size="sm" mt="md">
+                {item.title?.slice(0, 25)}
+              </Text>           */}
+            </Card>
             </Carousel.Slide>
           ))}
         </Carousel>
@@ -178,7 +200,7 @@ const Show = () => {
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
-                  width={220}
+                  width={190}
                 />
               </Card.Section>
     
@@ -206,11 +228,33 @@ const Show = () => {
         >
           {documentry?.map(item => (
             <Carousel.Slide key={item._id}>
-              <div  className="thumbnail_item">
+              {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
                   <img src={item.thumbnail} alt={item.title} />
                 </Link>
-              </div>
+              </div> */}
+               <Card
+              shadow="sm"
+              padding="xl"
+              component="a"
+              
+              // href={item.video_url}
+              // target="_self"
+              key={item._id}
+            >
+              <Card.Section>
+                <Image
+                  src={item.thumbnail}
+                  height={260}
+                  alt="No way!"
+                  width={190}
+                />
+              </Card.Section>
+    
+              {/* <Text weight={500} size="sm" mt="md">
+                {item.title?.slice(0, 25)}
+              </Text>           */}
+            </Card>
             </Carousel.Slide>
           ))}
         </Carousel>
@@ -231,11 +275,33 @@ const Show = () => {
         >
           {tvShow?.map(item => (
             <Carousel.Slide key={item._id}>
-              <div  className="thumbnail_item">
+              {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
                   <img src={item.thumbnail} alt={item.title} />
                 </Link>
-              </div>
+              </div> */}
+               <Card
+              shadow="sm"
+              padding="xl"
+              component="a"
+              
+              // href={item.video_url}
+              // target="_self"
+              key={item._id}
+            >
+              <Card.Section>
+                <Image
+                  src={item.thumbnail}
+                  height={260}
+                  alt="No way!"
+                  width={190}
+                />
+              </Card.Section>
+    
+              {/* <Text weight={500} size="sm" mt="md">
+                {item.title?.slice(0, 25)}
+              </Text>           */}
+            </Card>
             </Carousel.Slide>
           ))}
         </Carousel>
@@ -256,11 +322,33 @@ const Show = () => {
         >
           {shortFilm?.map(item => (
             <Carousel.Slide key={item._id}>
-              <div  className="thumbnail_item">
+              {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
                   <img src={item.thumbnail} alt={item.title} />
                 </Link>
-              </div>
+              </div> */}
+               <Card
+              shadow="sm"
+              padding="xl"
+              component="a"
+              
+              // href={item.video_url}
+              // target="_self"
+              key={item._id}
+            >
+              <Card.Section>
+                <Image
+                  src={item.thumbnail}
+                  height={260}
+                  alt="No way!"
+                  width={190}
+                />
+              </Card.Section>
+    
+              {/* <Text weight={500} size="sm" mt="md">
+                {item.title?.slice(0, 25)}
+              </Text>           */}
+            </Card>
             </Carousel.Slide>
           ))}
         </Carousel>
@@ -281,11 +369,33 @@ const Show = () => {
         >
           {trailer?.map(item => (
             <Carousel.Slide key={item._id}>
-              <div  className="thumbnail_item">
+              {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
                   <img src={item.thumbnail} alt={item.title} />
                 </Link>
-              </div>
+              </div> */}
+               <Card
+              shadow="sm"
+              padding="xl"
+              component="a"
+              
+              // href={item.video_url}
+              // target="_self"
+              key={item._id}
+            >
+              <Card.Section>
+                <Image
+                  src={item.thumbnail}
+                  height={260}
+                  alt="No way!"
+                  width={190}
+                />
+              </Card.Section>
+    
+              {/* <Text weight={500} size="sm" mt="md">
+                {item.title?.slice(0, 25)}
+              </Text>           */}
+            </Card>
             </Carousel.Slide>
           ))}
         </Carousel>
@@ -306,11 +416,33 @@ const Show = () => {
         >
           {webSeries?.map(item => (
             <Carousel.Slide key={item._id}>
-              <div  className="thumbnail_item">
+              {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
                   <img src={item.thumbnail} alt={item.title} />
                 </Link>
-              </div>
+              </div> */}
+               <Card
+              shadow="sm"
+              padding="xl"
+              component="a"
+              
+              // href={item.video_url}
+              // target="_self"
+              key={item._id}
+            >
+              <Card.Section>
+                <Image
+                  src={item.thumbnail}
+                  height={260}
+                  alt="No way!"
+                  width={190}
+                />
+              </Card.Section>
+    
+              {/* <Text weight={500} size="sm" mt="md">
+                {item.title?.slice(0, 25)}
+              </Text>           */}
+            </Card>
             </Carousel.Slide>
           ))}
         </Carousel>

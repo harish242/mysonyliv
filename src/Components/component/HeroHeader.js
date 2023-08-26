@@ -120,8 +120,8 @@ export function HeroImageRight(props) {
   const dispatch = useDispatch();
   // const Items=useSelector(state=>state.AddItems)
   // const store=useSelector(store=>store.resetPassword)
-  const store = useSelector((state) => state.persisted.loginReducer);
-  const [isToggled, setIsToggled] = useState(true);
+  const store = useSelector((state) => state.persisted.localJwtReducer);
+  const [isToggled, setIsToggled] = useState(false);
 
   // console.log('Herohead/110',store.token)
 
@@ -159,7 +159,7 @@ export function HeroImageRight(props) {
     setTimeout(()=>{
     open()
       
-    },1000)
+    },500)
 
     // if(!isToggled){}
   };

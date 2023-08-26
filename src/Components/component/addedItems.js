@@ -9,7 +9,7 @@ export default function AddedItems() {
    
   const addItem = useSelector((state) => state.others.AddItems);
 
-  const token=useSelector(state=>state.persisted.loginReducer.tokens)
+  const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
   console.log('at/13',token)
   const dispatch=useDispatch()
   const result = addItem.cartItems;
