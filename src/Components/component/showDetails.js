@@ -2,7 +2,7 @@
 import React, {useState} from 'react'
 import '../../Styles/showdetails.css';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { LiaCrownSolid } from 'react-icons/lia'
 import { FiCheck } from 'react-icons/fi'
 import { BsPlusLg } from 'react-icons/bs'
@@ -19,7 +19,11 @@ import axios from 'axios';
 
 const Show = () => {
   const { id } = useParams();
-  const showDetails = useSelector(state => state.others.mainDataReducer.showdata);
+  const navigate=useNavigate()
+  const showDetail = useSelector(state => state.others.mainDataReducer);
+  const showDetails=showDetail?.showdata
+  console.log('sD/24',showDetails)
+
   const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
   console.log('sd/24',token)
   const selectedShow = showDetails?.find(item => item._id === id);
@@ -33,6 +37,7 @@ const Show = () => {
   const dispatch = useDispatch();
   const [isToggled, setIsToggled] = useState(false);
   const handleAddToWatchlist = async() => {
+
     // dispatch(addToWatchlist(id));
     setIsToggled(!isToggled); 
 
@@ -147,14 +152,21 @@ const Show = () => {
               // href={item.video_url}
               // target="_self"
               key={item._id}
+              
             >
               <Card.Section>
+                {/* <div onClick={()=>navigate(`/showdetails/${item._id}`)}> */}
+                <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
                   width={190}
                 />
+                </Link>
+            
+                {/* </div> */}
+              
               </Card.Section>
     
               {/* <Text weight={500} size="sm" mt="md">
@@ -194,15 +206,19 @@ const Show = () => {
               // href={item.video_url}
               // target="_self"
               key={item._id}
+              onClick={()=>console.log('sd/203','i cliked')}
             >
               <Card.Section>
+              <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
                   width={190}
                 />
+                </Link>
               </Card.Section>
+              
     
               {/* <Text weight={500} size="sm" mt="md">
                 {item.title?.slice(0, 25)}
@@ -243,12 +259,14 @@ const Show = () => {
               key={item._id}
             >
               <Card.Section>
+              <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
                   width={190}
                 />
+                </Link>
               </Card.Section>
     
               {/* <Text weight={500} size="sm" mt="md">
@@ -290,12 +308,14 @@ const Show = () => {
               key={item._id}
             >
               <Card.Section>
+              <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
                   width={190}
                 />
+                </Link>
               </Card.Section>
     
               {/* <Text weight={500} size="sm" mt="md">
@@ -337,12 +357,14 @@ const Show = () => {
               key={item._id}
             >
               <Card.Section>
+              <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
                   width={190}
                 />
+                </Link>
               </Card.Section>
     
               {/* <Text weight={500} size="sm" mt="md">
@@ -384,12 +406,14 @@ const Show = () => {
               key={item._id}
             >
               <Card.Section>
+              <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
                   width={190}
                 />
+                </Link>
               </Card.Section>
     
               {/* <Text weight={500} size="sm" mt="md">
@@ -431,12 +455,14 @@ const Show = () => {
               key={item._id}
             >
               <Card.Section>
+              <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
                   height={260}
                   alt="No way!"
                   width={190}
                 />
+                </Link>
               </Card.Section>
     
               {/* <Text weight={500} size="sm" mt="md">

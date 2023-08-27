@@ -1,18 +1,19 @@
 import { Card, Image, Text } from "@mantine/core";
 import { useSelector,useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { SimpleGrid } from '@mantine/core'
 import { Button } from '@mantine/core';
 import { useNavigate } from "react-router";
 export default function AddedItems() {
   const navigate=useNavigate()
    
-  const addItem = useSelector((state) => state.others.AddItems);
-
+  const addItem = useSelector((state) => state.persisted.AddItems);
+console.log('aD/11',addItem)
   const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
   console.log('at/13',token)
   const dispatch=useDispatch()
   const result = addItem.cartItems;
+  const [state,setState]=useState()
 
   useEffect(()=>{
     try{
@@ -20,22 +21,33 @@ export default function AddedItems() {
             const response=await fetch('https://academics.newtonschool.co/api/v1/ott/watchlist/like',
             {method:"GET",headers:{'Authorization':`Bearer ${token}`,"projectID":"xybcw190kyb8"}})
             const datat=await response.json()
+            console.log('addI/23',datat)
+            if(datat.status==='success'){
             dispatch({type:'ADD_ITEM',payload:datat.data.shows})
-            console.log('addedItem/17',datat.data.shows)
+
+            }
+            else{
+              setState(false)
+            }
+            // console.log('addedItem/28',datat.data.shows)
             
           })()
     }catch(err){
       console.log('runnningerr',err)
 
+
     }
   },[])
+  if(!state){
+    return <div style={{height:'500px',width:'500px',backgroundColor:'red',margin:'auto'}}>Plz login</div>
+  }
  
   if(result.length===0){
     return <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'100vh'}}><span>Your whishlist Is Empty</span></div>
   }
    
   return (
-    <div style={{marginTop:'16px'}}>
+    <div style={{marginTop:'21px'}}>
       <SimpleGrid cols={5}   breakpoints={[
         { maxWidth: 'md', cols: 3, spacing: 'md' },
         { maxWidth: 'sm', cols: 2, spacing: 'sm' },

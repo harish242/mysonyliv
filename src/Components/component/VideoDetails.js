@@ -4,7 +4,7 @@ import { useParams } from "react-router";
 import { useSelector } from "react-redux";
 export function VideoDetails() {
     const details=useLocation()
-    const fullData=useSelector(state=>state.mainDataReducer.showdata)
+    const fullData=useSelector(state=>state.others.mainDataReducer.showdata)
     const {id}=useParams()
     // const urlt=details?.state?.videoURL
     console.log(fullData) 

@@ -118,12 +118,15 @@ export function HeroImageRight(props) {
   const datat = props;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const Items=useSelector(state=>state.AddItems)
-  // const store=useSelector(store=>store.resetPassword)
   const store = useSelector((state) => state.persisted.localJwtReducer);
-  const [isToggled, setIsToggled] = useState(false);
-
-  // console.log('Herohead/110',store.token)
+  const doIt=useSelector(state=>state)
+  console.log('hh/126',doIt)
+  const addedItems = useSelector((state) => state.persisted.AddItems.cartItems);
+ 
+    const Toggled=useSelector(state=>state.persisted.AddItems)
+    console.log('hh/134',Toggled[datat.data._id])
+    const isToggled=Toggled[datat.data._id]||false
+  
 
   const { classes } = useStyles();
   const HandleClick = () => {
@@ -149,22 +152,26 @@ export function HeroImageRight(props) {
 
       console.log("response/hh", response);
     } catch (err) {
-      console.log("HeroH", err);
+      console.log("HeroH/155", err);
       return null;
     }
-    setIsToggled(!isToggled);
+   
+   
+    const actionType = `TOGGLE_${datat.data._id}`;
+    dispatch({
+      type: actionType,
+      payload: !isToggled
+    });
   };
-  const HandleToggles = () => {
-    addToMyList(datat.data._id);
-    setTimeout(()=>{
-    open()
-      
-    },500)
+  const HandleToggles = (ids) => {
+    addToMyList(ids);
+    setTimeout(() => {
+      open();
+    }, 500);
 
-    // if(!isToggled){}
+  
   };
   return (
-    // onClick={()=>navigate(`/showdetails/${datat.data._id}`)}
     <div
       className={classes.root}
       style={{
@@ -190,8 +197,7 @@ export function HeroImageRight(props) {
             </Title>
 
             <Text className={classes.description} mt={100}>
-              {/* Build fully functional accessible web applications with ease – Mantine includes more
-              than 100 customizable components and hooks to cover you in any situation */}
+             
               {datat.data.description}
             </Text>
             {/* <Text className={classes.whishlist}> */}
@@ -204,9 +210,15 @@ export function HeroImageRight(props) {
               }}
             >
               {isToggled && (
-                <Modal opened={opened} onClose={close} withCloseButton={false}>
-                  Added To Whishlist
-                </Modal>
+                <div style={{ position: "relative", top: "50%", left: "50%" }}>
+                  <Modal
+                    opened={opened}
+                    onClose={close}
+                    withCloseButton={false}
+                  >
+                    Added To Whishlist
+                  </Modal>
+                </div>
               )}
 
               <Button
@@ -217,7 +229,7 @@ export function HeroImageRight(props) {
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 mt={51}
                 style={{ marginRight: 100, marginTop: 90, zIndex: 1000 }}
-                onClick={HandleToggles}
+                onClick={() => HandleToggles(datat.data._id)}
               >
                 {isToggled ? (
                   <span>

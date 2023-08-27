@@ -1,9 +1,12 @@
 
 import { useDispatch,useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 export function Regis() {
-    const store=useSelector(state=>state.regisReducer)
+    const store=useSelector(state=>state.others.regisReducer)
+    const navigate=useNavigate()
+
     console.log('regis/7',store)
     const dispatch=useDispatch()
     const handleInput=(e)=>{
@@ -25,6 +28,9 @@ export function Regis() {
             }
                 )
                 const data=await response.json()
+                if(data.status==='success'){
+                  navigate('/login')
+                }
                 console.log(data)
              })()
         }catch(err){
