@@ -13,7 +13,7 @@ console.log('aD/11',addItem)
   console.log('at/13',token)
   const dispatch=useDispatch()
   const result = addItem.cartItems;
-  const [state,setState]=useState()
+  const [state,setState]=useState(true)
 
   useEffect(()=>{
     try{
@@ -24,7 +24,6 @@ console.log('aD/11',addItem)
             console.log('addI/23',datat)
             if(datat.status==='success'){
             dispatch({type:'ADD_ITEM',payload:datat.data.shows})
-
             }
             else{
               setState(false)

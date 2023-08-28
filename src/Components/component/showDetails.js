@@ -35,11 +35,13 @@ const Show = () => {
   const trailer = showDetails?.filter(item => item.type === 'trailer');
   const webSeries = showDetails?.filter(item => item.type === 'web series');
   const dispatch = useDispatch();
-  const [isToggled, setIsToggled] = useState(false);
+  // const [isToggled, setIsToggled] = useState(false);
+  const Toggled=useSelector(state=>state.persisted.AddItems)
+  const isToggled=Toggled[id]
   const handleAddToWatchlist = async() => {
 
     // dispatch(addToWatchlist(id));
-    setIsToggled(!isToggled); 
+    // setIsToggled(!isToggled); 
 
     try{
     
@@ -53,7 +55,10 @@ const Show = () => {
           },
         }
       );
-      console.log(response)
+      console.log('sD/58',response)
+      if(response.status==200){
+        dispatch({type:`TOGGLE_${id}`,payload:!isToggled})
+      }
     }catch(err){
       console.log('my con',err)
       return null
