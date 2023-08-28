@@ -8,7 +8,8 @@ const initialState = {
   trailer:[],
   tvshow:[],
   webseries:[],
-  videosong:[]
+  videosong:[],
+  usedetails:{}
 };
 export const AddItems = (state = initialState, action) => {
   // const addedItems = useSelector((state) => state.persisted.AddItems.cartItems);
@@ -23,6 +24,7 @@ export const AddItems = (state = initialState, action) => {
     case 'tv show':return {...state,tvshow:[...action.payload]}
     case 'web series':return {...state,webseries:[...action.payload]}
     case 'video song':return {...state,videosong:[...action.payload]}
+    case 'userdetails':return {...state,usedetails:{...action.payload}}
     case 'NUllIFY_STATE':return initialState
     default:
       if(action.type.startsWith('TOGGLE_')){

@@ -27,7 +27,7 @@ const Login=()=>{
                 const data=await response.json()
                 console.log('login/28',data)
                 const token=data.token
-                // dispatch({type:'updatepasswords',payload:token})
+                dispatch({type:'userdetails',payload:data})
 
                 dispatch({type:'token',payload:token})
     // case 'updatePassword':return {...state,token:action.payload}

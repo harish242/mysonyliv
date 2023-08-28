@@ -54,6 +54,9 @@ const videosong=useSelector(state=>state.persisted.AddItems.videosong)
 
 const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
 
+const userdetails=useSelector(state=>state.persisted.AddItems.userdetails)
+console.log('Home/58',userdetails)
+
   
   // console.log("Home/23", AllStore);
   // console.log("Home/22", miniStore);

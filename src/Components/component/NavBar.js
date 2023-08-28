@@ -190,7 +190,10 @@ const NavBar = () => {
           {/* <img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?h=28&w=28&q=high&fr=webp' /> */}
           <Modal
             opened={opened}
+            onClose={close}
             onClick={close}
+            closeOnClickOutside={close}
+
             title="Authentication"
             centered
             size="25%"
@@ -201,9 +204,12 @@ const NavBar = () => {
             <Table verticalSpacing="xs" fontSize="xs" horizontalSpacing="xs">
               {/* {...rows} */}
               <thead>
-                <tr>
+                <tr onClick={handleSignin}>
                   {/* <Link to="/"> */}
-                    <th onClick={handleSignin}>Sign in a better experience</th>
+                  {/* <div onClick={handleSignin}> */}
+                  <th >Sign in a better experience</th>
+
+                  {/* </div> */}
                   {/* </Link> */}
                 </tr>
               </thead>
@@ -214,8 +220,11 @@ const NavBar = () => {
                 <tr>
                   <td>Activate TV</td>
                 </tr>
-                <tr>
-                  <td onClick={handleReset}>Settings &updatePassword</td>
+                <tr onClick={handleReset}>
+                  {/* <div onClick={handleReset}> */}
+                  <td >Settings &updatePassword</td>
+
+                  {/* </div> */}
                 </tr>
                 <tr>
                   <td>Contact Us</td>
@@ -223,12 +232,18 @@ const NavBar = () => {
                 <tr>
                   <td>Chat with us on WhatsApp</td>
                 </tr>
-                <tr>
-                  <td onClick={handleAdd}>myList</td>
+                <tr onClick={handleAdd}>
+                  {/* <div onClick={handleAdd}> */}
+                  <td >myList</td>
+
+                  {/* </div> */}
                     
                 </tr>
-                <tr>
-                    <td onClick={handleLogout}>LogOut</td>
+                <tr onClick={handleLogout}>
+                  {/* <div onClick={handleLogout}> */}
+                  <td >LogOut</td>
+
+                  {/* </div> */}
                 </tr>
               </tbody>
             </Table>
