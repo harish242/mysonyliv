@@ -16,6 +16,8 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure(false);
   const tokenNull=useSelector(state=>state.persisted.localJwtReducer.tokens)
+  const storePersis=useSelector(state=>state.persisted)
+
 
 
   const store = useSelector((state) => state);
@@ -76,7 +78,7 @@ const NavBar = () => {
   };
   const handleLogout=()=>{
     
-        dispatch({type:'token',payload:null}),
+        dispatch({type:'NUllIFY_STATE'}),
         navigate('/')
         
   }

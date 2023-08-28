@@ -23,6 +23,7 @@ export const AddItems = (state = initialState, action) => {
     case 'tv show':return {...state,tvshow:[...action.payload]}
     case 'web series':return {...state,webseries:[...action.payload]}
     case 'video song':return {...state,videosong:[...action.payload]}
+    case 'NUllIFY_STATE':return initialState
     default:
       if(action.type.startsWith('TOGGLE_')){
          const itemId=action.type.replace('TOGGLE_','')

@@ -22,8 +22,12 @@ console.log('aD/11',addItem)
             {method:"GET",headers:{'Authorization':`Bearer ${token}`,"projectID":"xybcw190kyb8"}})
             const datat=await response.json()
             console.log('addI/23',datat)
+            const datai=datat.data.shows
             if(datat.status==='success'){
-            dispatch({type:'ADD_ITEM',payload:datat.data.shows})
+            dispatch({type:'ADD_ITEM',payload:datai})
+            datai.forEach(item=>{
+                  dispatch({type:`TOGGLE_${item._id}`,payload:true})
+            })
             }
             else{
               setState(false)
