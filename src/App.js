@@ -46,8 +46,8 @@ export default function App() {
       <Route path='/data' element={<LayOut><ActionDetails/></LayOut>}/>
       <Route path='/check' element={<LayOut><CheckingCom/></LayOut>}/>
       <Route path='additem' element={<LayOut><AddedItems/></LayOut>}/>
-      <Route path='/' element={<LayOut><Regis/></LayOut>}/>
-      <Route path='/login' element={<LayOut><Login/></LayOut>}/>
+      <Route path='/' element={<Regis/>}/>
+      <Route path='/login' element={<Login/>}/>
       <Route path='/detailsmore' element={<LayOut><MoreDetails/></LayOut>}/>
       <Route path='/resetpass' element={<ResetPassword/>}/>
       <Route path='/showdetails/:id' element={<LayOut><Show/></LayOut>}/>

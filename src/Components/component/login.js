@@ -42,20 +42,20 @@ const Login=()=>{
         }
     } 
     return(
-        <div style={{display:"flex",justifyContent:'center',alignItems:'center',marginTop:'100px'}}>
-        <div class="w-full max-w-xs" >
-  <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onChange={handleInput} onSubmit={doPost}>
+        <div style={{display:"flex",justifyContent:'center',alignItems:'center',height:'100vh',width:'100vw',backgroundImage:'url(https://www.gadgetmouse.com/wp-content/uploads/2021/07/SonyLIV-featured.png)',backgroundRepeat:'no-repeat',backgroundSize:'cover'}}>
+        <div class="w-full max-w-xs" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', padding: '20px', borderRadius: '10px' }}>
+  <form  onChange={handleInput} onSubmit={doPost}>
     <div class="mb-4">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+      <label class="block text-black-700 text-sm font-bold mb-2" for="email">
         Email
       </label>
-      <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="email"/>
+      <input class="shadow appearance-none border border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="email"/>
     </div>
     <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+      <label class="block text-black-700 text-sm font-bold mb-2" for="password">
         Password
       </label>
-      <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"/>
+      <input class="shadow appearance-none border border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"/>
       {/* <p class="text-red-500 text-xs italic">Please choose a password.</p> */}
     </div>
     <div class="flex items-center justify-between">

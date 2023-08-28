@@ -74,6 +74,21 @@ const NavBar = () => {
   const handleModalOpen = () => {
     open(); // Open the modal
   };
+  const handleLogout=()=>{
+    
+        dispatch({type:'token',payload:null}),
+        navigate('/')
+        
+  }
+  const handleAdd=()=>{
+    navigate('/additem')
+  }
+  const handleSignin=()=>{
+    navigate('/')
+  }
+  const handleReset=()=>{
+    navigate('/resetpass')
+  }
   return (
     <div className="navbar_container">
       <div className="navbar_logo">
@@ -173,7 +188,7 @@ const NavBar = () => {
           {/* <img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?h=28&w=28&q=high&fr=webp' /> */}
           <Modal
             opened={opened}
-            onClose={close}
+            onClick={close}
             title="Authentication"
             centered
             size="25%"
@@ -185,9 +200,9 @@ const NavBar = () => {
               {/* {...rows} */}
               <thead>
                 <tr>
-                  <Link to="/">
-                    <th>Sign in a better experience</th>
-                  </Link>
+                  {/* <Link to="/"> */}
+                    <th onClick={handleSignin}>Sign in a better experience</th>
+                  {/* </Link> */}
                 </tr>
               </thead>
               <tbody>
@@ -198,7 +213,7 @@ const NavBar = () => {
                   <td>Activate TV</td>
                 </tr>
                 <tr>
-                  <td>Settings &Preferences</td>
+                  <td onClick={handleReset}>Settings &updatePassword</td>
                 </tr>
                 <tr>
                   <td>Contact Us</td>
@@ -207,19 +222,18 @@ const NavBar = () => {
                   <td>Chat with us on WhatsApp</td>
                 </tr>
                 <tr>
-                  <td>Activate Offer</td>
+                  <td onClick={handleAdd}>myList</td>
+                    
                 </tr>
                 <tr>
-                  <Link to='/'>
-                    <td onClick={()=>dispatch({type:'token',payload:null})}>LogOut</td>
-                  </Link>
+                    <td onClick={handleLogout}>LogOut</td>
                 </tr>
               </tbody>
             </Table>
           </Modal>
           <Group position="center">
             <Button
-              onClick={open}
+              onClick={()=>open()}
               variant="white"
               color="gray"
               radius="xs"
