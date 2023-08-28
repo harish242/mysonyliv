@@ -1,135 +1,4 @@
-/* .navbar{
-    color:#aaa;
-    background-color:rgba(0,0,0,0.5);
-    padding:3px;
-    display:flex;
-    align-items: center;
- 
-    margin:0;
-    padding:0;
-    overflow: hidden;
-
-    box-sizing:border-box;
-    font-size: 12px;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index: 1000;
-   
-}
-main{
-    /* background:url('https://rajaneditz.com/wp-content/uploads/2023/04/Background-HD-Images-Download-Stock-819x1024.jpg'); */
-    /* width:100%;
-    background-size:cover;
-    background-position: center;   
-    overflow: hidden;
-    
-}
-
-.third{
-    display: flex;
-    gap:25px;
-    margin-left:auto;
-    margin-right:30px;
-    align-items: center;
-}
-
-.outdiv{
-  width:200px;
-  height:200px;
-  background-color:yellow;
-}
-
-nav img{
-    width:30px;
-    height:30px;
-}
-.smart-hook-separetor{
-    width:0px;
-    height:24px;
-    border:1px solid #ffffff;
-    margin-left:30px;
-    opacity: 0.3;
-}
-.second{
-    display:flex;
-    gap:10px;
-    cursor:pointer;
-    padding:0 20px;
-    
-}
-.second div{
-    padding:12px;
-    text-decoration: none;
-    color: #aaa;
-    border-bottom:3px solid transparent;
-    
-}
-.first{
-    margin-left:30px;
-    display:flex;
-    align-items: center;
-    gap:5px;
-}
-.subscribe{
-    background-image:url('https://images.slivcdn.com/UI_icons/smart_hook/rectangleCopy_smart_Hook_Background.png?w=110&q=high&fr=webp');
-    color:white;
-}
-.second > div:hover{
-    color:white;
-    border-color:white;    
-}
-
-
-
-
-
-@media screen and (max-width: 773px) {
-    .navbar {
-      flex-direction: column;
-      align-items: center;
-      padding: 10px 20px;
-      gap: 10px;
-    }
-  
-    .navbar img {
-      margin-bottom: 10px;
-    }
-  
-    .smart-hook-separetor {
-      display: none;
-    }
-  
-    .second {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-    } 
-  .third{
-    display:flex;
-    flex-direction: column;
-   margin-right:50%;
-       
-        
-    }
-   
-  }
-
-  @media screen and (max-width:200px){
-    .first{
-        flex-wrap: wrap;
-    }
-  }
-  @media screen and (max-width:1000px){
-    .second{
-        flex-wrap: wrap;
-    }
-  } */
-
-
-  .navbar_container {
+.navbar_container {
     position: fixed;
     top: 0;
     width: 100%;
@@ -238,14 +107,14 @@ nav img{
 }
 
 .navbar_avatar {
-    padding-top: 2px;
+    /* padding-top: 0px; */
     border-radius: 2.1px;
     margin-top: 0.6875em;
     margin-right: 4.125em;
     cursor: pointer;
 }
 
-.check {
+.class_movie {
     width: 100vw;
     height: 25.625em;
     backdrop-filter: blur(4px);
@@ -255,7 +124,79 @@ nav img{
     top: 3.125em;
     z-index: -1;
     display: none;
-    left: -269px;
+    left: -335px;
+}
+.class_video_song {
+    width: 100vw;
+    height: 25.625em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 3.125em;
+    z-index: -1;
+    display: none;
+    left: -400px;
+}
+.class_web_series {
+    width: 100vw;
+    height: 25.625em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 3.125em;
+    z-index: -1;
+    display: none;
+    left: -500px;
+}
+.class_documentry {
+    width: 100vw;
+    height: 25.625em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 3.125em;
+    z-index: -1;
+    display: none;
+    left: -605px;
+}
+.class_tv_show {
+    width: 100vw;
+    height: 25.625em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 3.125em;
+    z-index: -1;
+    display: none;
+    left: -725px;
+}
+.class_trailer {
+    width: 100vw;
+    height: 25.625em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 3.125em;
+    z-index: -1;
+    display: none;
+    left: -805px;
+}
+.class_short_film {
+    width: 100vw;
+    height: 25.625em;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.85);
+    position: absolute;
+    top: 3.125em;
+    z-index: -1;
+    display: none;
+    left: -870px;
 }
 
 .check1 {
@@ -265,7 +206,13 @@ nav img{
     cursor: pointer;
 }
 
-.check1:hover .check {
+.check1:hover .class_movie,
+.check1:hover .class_video_song,
+.check1:hover .class_web_series,
+.check1:hover .class_documentry,
+.check1:hover .class_tv_show,
+.check1:hover .class_trailer,
+.check1:hover .class_short_film{
     display: block;
 }
 .check2{
@@ -282,6 +229,7 @@ nav img{
     font-size: 1.125em;
     font-weight: 500;
     color: #fff;
+    display: inline;
 }
 .fa_icon{
     position: relative;
@@ -313,35 +261,36 @@ nav img{
 .check_center{
     width: 78vw;
     position: absolute;
-    top: 161px;
+    top: 120px;
     left: 150px;
     overflow-x: scroll;
     height: 230px;
 }
 ::-webkit-scrollbar{
-    /* display: none; */
-    /* width: 2px; */
     height: 2px;
 
 }
 .check_center::-webkit-scrollbar-track{
-    background-color: red;
-    /* width: 2px; */
+    background-color: white;
 
 }
 .check_center::-webkit-scrollbar-thumb{
-    background-color: blue;
+    background-color: black;
 }
 .filtered_item{
     width: 150px;
     height: 200px;
-    /* background-color: red; */
     
 }
 .filtered_item img{
     width: 100%;
     height: 100%;
     border-radius: 8px;
+}
+.active{
+    background-color: rgba(255,255,255,0.75);
+    color: #000;
+    padding: 10px;
 }
 
       

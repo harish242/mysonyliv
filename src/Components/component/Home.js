@@ -20,8 +20,39 @@ const Home = () => {
   const miniStore = useSelector(
     (state) => state.showDetailsReducer
   );
-  const manStore = useSelector((state) => state.mainDataReducer);
-  var AllStore = useSelector((state) => state.others.mainDataReducer.showdata);
+  // const manStore = useSelector((state) => state.mainDataReducer);
+  var AllStore = useSelector((state) => state.persisted.AddItems.movie);
+  console.log('home/25',AllStore)
+
+  const movie=useSelector(state=>state.persisted.AddItems.movie)
+  // selectedShow = movie.find(item => item._id === id);
+
+
+const tvshow=useSelector(state=>state.persisted.AddItems.movie)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const webseries=useSelector(state=>state.persisted.AddItems.webseries)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const documentary=useSelector(state=>state.persisted.AddItems.documentary)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+const trailer=useSelector(state=>state.persisted.AddItems.trailer)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const videosong=useSelector(state=>state.persisted.AddItems.videosong)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
 
   
   // console.log("Home/23", AllStore);
@@ -64,61 +95,61 @@ const Home = () => {
   //   },[])
   //   console.log('Home/56',reduFunc)
   // }
-  if (AllStore) {
-    var moviesData = AllStore.reduce((acc, curr) => {
-      if (curr.type === "movie") {
-        acc.push(curr);
-      }
-      return acc;
-    }, []);
+  // if (AllStore) {
+  //   var moviesData = AllStore.reduce((acc, curr) => {
+  //     if (curr.type === "movie") {
+  //       acc.push(curr);
+  //     }
+  //     return acc;
+  //   }, []);
     // console.log("Home/chec/71", moviesData);
-  }
-  if (AllStore) {
-    var webSeriesData = AllStore.reduce((acc, curr) => {
-      if (curr.type === "web series") {
-        acc.push(curr);
-      }
-      return acc;
-    }, []);
+  // }
+  // if (AllStore) {
+  //   var webSeriesData = AllStore.reduce((acc, curr) => {
+  //     if (curr.type === "web series") {
+  //       acc.push(curr);
+  //     }
+  //     return acc;
+  //   }, []);
     // console.log("Home/wbS", webSeriesData);
-  }
-  const documentaryDetails =
-    AllStore && AllStore.filter((item) => item.type === "documentary");
-  // console.log("Home/doc/82", documentaryDetails);
-  if(AllStore){
-  var videoSongDetails=AllStore.reduce((acc,curr)=>{
-          if(curr.type==="video song"){
-            acc.push(curr)
-          }
-          return acc
-  },[])
+  // }
+  // const documentaryDetails =
+  //   AllStore && AllStore.filter((item) => item.type === "documentary");
+  // // console.log("Home/doc/82", documentaryDetails);
+  // if(AllStore){
+  // var videoSongDetails=AllStore.reduce((acc,curr)=>{
+  //         if(curr.type==="video song"){
+  //           acc.push(curr)
+  //         }
+  //         return acc
+  // },[])
   // console.log('Home/vsD/91',videoSongDetails)
 
-  }
-  if(AllStore){
-    var trailerDetails=AllStore.reduce((acc,curr)=>{
-      if(curr.type==="trailer"){
-        acc.push(curr)
-      }
-      return acc
-    },[])
-  }
-  if(AllStore){
-    var shortFlimData=AllStore.reduce((acc,curr)=>{
-      if(curr.type==='short film'){
-        acc.push(curr)
-      }
-      return acc
-    },[])
-  }
-  if(AllStore){
-    var tvData=AllStore.reduce((acc,curr)=>{
-      if(curr.type==='tv show'){
-        acc.push(curr)
-      }
-      return acc
-    },[])
-  }
+  // }
+  // if(AllStore){
+  //   var trailerDetails=AllStore.reduce((acc,curr)=>{
+  //     if(curr.type==="trailer"){
+  //       acc.push(curr)
+  //     }
+  //     return acc
+  //   },[])
+  // }
+  // if(AllStore){
+  //   var shortFlimData=AllStore.reduce((acc,curr)=>{
+  //     if(curr.type==='short film'){
+  //       acc.push(curr)
+  //     }
+  //     return acc
+  //   },[])
+  // }
+  // if(AllStore){
+  //   var tvData=AllStore.reduce((acc,curr)=>{
+  //     if(curr.type==='tv show'){
+  //       acc.push(curr)
+  //     }
+  //     return acc
+  //   },[])
+  // }
 
   return (
     <>
@@ -131,7 +162,7 @@ const Home = () => {
         slideGap="md"
         align="start"
       >
-        {datai.map((item, index) => {
+        {AllStore.map((item, index) => {
           return (
             <Carousel.Slide key={item._id}>
               <HeroImageRight data={item} />
@@ -166,8 +197,8 @@ const Home = () => {
           
          
         >
-          {moviesData &&
-            moviesData.map((item) => {
+          {movie &&
+            movie.map((item) => {
               return (
                 <Carousel.Slide >
                   {/* <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
@@ -221,8 +252,8 @@ const Home = () => {
           align="start"
           slidesToScroll={8}
         >
-          {webSeriesData &&
-            webSeriesData.map((item) => {
+          {webseries &&
+            webseries.map((item) => {
               return (
                 <Carousel.Slide>
                   <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
@@ -253,8 +284,8 @@ const Home = () => {
           align="start"
           slidesToScroll={8}
         >
-          {documentaryDetails &&
-            documentaryDetails.map((item) => {
+          {documentary &&
+            documentary.map((item) => {
               return (
                 <Carousel.Slide>
                   <div className='card' onClick={()=>navigate(`/showdetails/${item._id}`)}>
@@ -285,8 +316,8 @@ const Home = () => {
           align="start"
           slidesToScroll={8}
         >
-          {trailerDetails &&
-            trailerDetails.map((item) => {
+          {trailer &&
+            trailer.map((item) => {
               return (
                 <Carousel.Slide>
                   <div className='card' onClick={()=>navigate(`/showdetails/${item._id}`)}>
@@ -306,7 +337,7 @@ const Home = () => {
           color: "white",
         }}
       >
-        <h1>videoSongDetails</h1>
+        <h1>VideoSong</h1>
         <Carousel
           withIndicators
           height={250}
@@ -317,8 +348,8 @@ const Home = () => {
           align="start"
           slidesToScroll={8}
         >
-          {videoSongDetails &&
-            videoSongDetails.map((item) => {
+          {videosong &&
+            videosong.map((item) => {
               return (
                 <Carousel.Slide>
                   <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
@@ -349,8 +380,8 @@ const Home = () => {
           align="start"
           slidesToScroll={8}
         >
-          {shortFlimData &&
-            shortFlimData.map((item) => {
+          {shortfilm &&
+            shortfilm.map((item) => {
               return (
                 <Carousel.Slide>
                   <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
@@ -381,8 +412,8 @@ const Home = () => {
           align="start"
           slidesToScroll={8}
         >
-          {tvData &&
-            tvData.map((item) => {
+          {tvshow &&
+            tvshow.map((item) => {
               return (
                 <Carousel.Slide>
                   <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>

@@ -38,7 +38,7 @@ export default function App() {
   return (
    
        <BrowserRouter>
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider withGlobalStyles withNormalizeCSS theme={{ primaryShade: 0 }}>
     <Routes>
       <Route path="/home" element={<LayOut><Home/></LayOut>}/>
       <Route path='/video/:id' element={<LayOut><VideoDetails /></LayOut>}/>
@@ -49,7 +49,7 @@ export default function App() {
       <Route path='/' element={<LayOut><Regis/></LayOut>}/>
       <Route path='/login' element={<LayOut><Login/></LayOut>}/>
       <Route path='/detailsmore' element={<LayOut><MoreDetails/></LayOut>}/>
-      <Route path='/resetpass' element={<LayOut><ResetPassword/></LayOut>}/>
+      <Route path='/resetpass' element={<ResetPassword/>}/>
       <Route path='/showdetails/:id' element={<LayOut><Show/></LayOut>}/>
       <Route path='/accod' element={<Accordions/>}/>
       <Route path='/logout' element={<LogOut/>}/>

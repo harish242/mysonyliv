@@ -21,19 +21,58 @@ const Show = () => {
   const { id } = useParams();
   const navigate=useNavigate()
   const showDetail = useSelector(state => state.others.mainDataReducer);
-  const showDetails=showDetail?.showdata
-  console.log('sD/24',showDetails)
+  // const showDetails=showDetail?.showdata
+  // console.log('sD/24',showDetails)
 
   const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
   console.log('sd/24',token)
-  const selectedShow = showDetails?.find(item => item._id === id);
-  const movie = showDetails?.filter(item => item.type === 'movie');
-  const videoSong = showDetails?.filter(item => item.type === 'video song');
-  const documentry = showDetails?.filter(item => item.type === 'documentary');
-  const tvShow = showDetails?.filter(item => item.type === 'tv show');
-  const shortFilm = showDetails?.filter(item => item.type === 'short film');
-  const trailer = showDetails?.filter(item => item.type === 'trailer');
-  const webSeries = showDetails?.filter(item => item.type === 'web series');
+
+  // let selectedShow=null
+
+  const movie=useSelector(state=>state.persisted.AddItems.movie)
+    // selectedShow = movie.find(item => item._id === id);
+
+
+  const tvshow=useSelector(state=>state.persisted.AddItems.movie)
+  // const selectedShow = movie.find(item => item._id === id);
+
+
+
+  const webseries=useSelector(state=>state.persisted.AddItems.webseries)
+  // const selectedShow = movie.find(item => item._id === id);
+
+
+
+  const documentary=useSelector(state=>state.persisted.AddItems.documentary)
+  // const selectedShow = movie.find(item => item._id === id);
+
+
+  const trailer=useSelector(state=>state.persisted.AddItems.trailer)
+  // const selectedShow = movie.find(item => item._id === id);
+
+
+
+  const videosong=useSelector(state=>state.persisted.AddItems.videosong)
+  // const selectedShow = movie.find(item => item._id === id);
+
+
+
+  const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
+  // const selectedShow = movie.find(item => item._id === id);
+
+  const showDetails=[
+    ...movie,...videosong,...shortfilm,...trailer,...webseries,...documentary,...tvshow
+  ]
+  const selectedShow = showDetails.find(item => item._id === id);
+
+
+  // const movie = showDetails?.filter(item => item.type === 'movie');
+  // const videoSong = showDetails?.filter(item => item.type === 'video song');
+  // const documentry = showDetails?.filter(item => item.type === 'documentary');
+  // const tvShow = showDetails?.filter(item => item.type === 'tv show');
+  // const shortFilm = showDetails?.filter(item => item.type === 'short film');
+  // const trailer = showDetails?.filter(item => item.type === 'trailer');
+  // const webSeries = showDetails?.filter(item => item.type === 'web series');
   const dispatch = useDispatch();
   // const [isToggled, setIsToggled] = useState(false);
   const Toggled=useSelector(state=>state.persisted.AddItems)
@@ -64,6 +103,9 @@ const Show = () => {
       return null
     }
   };
+  // useEffect(()=>{
+  //   dispatch({type:})
+  // })
   return (
     <div className='show_container'>
       <div className='navbar_background'></div>
@@ -144,23 +186,14 @@ const Show = () => {
         >
           {movie?.map(item => (
             <Carousel.Slide key={item._id} >
-              {/* <div className="thumbnail_item">
-                <Link to={`/showdetails/${item._id}`}>
-                  <img src={item.thumbnail} alt={item.title} className='card-image' />
-                </Link>
-              </div> */}
+           
                <Card
               shadow="sm"
               padding="xl"
               component="a"
-              
-              // href={item.video_url}
-              // target="_self"
-              key={item._id}
-              
+              key={item._id}              
             >
               <Card.Section>
-                {/* <div onClick={()=>navigate(`/showdetails/${item._id}`)}> */}
                 <Link to={`/showdetails/${item._id}`}>
                 <Image
                   src={item.thumbnail}
@@ -185,7 +218,7 @@ const Show = () => {
       )}
       </div>
       <div className='show_carousel'>
-      {selectedShow?.type === "video song" && videoSong?.length > 0 && (
+      {selectedShow?.type === "video song" && videosong?.length > 0 && (
         <>
         <h1 >More Like This <span className='arrow_react_icon'><IoIosArrowForward /></span></h1>
         <Carousel
@@ -196,7 +229,7 @@ const Show = () => {
           align="start"
           slidesToScroll={5}
         >
-          {videoSong?.map(item => (
+          {videosong?.map(item => (
             <Carousel.Slide key={item._id}>
               {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
@@ -236,7 +269,7 @@ const Show = () => {
       )}
       </div>
       <div className='show_carousel'>
-      {selectedShow?.type === "documentary" && documentry?.length > 0 && (
+      {selectedShow?.type === "documentary" && documentary?.length > 0 && (
         <>
         <h1>More Like This <span className='arrow_react_icon'><IoIosArrowForward /></span></h1>
         <Carousel
@@ -247,7 +280,7 @@ const Show = () => {
           align="start"
           slidesToScroll={5}
         >
-          {documentry?.map(item => (
+          {documentary?.map(item => (
             <Carousel.Slide key={item._id}>
               {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
@@ -285,7 +318,7 @@ const Show = () => {
       )}
       </div>
       <div className='show_carousel'>
-      {selectedShow?.type === "tv show" && tvShow?.length > 0 && (
+      {selectedShow?.type === "tv show" && tvshow?.length > 0 && (
         <>
         <h1>More Like This <span className='arrow_react_icon'><IoIosArrowForward /></span></h1>
         <Carousel
@@ -296,7 +329,7 @@ const Show = () => {
           align="start"
           slidesToScroll={5}
         >
-          {tvShow?.map(item => (
+          {tvshow?.map(item => (
             <Carousel.Slide key={item._id}>
               {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
@@ -334,7 +367,7 @@ const Show = () => {
       )}
       </div>
       <div className='show_carousel'>
-      {selectedShow?.type === "short film" && shortFilm?.length > 0 && (
+      {selectedShow?.type === "short film" && shortfilm?.length > 0 && (
         <>
         <h1>More Like This <span className='arrow_react_icon'><IoIosArrowForward /></span></h1>
         <Carousel
@@ -345,7 +378,7 @@ const Show = () => {
           align="start"
           slidesToScroll={5}
         >
-          {shortFilm?.map(item => (
+          {shortfilm?.map(item => (
             <Carousel.Slide key={item._id}>
               {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>
@@ -432,7 +465,7 @@ const Show = () => {
       )}
       </div>
       <div className='show_carousel'>
-      {selectedShow?.type === "web series" && webSeries?.length > 0 && (
+      {selectedShow?.type === "web series" && webseries?.length > 0 && (
         <>
         <h1>More Like This <span className='arrow_react_icon'><IoIosArrowForward /></span></h1>
         <Carousel
@@ -443,7 +476,7 @@ const Show = () => {
           align="start"
           slidesToScroll={5}
         >
-          {webSeries?.map(item => (
+          {webseries?.map(item => (
             <Carousel.Slide key={item._id}>
               {/* <div  className="thumbnail_item">
                 <Link to={`/showdetails/${item._id}`}>

@@ -1,8 +1,11 @@
 import { useDispatch,useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 const ResetPassword=()=>{
-    const store=useSelector(state=>state.resetPassword)
-    console.log(store)
+    const store=useSelector(state=>state.persisted.resetPassword)
+    const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
+    console.log('resetpass/5',store)
     const dispatch=useDispatch()
+    const navigate=useNavigate()
     const handleInput=(e)=>{
         const idn=e.target.id
         console.log(idn)
@@ -18,12 +21,15 @@ const ResetPassword=()=>{
         try{
              (async()=>{
                 const response=await fetch('https://academics.newtonschool.co/api/v1/user/updateMyPassword',
-                {method:"PATCH",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8','Authorization':`Bearer ${store.token}`},
+                {method:"PATCH",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8','Authorization':`Bearer ${token}`},
                 body:JSON.stringify({name:store.name,email:store.email,passwordCurrent:store.passwordCurrent,password:store.password,"appType":"ott"})
             }
                 )
                 const data=await response.json()
                 console.log(data)
+                if(data.status=='success'){
+                  navigate('/login')
+                }
              })()
         }catch(err){
          console.log(err)

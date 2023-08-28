@@ -120,11 +120,11 @@ export function HeroImageRight(props) {
   const dispatch = useDispatch();
   const store = useSelector((state) => state.persisted.localJwtReducer);
   const doIt=useSelector(state=>state)
-  console.log('hh/126',doIt)
+  // console.log('hh/126',doIt)
   const addedItems = useSelector((state) => state.persisted.AddItems.cartItems);
  
     const Toggled=useSelector(state=>state.persisted.AddItems)
-    console.log('hh/134',Toggled[datat.data._id])
+    // console.log('hh/127',Toggled[datat.data._id])
     const isToggled=Toggled[datat.data._id]||false
   
 
@@ -209,8 +209,8 @@ export function HeroImageRight(props) {
                 alignItems: "center",
               }}
             >
-              {isToggled && (
-                <div style={{ position: "relative", top: "50%", left: "50%" }}>
+              
+                {/* <div style={{ position: "relative", top: "50%", left: "50%" }}>
                   <Modal
                     opened={opened}
                     onClose={close}
@@ -218,8 +218,8 @@ export function HeroImageRight(props) {
                   >
                     Added To Whishlist
                   </Modal>
-                </div>
-              )}
+                </div> */}
+              
 
               <Button
                 variant="gradient"

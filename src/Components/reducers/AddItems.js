@@ -1,7 +1,14 @@
 import { useSelector } from "react-redux"; 
 const initialState = {
   cartItems: [],
-  // isToggled:false
+  isToggled:false,
+  movie:[],
+  shortfilm:[],
+  documentary:[],
+  trailer:[],
+  tvshow:[],
+  webseries:[],
+  videosong:[]
 };
 export const AddItems = (state = initialState, action) => {
   // const addedItems = useSelector((state) => state.persisted.AddItems.cartItems);
@@ -9,11 +16,13 @@ export const AddItems = (state = initialState, action) => {
      
   switch (action.type) {
     case "ADD_ITEM":return {...state,cartItems:[...action.payload]}
-    // case `${datat.data._id}`:return{...state,isToggled:action.payload}
-
-    // case {datat}:return{...state,isToggled:action.payload}
-    // case `TOGGLE_${datat.data._id}`:
-    //   return { ...state, isToggled: action.payload };
+    case 'movie':return {...state,movie:[...action.payload]}
+    case 'short film':return {...state,shortfilm:[...action.payload]}
+    case 'documentary':return {...state,documentary:[...action.payload]}
+    case 'trailer':return {...state,trailer:[...action.payload]}
+    case 'tv show':return {...state,tvshow:[...action.payload]}
+    case 'web series':return {...state,webseries:[...action.payload]}
+    case 'video song':return {...state,videosong:[...action.payload]}
     default:
       if(action.type.startsWith('TOGGLE_')){
          const itemId=action.type.replace('TOGGLE_','')
