@@ -97,8 +97,8 @@ const NavBar = () => {
         <div className="navbar_image">
           <img src="https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp" />
         </div>
-        <div className="navbar_subscription">
-          <button className="navbar_subscription_button">
+        <div className="navbar_subscription" onClick={()=>navigate('/subscription')}>
+          <button className="navbar_subscription_button" >
             Subscribe
             <img src="https://images.slivcdn.com/UI_icons/smart_hook/arrow_image.png?h=8&w=4&q=high&fr=webp" />
           </button>

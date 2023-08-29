@@ -21,7 +21,7 @@ export function Subscription() {
       }}
     >
       <Table
-        highlightOnHover
+        // highlightOnHover
         withBorder
         withColumnBorders
         verticalSpacing="sm"
