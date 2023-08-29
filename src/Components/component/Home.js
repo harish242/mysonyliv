@@ -165,7 +165,7 @@ console.log('Home/58',userdetails)
         slideGap="md"
         align="start"
       >
-        {AllStore.map((item, index) => {
+        {AllStore&&AllStore.map((item, index) => {
           return (
             <Carousel.Slide key={item._id}>
               <HeroImageRight data={item} />

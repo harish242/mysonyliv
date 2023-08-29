@@ -8,12 +8,13 @@ export default function AddedItems() {
   const navigate=useNavigate()
    
   const addItem = useSelector((state) => state.persisted.AddItems);
-console.log('aD/11',addItem)
+console.log('aDT/11',addItem)
   const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
   console.log('at/13',token)
   const dispatch=useDispatch()
-  const result = addItem.cartItems;
+  const result = addItem?.cartItems;
   const [state,setState]=useState(true)
+  console.log('addeditem/17',result)
 
   useEffect(()=>{
     try{
@@ -23,9 +24,12 @@ console.log('aD/11',addItem)
             const datat=await response.json()
             console.log('addI/23',datat)
             const datai=datat.data.shows
+           console.log('addeditem/29',datai)
+
             if(datat.status==='success'){
             dispatch({type:'ADD_ITEM',payload:datai})
-            datai.forEach(item=>{
+
+            datai?.forEach(item=>{
                   dispatch({type:`TOGGLE_${item._id}`,payload:true})
             })
             }
@@ -33,6 +37,7 @@ console.log('aD/11',addItem)
               setState(false)
             }
             // console.log('addedItem/28',datat.data.shows)
+
             
           })()
     }catch(err){
@@ -45,7 +50,7 @@ console.log('aD/11',addItem)
     return <div style={{height:'500px',width:'500px',backgroundColor:'red',margin:'auto'}}>Plz login</div>
   }
  
-  if(result.length===0){
+  if(result?.length===0){
     return <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'100vh'}}><span>Your whishlist Is Empty</span></div>
   }
    
