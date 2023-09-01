@@ -138,6 +138,8 @@ export function HeroImageRight(props) {
   };
 
   const addToMyList = async (ab) => {
+    console.log('hh141',ab)
+    console.log(store.tokens)
     try {
       const response = await axios.patch(
         `https://academics.newtonschool.co/api/v1/social_media/watchlist`,

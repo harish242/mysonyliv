@@ -27,7 +27,13 @@ export function Regis() {
                 body:JSON.stringify({...store,"appType":"ott"})
             }
                 )
+                if (!response.ok) {
+                  const errorMessage = `Fetch error: ${response.statusText}`;
+                  console.error(errorMessage);
+                  throw new Error(errorMessage);
+                }
                 const data=await response.json()
+
                 if(data.status==='success'){
                   navigate('/login')
                 }
@@ -71,7 +77,8 @@ export function Regis() {
     </div>
   </form>
   <p class="text-center text-gray-5000 text-md">
-    &copy;2020 Already have an account?<Link to='/login'>login</Link>
+    &copy;2020 Already have an account?<Link
+     to='/login'>login</Link>
   </p>
 </div>
 </div>

@@ -15,10 +15,11 @@ const NavBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure(false);
-  const tokenNull=useSelector(state=>state.persisted.localJwtReducer.tokens)
-  const storePersis=useSelector(state=>state.persisted)
-
-
+  const tokenNull = useSelector(
+    (state) => state.persisted.localJwtReducer.tokens
+  );
+  const storePersis = useSelector((state) => state.persisted);
+  const userName = useSelector((state) => state.persisted.resetPassword.userdetails.data?.name);
 
   const store = useSelector((state) => state);
   console.log("navbar/14", store);
@@ -35,7 +36,6 @@ const NavBar = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [allData, setAllData] = useState([]);
   const [activeKeyword, setActiveKeyword] = useState("romance");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,6 +67,9 @@ const NavBar = () => {
     fetchData();
     console.log("line 38", allData);
   }, [activeCategory, activeKeyword]);
+
+
+ 
   const filterByKeyword = (keyword) => {
     setActiveKeyword(keyword);
   };
@@ -76,29 +79,34 @@ const NavBar = () => {
   const handleModalOpen = () => {
     open(); // Open the modal
   };
-  const handleLogout=()=>{
-    
-        dispatch({type:'NUllIFY_STATE'}),
-        navigate('/')
-        
-  }
-  const handleAdd=()=>{
-    navigate('/additem')
-  }
-  const handleSignin=()=>{
-    navigate('/')
-  }
-  const handleReset=()=>{
-    navigate('/resetpass')
-  }
+  const handleLogout = () => {
+    dispatch({ type: "NUllIFY_STATE" });
+     navigate("/");
+  };
+  const handleAdd = () => {
+    navigate("/additem");
+  };
+  const handleSignin = () => {
+    navigate("/");
+  };
+  const handleReset = () => {
+    navigate("/resetpass");
+  };
   return (
     <div className="navbar_container">
       <div className="navbar_logo">
         <div className="navbar_image">
-          <img src="https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp" />
+        <Link to='/home'>
+       <img src="https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp" />
+
+        </Link>
+
         </div>
-        <div className="navbar_subscription" onClick={()=>navigate('/subscription')}>
-          <button className="navbar_subscription_button" >
+        <div
+          className="navbar_subscription"
+          onClick={() => navigate("/subscription")}
+        >
+          <button className="navbar_subscription_button">
             Subscribe
             <img src="https://images.slivcdn.com/UI_icons/smart_hook/arrow_image.png?h=8&w=4&q=high&fr=webp" />
           </button>
@@ -193,7 +201,6 @@ const NavBar = () => {
             onClose={close}
             onClick={close}
             closeOnClickOutside={close}
-
             title="Authentication"
             centered
             size="25%"
@@ -204,10 +211,21 @@ const NavBar = () => {
             <Table verticalSpacing="xs" fontSize="xs" horizontalSpacing="xs">
               {/* {...rows} */}
               <thead>
-                <tr onClick={handleSignin}>
+                <tr>
                   {/* <Link to="/"> */}
                   {/* <div onClick={handleSignin}> */}
-                  <th >Sign in a better experience</th>
+
+                  {userName ? (
+                    <th style={{ color: "#FF9EAA", fontSize: "20px" }}>
+                      {userName?.toUpperCase()}
+                    </th>
+                  ) : (
+                    <th>
+                      <div onClick={handleSignin}>
+                        Sign in a better experience
+                      </div>
+                    </th>
+                  )}
 
                   {/* </div> */}
                   {/* </Link> */}
@@ -215,42 +233,42 @@ const NavBar = () => {
               </thead>
               <tbody>
                 <tr>
-                  <td>Subscribe Now</td>
+                  <td>
+                    <Link to="/subscription">
+                      <div>Subscribe Now</div>
+                    </Link>
+                  </td>
                 </tr>
-                <tr>
+                {/* <tr>
                   <td>Activate TV</td>
-                </tr>
-                <tr onClick={handleReset}>
-                  {/* <div onClick={handleReset}> */}
-                  <td >Settings &updatePassword</td>
-
-                  {/* </div> */}
-                </tr>
+                </tr> */}
                 <tr>
+                  <td>
+                    <div onClick={handleReset}>Settings &updatePassword</div>
+                  </td>
+                </tr>
+                {/* <tr>
                   <td>Contact Us</td>
+                </tr> */}
+                {/* <tr>
+                  <td>Chat with us on WhatsApp</td>
+                </tr> */}
+                <tr>
+                  <td>
+                    <div onClick={handleAdd}>myList</div>
+                  </td>
                 </tr>
                 <tr>
-                  <td>Chat with us on WhatsApp</td>
-                </tr>
-                <tr onClick={handleAdd}>
-                  {/* <div onClick={handleAdd}> */}
-                  <td >myList</td>
-
-                  {/* </div> */}
-                    
-                </tr>
-                <tr onClick={handleLogout}>
-                  {/* <div onClick={handleLogout}> */}
-                  <td >LogOut</td>
-
-                  {/* </div> */}
+                  <td>
+                    <div onClick={handleLogout}>LogOut</div>
+                  </td>
                 </tr>
               </tbody>
             </Table>
           </Modal>
           <Group position="center">
             <Button
-              onClick={()=>open()}
+              onClick={() => open()}
               variant="white"
               color="gray"
               radius="xs"

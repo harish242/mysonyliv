@@ -3,6 +3,7 @@ const initialValue={
     email:'',
     passwordCurrent:'',
     password:'',
+    userdetails:{}
     // token:'',
     // id:''
 }
@@ -13,6 +14,9 @@ switch(action.type){
     case 'emailret':return{...state,email:action.payload}
     case 'passwordCurrentret':return{...state,passwordCurrent:action.payload}
     case 'passwordret':return{...state,password:action.payload}
+    case 'userdetails':return {...state,userdetails:{...action.payload}}
+    case 'NUllIFY_STATE':return initialValue
+
     default: return state
 }
 }

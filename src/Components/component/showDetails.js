@@ -59,9 +59,10 @@ const Show = () => {
 
   const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
   // const selectedShow = movie.find(item => item._id === id);
+  const manStore=useSelector(state=>state.others.mainDataReducer.showdata)
 
   const showDetails=[
-    ...movie,...videosong,...shortfilm,...trailer,...webseries,...documentary,...tvshow
+    ...movie,...videosong,...shortfilm,...trailer,...webseries,...documentary,...tvshow,...manStore
   ]
   const selectedShow = showDetails.find(item => item._id === id);
 

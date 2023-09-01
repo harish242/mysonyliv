@@ -17,45 +17,55 @@ const Home = () => {
   // console.log(randomNumber);
   const store = useSelector((state) => state);
   console.log("store/20", store);
+  const jwt=useSelector(state=>state.persisted.localJwtReducer.tokens)
   const miniStore = useSelector(
     (state) => state.showDetailsReducer
   );
-  // const manStore = useSelector((state) => state.mainDataReducer);
+  const manStore = useSelector((state) => state.others.mainDataReducer.showdata);
   var AllStore = useSelector((state) => state.persisted.AddItems.movie);
-  console.log('home/25',AllStore)
+  console.log('home/25',manStore)
 
-  const movie=useSelector(state=>state.persisted.AddItems.movie)
-  // selectedShow = movie.find(item => item._id === id);
+//   const movie=useSelector(state=>state.persisted.AddItems.movie)
+//   // selectedShow = movie.find(item => item._id === id);
+ const movie=manStore?.filter(item=>item.type==='movie')
+ const trailer=manStore?.filter(item=>item.type==='trailer')
+ const webseries=manStore?.filter(item=>item.type==='web series')
+ const videosong=manStore?.filter(item=>item.type==='video song')
+ const tvshow=manStore?.filter(item=>item.type==='tv show')
+ const shortfilm=manStore?.filter(item=>item.type==='short film')
+ const documentary=manStore?.filter(item=>item.type==='documentary')
+ 
 
+ console.log('Home/37',movie)
 
-const tvshow=useSelector(state=>state.persisted.AddItems.movie)
-// const selectedShow = movie.find(item => item._id === id);
-
-
-
-const webseries=useSelector(state=>state.persisted.AddItems.webseries)
-// const selectedShow = movie.find(item => item._id === id);
-
-
-
-const documentary=useSelector(state=>state.persisted.AddItems.documentary)
-// const selectedShow = movie.find(item => item._id === id);
-
-
-const trailer=useSelector(state=>state.persisted.AddItems.trailer)
-// const selectedShow = movie.find(item => item._id === id);
+// const tvshow=useSelector(state=>state.persisted.AddItems.movie)
+// // const selectedShow = movie.find(item => item._id === id);
 
 
 
-const videosong=useSelector(state=>state.persisted.AddItems.videosong)
-// const selectedShow = movie.find(item => item._id === id);
+// const webseries=useSelector(state=>state.persisted.AddItems.webseries)
+// // const selectedShow = movie.find(item => item._id === id);
 
 
 
-const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
+// const documentary=useSelector(state=>state.persisted.AddItems.documentary)
+// // const selectedShow = movie.find(item => item._id === id);
 
-const userdetails=useSelector(state=>state.persisted.AddItems.userdetails)
-console.log('Home/58',userdetails)
+
+// const trailer=useSelector(state=>state.persisted.AddItems.trailer)
+// // const selectedShow = movie.find(item => item._id === id);
+
+
+
+// const videosong=useSelector(state=>state.persisted.AddItems.videosong)
+// // const selectedShow = movie.find(item => item._id === id);
+
+
+
+// const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
+
+// const userdetails=useSelector(state=>state.persisted.AddItems.userdetails)
+// console.log('Home/58',userdetails)
 
   
   // console.log("Home/23", AllStore);
@@ -88,71 +98,18 @@ console.log('Home/58',userdetails)
       },
     });
   };
-  // if(store){
-  //   const reduFunc=store.mainDataReducer.showdata.reduce((acc,curr)=>{
-  //     const found=acc.find(item=>item.type===curr.type)
-  //     if(!found){
-  //       acc.push(curr)
-  //     }
-  //     return acc
-  //   },[])
-  //   console.log('Home/56',reduFunc)
-  // }
-  // if (AllStore) {
-  //   var moviesData = AllStore.reduce((acc, curr) => {
-  //     if (curr.type === "movie") {
-  //       acc.push(curr);
-  //     }
-  //     return acc;
-  //   }, []);
-    // console.log("Home/chec/71", moviesData);
-  // }
-  // if (AllStore) {
-  //   var webSeriesData = AllStore.reduce((acc, curr) => {
-  //     if (curr.type === "web series") {
-  //       acc.push(curr);
-  //     }
-  //     return acc;
-  //   }, []);
-    // console.log("Home/wbS", webSeriesData);
-  // }
-  // const documentaryDetails =
-  //   AllStore && AllStore.filter((item) => item.type === "documentary");
-  // // console.log("Home/doc/82", documentaryDetails);
-  // if(AllStore){
-  // var videoSongDetails=AllStore.reduce((acc,curr)=>{
-  //         if(curr.type==="video song"){
-  //           acc.push(curr)
-  //         }
-  //         return acc
-  // },[])
-  // console.log('Home/vsD/91',videoSongDetails)
-
-  // }
-  // if(AllStore){
-  //   var trailerDetails=AllStore.reduce((acc,curr)=>{
-  //     if(curr.type==="trailer"){
-  //       acc.push(curr)
-  //     }
-  //     return acc
-  //   },[])
-  // }
-  // if(AllStore){
-  //   var shortFlimData=AllStore.reduce((acc,curr)=>{
-  //     if(curr.type==='short film'){
-  //       acc.push(curr)
-  //     }
-  //     return acc
-  //   },[])
-  // }
-  // if(AllStore){
-  //   var tvData=AllStore.reduce((acc,curr)=>{
-  //     if(curr.type==='tv show'){
-  //       acc.push(curr)
-  //     }
-  //     return acc
-  //   },[])
-  // }
+  // useEffect(()=>{
+  //   try{
+  //     (async()=>{
+  //          const response=await fetch('https://academics.newtonschool.co/api/v1/user/updateProfileImage',{
+  //           method:"PATCH",body:{"profileImage":file.png},headers:{'Authorization':`Bearer ${jwt}` }
+  //          })
+  //     })()
+  //   }catch(err){
+  //     console.log("home95",err)
+  //   }
+  // })
+ 
 
   return (
     <>
@@ -165,7 +122,7 @@ console.log('Home/58',userdetails)
         slideGap="md"
         align="start"
       >
-        {AllStore&&AllStore.map((item, index) => {
+        {manStore&&manStore.map((item, index) => {
           return (
             <Carousel.Slide key={item._id}>
               <HeroImageRight data={item} />
@@ -200,14 +157,11 @@ console.log('Home/58',userdetails)
           
          
         >
-          {movie &&
+          {movie&&
             movie.map((item) => {
               return (
                 <Carousel.Slide >
-                  {/* <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
-                  <img src={item.thumbnail} className="card-image"/>
-
-                  </div> */}
+               
                     <Card
               shadow="sm"
               padding="xl"
@@ -256,7 +210,7 @@ console.log('Home/58',userdetails)
           slidesToScroll={8}
         >
           {webseries &&
-            webseries.map((item) => {
+           webseries.map((item) => {
               return (
                 <Carousel.Slide>
                   <div className="card" onClick={()=>navigate(`/showdetails/${item._id}`)}>
