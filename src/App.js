@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import { MantineProvider, Text } from "@mantine/core";
 import Home from "./Components/component/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -16,9 +16,50 @@ import ResetPassword from "./Components/component/resetPassword";
 import Show from '../src/Components/component/showDetails'
 import Accordions from "./Components/otherComfol/accodrian";
 import { LogOut } from "./Components/component/logout";
+import axios from 'axios';
+
 
 export default function App() {
   const dispatch=useDispatch()
+
+  const categories = [
+    { name: "Movie", type: "movie", class: "class_movie" },
+    { name: "Video Song", type: "video song", class: "class_video_song" },
+    { name: "Web Series", type: "web series", class: "class_web_series" },
+    { name: "Documentary", type: "documentary", class: "class_documentry" },
+    { name: "TV Show", type: "tv show", class: "class_tv_show" },
+    { name: "Trailer", type: "trailer", class: "class_trailer" },
+    { name: "Short Film", type: "short film", class: "class_short_film" },
+  ];
+
+  const [activeCategory, setActiveCategory] = useState(categories[0].type);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      for(let i=0;i<categories.length;i++){
+        const showId=categories[i].type
+        try {
+          const response = await axios.get(
+            `https://academics.newtonschool.co/api/v1/ott/show?filter={"type" : "${showId}"}`,
+            {
+              headers: {
+                projectId: "sjp136jp4txm",
+              },
+            }
+          );
+          console.log('App/49',response)
+          dispatch({ type: showId, payload: response.data.data });
+
+        }catch(err){
+          console.log(err)
+        }
+        // fetchData()
+      }
+    
+    }
+    fetchData()
+    
+  },[])
   useEffect(() => {
     try {
       (async () => {
@@ -29,7 +70,7 @@ export default function App() {
         const datas = await response.json();
        
         dispatch({type:'SUCCESS',payload:datas.data})
-        console.log('App/32',datas.data)
+        console.log('App/69',datas.data)
 
       })();
     } catch (e) {
