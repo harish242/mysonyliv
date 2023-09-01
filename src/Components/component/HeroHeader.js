@@ -11,10 +11,8 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { FiCheck } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
-// import { useState } from 'react'
 import { Modal, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-
 import axios from "axios";
 
 const useStyles = createStyles((theme) => ({
@@ -23,8 +21,6 @@ const useStyles = createStyles((theme) => ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center",
-    // backgroundImage:
-    //   'linear-gradient(250deg, rgba(130, 201, 30, 0) 0%, #062343 70%), url(data.thumbnail)',
     paddingTop: `calc(${theme.spacing.xl} * 3)`,
     paddingBottom: `calc(${theme.spacing.xl} * 3)`,
   },
@@ -119,16 +115,16 @@ export function HeroImageRight(props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const store = useSelector((state) => state.persisted.localJwtReducer);
-  const doIt=useSelector(state=>state)
-  // console.log('hh/126',doIt)
-  const addedItems = useSelector((state) => state.persisted.AddItems.cartItems);
- 
-    const Toggled=useSelector(state=>state.persisted.AddItems)
-    // console.log('hh/127',Toggled[datat.data._id])
-    const isToggled=Toggled[datat.data._id]||false
-  
+  const doIt = useSelector((state) => state);
+  const addedItems = useSelector(
+    (state) => state.persisted.AddItems.cartItems
+  );
+
+  const Toggled = useSelector((state) => state.persisted.AddItems);
+  const isToggled = Toggled[datat.data._id] || false;
 
   const { classes } = useStyles();
+
   const HandleClick = () => {
     navigate("/video", {
       state: {
@@ -138,8 +134,6 @@ export function HeroImageRight(props) {
   };
 
   const addToMyList = async (ab) => {
-    console.log('hh141',ab)
-    console.log(store.tokens)
     try {
       const response = await axios.patch(
         `https://academics.newtonschool.co/api/v1/social_media/watchlist`,
@@ -157,22 +151,21 @@ export function HeroImageRight(props) {
       console.log("HeroH/155", err);
       return null;
     }
-   
-   
+
     const actionType = `TOGGLE_${datat.data._id}`;
     dispatch({
       type: actionType,
-      payload: !isToggled
+      payload: !isToggled,
     });
   };
+
   const HandleToggles = (ids) => {
     addToMyList(ids);
     setTimeout(() => {
       open();
     }, 500);
-
-  
   };
+
   return (
     <div
       className={classes.root}
@@ -194,35 +187,20 @@ export function HeroImageRight(props) {
               >
                 {datat.data.title}
               </Text>{" "}
-              {/* React components library */}
               {datat.data.director}
             </Title>
 
             <Text className={classes.description} mt={100}>
-             
               {datat.data.description}
             </Text>
-            {/* <Text className={classes.whishlist}> */}
-            {}
+
             <div
               style={{
                 display: "flex",
-                justifyContent: "center",
+                flexDirection: "column",
                 alignItems: "center",
               }}
             >
-              
-                {/* <div style={{ position: "relative", top: "50%", left: "50%" }}>
-                  <Modal
-                    opened={opened}
-                    onClose={close}
-                    withCloseButton={false}
-                  >
-                    Added To Whishlist
-                  </Modal>
-                </div> */}
-              
-
               <Button
                 variant="gradient"
                 gradient={{ from: "pink", to: "yellow" }}
@@ -230,7 +208,7 @@ export function HeroImageRight(props) {
                 className={classes.add}
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 mt={51}
-                style={{ marginRight: 100, marginTop: 90, zIndex: 1000 }}
+                style={{ width: "fit-content", marginTop: 20, zIndex: 1000 }}
                 onClick={() => HandleToggles(datat.data._id)}
               >
                 {isToggled ? (
@@ -257,19 +235,22 @@ export function HeroImageRight(props) {
                 Add To Whishlist
               </Button>
 
+              <Button
+                variant="gradient"
+                gradient={{ from: "pink", to: "yellow" }}
+                size="xl"
+                className={classes.control}
+                mt={20}
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded"
+                onClick={() => navigate(`/showdetails/${datat.data._id}`)}
+              >
+                More Details
+              </Button>
+
               <div style={{ position: "relative", top: "45px" }}>
-                <Button
-                  variant="gradient"
-                  gradient={{ from: "pink", to: "yellow" }}
-                  size="xl"
-                  className={classes.control}
-                  mt={110}
-                  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded"
-                  // mb={110}
-                  onClick={() => navigate(`/showdetails/${datat.data._id}`)}
-                >
-                  More Details
-                </Button>
+                <Modal opened={opened} onClose={close} withCloseButton={false}>
+                  Added To Whishlist
+                </Modal>
               </div>
             </div>
           </div>

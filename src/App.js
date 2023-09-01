@@ -29,6 +29,7 @@ export default function App() {
         const datas = await response.json();
        
         dispatch({type:'SUCCESS',payload:datas.data})
+        console.log('App/32',datas.data)
 
       })();
     } catch (e) {

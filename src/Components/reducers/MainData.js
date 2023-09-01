@@ -2,7 +2,7 @@
 
 
 const initialState={
-    showdata:null
+    showdata:[]
 }
 // export const mainDataReducer=(state=initialState,action)=>{
 //      switch (action.type){

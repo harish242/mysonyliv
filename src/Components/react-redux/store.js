@@ -23,6 +23,7 @@ const persistConfig = {
 const selectedReducers = combineReducers({
   resetPassword,
   // loginReducer,
+
   localJwtReducer,
   AddItems,
 
@@ -33,8 +34,9 @@ const persistedReducer = persistReducer(persistConfig, selectedReducers);
 
 const otherReducers = combineReducers({
   showDetailsReducer,
-  mainDataReducer,
   moreDetailsReducer,
+  mainDataReducer,
+
   regisReducer,
   loginReducer,
   // ... other reducers
