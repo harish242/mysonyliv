@@ -39,6 +39,8 @@ const Home = () => {
 
   return (
     <>
+   <div className="main-container">
+
       <Carousel
         maw="100%"
         mx="auto"
@@ -64,25 +66,30 @@ const Home = () => {
         <CarouselSection title="Short Film" items={manStore?.filter(item => item.type === 'short film')} navigate={navigate} />
         <CarouselSection title="TV Shows" items={manStore?.filter(item => item.type === 'tv show')} navigate={navigate} />
       </div>
+      </div>
     </>
+    
   );
 };
 
 const CarouselSection = ({ title, items, navigate }) => {
   return (
-    <div className="carousel-container">
-      <h1>{title}</h1>
-      <Carousel
-        withIndicators
-        height={250}
-        slideSize="15%"
-        slideGap="md"
-        loop
-        align="start"
-        slidesToScroll={8}
-      >
-        {items && items.map((item) => (
-          <Carousel.Slide key={item._id}>
+    <div className={`carousel-container`}>
+      <h1 style={{color:'white'}}>{title}</h1>
+    <Carousel
+      withIndicators
+      height={250}
+      slideSize="15%"
+      slideGap="md"
+      loop
+      align="start"
+      slidesToScroll={8}
+    >
+      {items && items.map((item) => (
+        <Carousel.Slide key={item._id}>
+          {/* Wrap the Card component with a div */}
+          <div className="hover-card">
+            
             <Card
               shadow="sm"
               padding="xl"
@@ -99,10 +106,12 @@ const CarouselSection = ({ title, items, navigate }) => {
                 />
               </Card.Section>
             </Card>
-          </Carousel.Slide>
-        ))}
-      </Carousel>
-    </div>
+          </div>
+        </Carousel.Slide>
+      ))}
+    </Carousel>
+  
+  </div>
   );
 };
 

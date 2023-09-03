@@ -108,7 +108,7 @@ const NavBar = () => {
     <div className="navbar_container">
       <div className="navbar_logo">
         <div className="navbar_image">
-          <Link to="/hom">
+          <Link to="/home">
             <img
               src="https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp"
               alt="Logo"
