@@ -162,7 +162,9 @@ export function HeroImageRight(props) {
   const HandleToggles = (ids) => {
     addToMyList(ids);
     setTimeout(() => {
-      open();
+      if(!isToggled){
+      open();       
+      }
     }, 500);
   };
 
