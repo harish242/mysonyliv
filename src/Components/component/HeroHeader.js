@@ -243,8 +243,9 @@ export function HeroImageRight(props) {
                 size="xl"
                 className={classes.control}
                 mt={20}
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded"
+                class="bg-black hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded"
                 onClick={() => navigate(`/showdetails/${datat.data._id}`)}
+                style={{marginTop:'20px'}}
               >
                 More Details
               </Button>

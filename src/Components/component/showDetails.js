@@ -127,13 +127,14 @@ const Show = () => {
             </div>
           </div>
           <div className="show_body_button" style={{marginTop:'80px'}}>
+            <div>
             <button className="show_body_watch" onClick={()=>{ console.log('Button clicked');navigate(`/video/${id}`)}}>
               <span className="show_body_watch_image">
                 <img src="https://images.slivcdn.com/UI_icons/New_Final_Icons_30052020/web_play_icon.png?h=24&w=24&q=high&fr=webp" alt="Play Icon" />
               </span>
               <span className="show_body_watch_text" >Watch Free Preview</span>
             </button>
-            <button className="show_body_subscribe">
+            <button className="show_body_subscribe" style={{marginTop:'20px',position:'relative',left:'-2px'}}>
               <div className="show_body_subscribe_div1">
                 <span>
                   <LiaCrownSolid style={{ width: "20px", height: "10px" }} />
@@ -144,12 +145,13 @@ const Show = () => {
                 <span>Stream Live Sports and Ad-Free Originals</span>
               </div>
             </button>
-            <div></div>
-            <div className='next-div'>
+            </div>
+            <div><br/></div>
+            <div className='next-div' style={{display:'flex'}}>
               <button className="show_body_list" onClick={handleAddToWatchlist}>
                 {isToggled ? (
                   <span>
-                    <FiCheck style={{ width: "23px", height: "23px", fontWeight: "700" }} />
+                    <FiCheck style={{ width: "30px", height: "23px", fontWeight: "700" }} />
                   </span>
                 ) : (
                   <span>
