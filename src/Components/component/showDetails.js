@@ -107,23 +107,23 @@ const Show = () => {
       <div className="show_body_container" style={{width:'100%'}}>
         <div className="show_main_image" style={{ backgroundImage: `url(${selectedShow?.thumbnail})`, backgroundSize: 'cover' }}>
           <div className='show_body_text'>
-            <h1 >{selectedShow?.title}</h1>
+            <h1 style={{color:'black'}}>{selectedShow?.title}</h1>
             <div className='show_body_text_p1'>
-              <p>{selectedShow?.type}</p>
+              <p style={{color:'black'}}>{selectedShow?.type}</p>
               <span className='dot'></span>
-              <p>{selectedShow?.createdAt}</p>
+              <p style={{color:'black'}}>{selectedShow?.createdAt}</p>
               <span className='dot'></span>
-              <p>{selectedShow?.keywords[0]}, {selectedShow?.keywords[1]}, {selectedShow?.keywords[2]}</p>
+              <p style={{color:'black'}}>{selectedShow?.keywords[0]}, {selectedShow?.keywords[1]}, {selectedShow?.keywords[2]}</p>
             </div>
             <div className='show_body_text_description'>
-              <p>{selectedShow?.description}</p>
+              <p style={{color:'black'}}>{selectedShow?.description}</p>
             </div>
             <div className='show_body_text_p2'>
-              <span className='show_body_text_p2_1'>Director:</span>
-              <span className='show_body_text_p2_2'>{selectedShow?.director}</span>
+              <span className='show_body_text_p2_1' style={{color:'black'}}>Director:</span>
+              <span className='show_body_text_p2_2' style={{color:'black'}}>{selectedShow?.director}</span>
             </div>
             <div className='show_body_text_p2'>
-              <span className='show_body_text_p2_1'>Cast:{selectedShow?.cast?.map((item)=><span>{item}</span>)}</span>
+              <span className='show_body_text_p2_1' style={{color:'black'}}>Cast:{selectedShow?.cast?.map((item)=><span>{item}</span>)}</span>
             </div>
           </div>
           <div className="show_body_button" style={{marginTop:'80px'}}>
