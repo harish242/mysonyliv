@@ -101,11 +101,11 @@ const Show = () => {
   };
 
   return (
-    <>
-    <div className='show_container' style={{width:'100%'}}>
-      <div style={{width:'100%'}}>
+    <main style={{backgroundColor:'black'}}>
+    <div className='show_container' style={{width:'100%',height:'90%'}}>
+      <div style={{width:'100%',height:'90%'}}>
       <div className="show_body_container" style={{width:'100%'}}>
-        <div className="show_main_image" style={{ backgroundImage: `url(${selectedShow?.thumbnail})`, backgroundSize: 'cover',height:'auto' }}>
+        <div className="show_main_image" style={{ backgroundImage: `url(${selectedShow?.thumbnail})`, backgroundSize: 'cover',height:'90%',margin:'0px',padding:'0px' }}>
           <div className='show_body_text'>
             <h1 style={{color:'#e09d19',fontSize:'30px',fontWeight:'bold'}}>{selectedShow?.title}</h1>
             <div className='show_body_text_p1'>
@@ -147,7 +147,7 @@ const Show = () => {
               </div>
             </button>
             </div>
-            <div><br/></div>
+            {/* <div><br/></div> */}
             <div className='next-div' style={{display:'flex'}}>
               <button className="show_body_list" onClick={handleAddToWatchlist}>
                 {isToggled ? (
@@ -176,15 +176,14 @@ const Show = () => {
 
    
       {/* Add other carousels here */}
-<div>
-   </div>
+        
       </div>
 
 
       {selectedShow?.type === "movie" && movie?.length > 0 &&
       <div className={`carousel-container`} style={{margin:'0px',padding:'0px'}}>
       
-        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Movies</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px'}}>Movies</h1>
     <Carousel
       withIndicators
       height={250}
@@ -209,7 +208,7 @@ const Show = () => {
               <Card.Section>
                 <Image
                   src={item.thumbnail}
-                  height={235}
+                  height='100%'
                   alt="No way!"
                   width={160}
                 />
@@ -222,9 +221,9 @@ const Show = () => {
   </div>
   }
    {selectedShow?.type === "web series" && webseries?.length > 0 &&
-      <div className={`carousel-container`}>
+      <div className={`carousel-container`} style={{padding:'0px',margin:'0px'}}>
       
-        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Web Series</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px'}}>Web Series</h1>
     <Carousel
       withIndicators
       height={250}
@@ -264,7 +263,7 @@ const Show = () => {
    {selectedShow?.type === "trailer" && trailer?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Trailer</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px'}}>Trailer</h1>
     <Carousel
       withIndicators
       height={250}
@@ -304,7 +303,7 @@ const Show = () => {
    {selectedShow?.type === "short film" && shortfilm?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Short film</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px'}}>Short film</h1>
     <Carousel
       withIndicators
       height={250}
@@ -344,7 +343,7 @@ const Show = () => {
    {selectedShow?.type === "tv show" && tvshow?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Tv Show</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px'}}>Tv Show</h1>
     <Carousel
       withIndicators
       height={250}
@@ -384,7 +383,7 @@ const Show = () => {
    {selectedShow?.type === "documentary" && documentary?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Documentary</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px'}}>Documentary</h1>
     <Carousel
       withIndicators
       height={250}
@@ -424,7 +423,7 @@ const Show = () => {
    {selectedShow?.type === "video song" && videosong?.length > 0 &&
       <div className={`carousel-container`} style={{background:'black'}}>
       
-        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Video Songs</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px'}}>Video Songs</h1>
     <Carousel
       withIndicators
       height={250}
@@ -464,7 +463,7 @@ const Show = () => {
       
   
       
-    </>
+    </main>
   );
 }
 
