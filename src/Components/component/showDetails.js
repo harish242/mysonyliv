@@ -105,28 +105,28 @@ const Show = () => {
     <div className='show_container' style={{width:'100%'}}>
       <div style={{width:'100%'}}>
       <div className="show_body_container" style={{width:'100%'}}>
-        <div className="show_main_image" style={{ backgroundImage: `url(${selectedShow?.thumbnail})`, backgroundSize: 'cover' }}>
+        <div className="show_main_image" style={{ backgroundImage: `url(${selectedShow?.thumbnail})`, backgroundSize: 'cover',height:'auto' }}>
           <div className='show_body_text'>
-            <h1 style={{color:'black'}}>{selectedShow?.title}</h1>
+            <h1 style={{color:'#e09d19',fontSize:'30px',fontWeight:'bold'}}>{selectedShow?.title}</h1>
             <div className='show_body_text_p1'>
-              <p style={{color:'black'}}>{selectedShow?.type}</p>
+              <p style={{color:'#e09d19',fontSize:'30px',fontWeight:'bold'}}>{selectedShow?.type}</p>
               <span className='dot'></span>
-              <p style={{color:'black'}}>{selectedShow?.createdAt}</p>
+              <p style={{color:'#e09d19'}}>{selectedShow?.createdAt}</p>
               <span className='dot'></span>
-              <p style={{color:'black'}}>{selectedShow?.keywords[0]}, {selectedShow?.keywords[1]}, {selectedShow?.keywords[2]}</p>
+              <p style={{color:'#e09d19',fontWeight:'bold'}}>{selectedShow?.keywords[0]}, {selectedShow?.keywords[1]}, {selectedShow?.keywords[2]}</p>
             </div>
             <div className='show_body_text_description'>
-              <p style={{color:'black'}}>{selectedShow?.description}</p>
+              <p style={{color:'#e09d19',fontWeight:'bold'}}>{selectedShow?.description}</p>
             </div>
             <div className='show_body_text_p2'>
-              <span className='show_body_text_p2_1' style={{color:'black'}}>Director:</span>
-              <span className='show_body_text_p2_2' style={{color:'black'}}>{selectedShow?.director}</span>
+              <span className='show_body_text_p2_1' style={{color:'#e09d19',fontSize:'30px',fontWeight:'bold'}}>Director:</span>
+              <span className='show_body_text_p2_2' style={{color:'#e09d19',fontSize:'30px',fontWeight:'bold'}}>{selectedShow?.director}</span>
             </div>
             <div className='show_body_text_p2'>
-              <span className='show_body_text_p2_1' style={{color:'black'}}>Cast:{selectedShow?.cast?.map((item)=><span>{item}</span>)}</span>
+              <span className='show_body_text_p2_1' style={{color:'#e09d19',fontSize:'20px',fontWeight:'bold'}}>Cast:{selectedShow?.cast?.map((item)=><span>{item}</span>)}</span>
             </div>
           </div>
-          <div className="show_body_button" style={{marginTop:'80px'}}>
+          <div className="show_body_button" style={{marginTop:'80px',fontWeight:'bold'}}>
             <div>
             <button className="show_body_watch" onClick={()=>{ console.log('Button clicked');navigate(`/video/${id}`)}}>
               <span className="show_body_watch_image">
@@ -135,7 +135,8 @@ const Show = () => {
               <span className="show_body_watch_text" >Watch Free Preview</span>
             </button>
             <button className="show_body_subscribe" style={{marginTop:'20px',position:'relative',left:'-2px'}}>
-              <div className="show_body_subscribe_div1">
+              
+              <div className="show_body_subscribe_div1" onClick={()=>navigate('/subscription')}>
                 <span>
                   <LiaCrownSolid style={{ width: "20px", height: "10px" }} />
                 </span>
@@ -181,9 +182,9 @@ const Show = () => {
 
 
       {selectedShow?.type === "movie" && movie?.length > 0 &&
-      <div className={`carousel-container`}>
+      <div className={`carousel-container`} style={{margin:'0px',padding:'0px'}}>
       
-        <h1 style={{color:'black',padding:'0px',margin:'0px',position:'relative',top:'-10px'}}>Movie</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Movies</h1>
     <Carousel
       withIndicators
       height={250}
@@ -223,7 +224,7 @@ const Show = () => {
    {selectedShow?.type === "web series" && webseries?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'black',padding:'0px',margin:'0px',position:'relative',top:'-10px'}}>Web Series</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Web Series</h1>
     <Carousel
       withIndicators
       height={250}
@@ -263,7 +264,7 @@ const Show = () => {
    {selectedShow?.type === "trailer" && trailer?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'black',padding:'0px',margin:'0px',position:'relative',top:'-10px'}}>Trailer</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Trailer</h1>
     <Carousel
       withIndicators
       height={250}
@@ -303,7 +304,7 @@ const Show = () => {
    {selectedShow?.type === "short film" && shortfilm?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'black',padding:'0px',margin:'0px',position:'relative',top:'-10px'}}>Short film</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Short film</h1>
     <Carousel
       withIndicators
       height={250}
@@ -343,7 +344,7 @@ const Show = () => {
    {selectedShow?.type === "tv show" && tvshow?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'black',padding:'0px',margin:'0px',position:'relative',top:'-10px'}}>Tv Show</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Tv Show</h1>
     <Carousel
       withIndicators
       height={250}
@@ -383,7 +384,7 @@ const Show = () => {
    {selectedShow?.type === "documentary" && documentary?.length > 0 &&
       <div className={`carousel-container`}>
       
-        <h1 style={{color:'black',padding:'0px',margin:'0px',position:'relative',top:'-10px'}}>Documentary</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Documentary</h1>
     <Carousel
       withIndicators
       height={250}
@@ -421,9 +422,9 @@ const Show = () => {
   </div>
   }
    {selectedShow?.type === "video song" && videosong?.length > 0 &&
-      <div className={`carousel-container`}>
+      <div className={`carousel-container`} style={{background:'black'}}>
       
-        <h1 style={{color:'black',padding:'0px',margin:'0px',position:'relative',top:'-10px'}}>Video Song</h1>
+        <h1 style={{color:'white',paddingLeft:'20px',margin:'0px',position:'relative',top:'-10px'}}>Video Songs</h1>
     <Carousel
       withIndicators
       height={250}

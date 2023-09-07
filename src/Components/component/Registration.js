@@ -87,14 +87,20 @@
 //   )
 // }
 
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 export function Regis() {
     const store = useSelector(state => state.others.regisReducer);
+//   let pathName=window.location.href
+  const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
+
+console.log('regis/99',token)
     const navigate = useNavigate();
 
     const dispatch = useDispatch();
+
 
     const handleInput = (e) => {
         const idn = e.target.id;
@@ -131,6 +137,13 @@ export function Regis() {
             console.error(err);
         }
     };
+    // useEffect(()=>{
+    //     if(token){
+    //         navigate(pathName)
+    //     }else{
+    //         navigate('/')
+    //     }
+    // },[token,navigate])
 
     return (
         <div className="min-h-screen bg-cover" style={{ backgroundImage: 'url(https://platinmods.com/attachments/sonyliv-jarvismods-png.240209/)' }}>
@@ -138,34 +151,34 @@ export function Regis() {
                 <div className="w-full max-w-md bg-white bg-opacity-30 p-6 rounded-lg">
                     <form onChange={handleInput} onSubmit={doPost}>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="username">
                                 Username
                             </label>
-                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+                            <input className="shadow appearance-none border bg-transparent rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
                         </div>
                         <div className="mb-4">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
                                 Email
                             </label>
-                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
+                            <input className="shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
                         </div>
                         <div className="mb-6">
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
                                 Password
                             </label>
-                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+                            <input className="shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
                         </div>
                         <div className="flex flex-col md:flex-row items-center justify-between">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0" type="submit">
-                                Sign In
+                                Register
                             </button>
-                            <Link to="/login" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                            {/* <Link to="/login" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                                 Update Password?
-                            </Link>
+                            </Link> */}
                         </div>
                     </form>
                     <p className="text-center text-gray-500 text-md" style={{color:'white'}}>
-                        &copy; 2020 Already have an account? <Link to="/login"><span style={{color:'#F6FFA6',fontWeight:'bold',fontSize:'20px'}}>Login</span></Link>
+                        &copy; 2020 Already have an account? <Link to="/login"><span style={{color:'red',fontWeight:'bold',fontSize:'20px',textDecoration:'underline'}}>Login</span></Link>
                     </p>
                 </div>
             </div>

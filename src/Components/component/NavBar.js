@@ -38,7 +38,7 @@ const NavBar = () => {
   const [allData, setAllData] = useState([]);
   const [activeKeyword, setActiveKeyword] = useState("romance");
   const [menuOpen, setMenuOpen] = useState(false);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -151,14 +151,14 @@ const NavBar = () => {
                 {activeCategory === category.type && (
                   <div className={`${category.class}`}>
                     <div className="check2">
-                      <Link to={`/data?type=${category.type}`}>
+                      {/* <Link to={`/data?type=${category.type}`}> */}
                         <div className="top_left">
                           All {category.name}{" "}
                           <span className="fa_icon">
                             <FaArrowRight />
                           </span>
                         </div>
-                      </Link>
+                      {/* </Link> */}
                       <div className="top_right">
                         <button
                           className={`top_right_btn ${
@@ -261,17 +261,17 @@ const NavBar = () => {
                 </tr>
                 <tr>
                   <td>
-                    <div onClick={handleReset}>Settings & update Password</div>
+                    <div onClick={handleReset} style={{cursor:'pointer'}}>Settings & update Password</div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <div onClick={handleAdd}>myList</div>
+                    <div onClick={handleAdd} style={{cursor:'pointer'}}>myList</div>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <div onClick={handleLogout}>LogOut</div>
+                    <div onClick={handleLogout} style={{cursor:'pointer'}}>LogOut</div>
                   </td>
                 </tr>
               </tbody>
