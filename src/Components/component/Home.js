@@ -75,7 +75,7 @@ const Home = () => {
 const CarouselSection = ({ title, items, navigate }) => {
   return (
     <div className={`carousel-container`}>
-      <h1 style={{color:'white',paddingLeft:'15px'}}>{title}</h1>
+      <h1 style={{color:'white',paddingLeft:'15px',paddingBottom:'5px'}}>{title}</h1>
     <Carousel
       withIndicators
       height={250}
