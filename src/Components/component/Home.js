@@ -138,7 +138,7 @@ const CarouselSection = ({ title, items, navigate }) => {
                   src={item.thumbnail}
                   height={235}
                   alt="No way!"
-                  width='100%'
+                  width={178}
                 />
               </Card.Section>
             </Card>

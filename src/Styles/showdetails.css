@@ -128,12 +128,12 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .show_body_button button {
-  height: 50px;
-  padding: 10px;
+  height: 40px;
+  /* padding: 10px; */
   text-align: center;
   align-items: center;
   justify-content: center;
@@ -189,14 +189,14 @@ body {
 .show_body_subscribe_div1 span {
   font-weight: 400;
   font-size: 13px;
-  line-height: 18px;
+  /* line-height: 5px; */
   color: rgba(255, 255, 255, 0.8);
 }
 
 .show_body_subscribe_div2 span {
   font-weight: 400;
   font-size: 13px;
-  line-height: 18px;
+  /* line-height: 5px; */
   color: rgba(255, 255, 255, 0.8);
 }
 

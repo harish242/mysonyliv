@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "../../Styles/showdetails.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
@@ -12,12 +12,10 @@ import { Card, Image } from "@mantine/core";
 import axios from "axios";
 import { useDisclosure } from "@mantine/hooks";
 
-
 import { Modal, Group } from "@mantine/core";
 
-
 const Show = () => {
-  const [detail,setDetail]=useState('')
+  const [detail, setDetail] = useState("");
   const { id } = useParams();
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -85,8 +83,8 @@ const Show = () => {
     // dispatch(addToWatchlist(id));
     // setIsToggled(!isToggled);
     setTimeout(() => {
-      if(!isToggled){
-      open();       
+      if (!isToggled) {
+        open();
       }
     }, 500);
 
@@ -110,39 +108,42 @@ const Show = () => {
       return null;
     }
   };
-  useEffect(()=>{
-    (async()=>{
-     try{
-      const response=await fetch(`https://academics.newtonschool.co/api/v1/ott/show/${id}`,{
-        headers:{projectID:'xybcw190kyb8'}
-      })
-      const datai=await response.json()
-      console.log('showD/107',datai)
-      const finalD=datai.data
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch(
+          `https://academics.newtonschool.co/api/v1/ott/show/${id}`,
+          {
+            headers: { projectID: "xybcw190kyb8" },
+          }
+        );
+        const datai = await response.json();
+        console.log("showD/107", datai);
+        const finalD = datai.data;
 
-      setDetail(finalD)
-     }catch(err){
-      console.log(err)
-     }
-    })()
-  },[id])
+        setDetail(finalD);
+      } catch (err) {
+        console.log(err);
+      }
+    })();
+  }, [id]);
 
   return (
     <main style={{ backgroundColor: "black" }}>
-      <div className="show_container"   style={{
-                backgroundImage: `url(${detail?.thumbnail})`,
-                backgroundSize: "cover",
-                height: "90vh",
-                margin: "0px",
-                padding: "0px",
-
-              }}>
+      <div
+        className="show_container"
+        style={{
+          backgroundImage: `url(${detail?.thumbnail})`,
+          backgroundSize: "cover",
+          height: "90vh",
+          margin: "0px",
+          padding: "0px",
+          // marginBottom:'200px'
+        }}
+      >
         <div style={{ width: "100%", height: "90%" }}>
           <div className="show_body_container" style={{ width: "100%" }}>
-            <div
-              className="show_main_image"
-            
-            >
+            <div className="show_main_image">
               <div className="show_body_text">
                 <h1
                   style={{
@@ -167,10 +168,11 @@ const Show = () => {
                   <p style={{ color: "#d9be39" }}>{detail?.createdAt}</p>
                   <span className="dot"></span>
                   {detail?.keywords && detail.keywords.length >= 3 && (
-    <p style={{ color: "#d9be39", fontWeight: "bold" }}>
-      {detail.keywords[0]}, {detail.keywords[1]}, {detail.keywords[2]}
-    </p>
-  )}
+                    <p style={{ color: "#d9be39", fontWeight: "bold" }}>
+                      {detail.keywords[0]}, {detail.keywords[1]},{" "}
+                      {detail.keywords[2]}
+                    </p>
+                  )}
                 </div>
                 <div className="show_body_text_description">
                   <p style={{ color: "#d9be39", fontWeight: "bold" }}>
@@ -217,14 +219,18 @@ const Show = () => {
               </div>
               <div
                 className="show_body_button"
-                style={{ fontWeight: "bold",position:'relative',top:'10px' }}
+                style={{
+                  fontWeight: "bold",
+                  position: "relative",
+                  top: "50px",
+                }}
               >
                 <div>
                   <button
                     className="show_body_watch"
                     onClick={() => {
                       console.log("Button clicked");
-                      navigate(`/video/${id}`,{state:detail});
+                      navigate(`/video/${id}`, { state: detail });
                     }}
                   >
                     <span className="show_body_watch_image">
@@ -288,10 +294,14 @@ const Show = () => {
                     <span>My List</span>
                   </button>
                   <div style={{ position: "absolute", top: "450px" }}>
-                <Modal opened={opened} onClose={close} withCloseButton={false} >
-                  Added To Whishlist
-                </Modal>
-              </div>
+                    <Modal
+                      opened={opened}
+                      onClose={close}
+                      withCloseButton={false}
+                    >
+                      Added To Whishlist
+                    </Modal>
+                  </div>
                 </div>
                 {/* <div><br/></div> */}
               </div>
@@ -300,7 +310,7 @@ const Show = () => {
         </div>
       </div>
 
-      {detail&&detail?.type === "movie" && movie?.length > 0 && (
+      {detail && detail?.type === "movie" && movie?.length > 0 && (
         <div
           className={`carousel-container`}
           style={{ margin: "0px", padding: "0px", position: "relative" }}
@@ -341,7 +351,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width='100%'
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
@@ -351,7 +361,7 @@ const Show = () => {
           </Carousel>
         </div>
       )}
-      {detail&&detail?.type  === "web series" && webseries?.length > 0 && (
+      {detail && detail?.type === "web series" && webseries?.length > 0 && (
         <div
           className={`carousel-container`}
           style={{ padding: "0px", margin: "0px" }}
@@ -392,7 +402,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width='100%'
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
@@ -402,7 +412,7 @@ const Show = () => {
           </Carousel>
         </div>
       )}
-      {detail&&detail?.type  === "trailer" && trailer?.length > 0 && (
+      {detail && detail?.type === "trailer" && trailer?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
             style={{
@@ -440,7 +450,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width='100%'
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
@@ -450,7 +460,7 @@ const Show = () => {
           </Carousel>
         </div>
       )}
-      {detail&&detail?.type  === "short film" && shortfilm?.length > 0 && (
+      {detail && detail?.type === "short film" && shortfilm?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
             style={{
@@ -488,7 +498,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width='100%'
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
@@ -498,7 +508,7 @@ const Show = () => {
           </Carousel>
         </div>
       )}
-      {detail&&detail?.type  === "tv show" && tvshow?.length > 0 && (
+      {detail && detail?.type === "tv show" && tvshow?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
             style={{
@@ -536,7 +546,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width='100%'
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
@@ -546,7 +556,7 @@ const Show = () => {
           </Carousel>
         </div>
       )}
-      {detail&&detail?.type  === "documentary" && documentary?.length > 0 && (
+      {detail && detail?.type === "documentary" && documentary?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
             style={{
@@ -584,7 +594,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width='100%'
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
@@ -594,7 +604,7 @@ const Show = () => {
           </Carousel>
         </div>
       )}
-      {detail&&detail?.type === "video song" && videosong?.length > 0 && (
+      {detail && detail?.type === "video song" && videosong?.length > 0 && (
         <div className={`carousel-container`} style={{ background: "black" }}>
           <h1
             style={{
@@ -632,7 +642,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width='100%'
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
