@@ -250,8 +250,8 @@ export function HeroImageRight(props) {
                 More Details
               </Button>
 
-              <div style={{ position: "relative", top: "45px" }}>
-                <Modal opened={opened} onClose={close} withCloseButton={false}>
+              <div style={{ position: "absolute", top: "450px" }}>
+                <Modal opened={opened} onClose={close} withCloseButton={false} >
                   Added To Whishlist
                 </Modal>
               </div>

@@ -10,10 +10,17 @@ import { Carousel } from "@mantine/carousel";
 import { IoIosArrowForward } from "react-icons/io";
 import { Card, Image } from "@mantine/core";
 import axios from "axios";
+import { useDisclosure } from "@mantine/hooks";
+
+
+import { Modal, Group } from "@mantine/core";
+
 
 const Show = () => {
   const [detail,setDetail]=useState('')
   const { id } = useParams();
+  const [opened, { open, close }] = useDisclosure(false);
+
   const navigate = useNavigate();
   const showDetail = useSelector((state) => state.others.mainDataReducer);
   // const showDetails=showDetail?.showdata
@@ -77,6 +84,11 @@ const Show = () => {
   const handleAddToWatchlist = async () => {
     // dispatch(addToWatchlist(id));
     // setIsToggled(!isToggled);
+    setTimeout(() => {
+      if(!isToggled){
+      open();       
+      }
+    }, 500);
 
     try {
       const response = await axios.patch(
@@ -275,6 +287,11 @@ const Show = () => {
                     )}
                     <span>My List</span>
                   </button>
+                  <div style={{ position: "absolute", top: "450px" }}>
+                <Modal opened={opened} onClose={close} withCloseButton={false} >
+                  Added To Whishlist
+                </Modal>
+              </div>
                 </div>
                 {/* <div><br/></div> */}
               </div>
