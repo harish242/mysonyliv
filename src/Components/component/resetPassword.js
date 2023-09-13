@@ -22,7 +22,7 @@ const ResetPassword=()=>{
              (async()=>{
                 const response=await fetch('https://academics.newtonschool.co/api/v1/user/updateMyPassword',
                 {method:"PATCH",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8','Authorization':`Bearer ${token}`},
-                body:JSON.stringify({name:store.name,email:store.email,passwordCurrent:store.passwordCurrent,password:store.password,"appType":"ott"})
+                body:JSON.stringify({"name":store.name,"email":store.email,"passwordCurrent":store.passwordCurrent,"password":store.password,"appType":"ott"})
             }
                 )
                 const data=await response.json()
