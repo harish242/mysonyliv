@@ -1,3 +1,6 @@
+a{
+    text-decoration: none;
+}
 .navbar_container {
     position: fixed;
     top: 0;
@@ -73,18 +76,19 @@
 
 .navbar_items {
     width: fit-content;
+    display: flex;
 }
 
 .navbar_item {
     float: left;
     color: #aaa;
-    padding: 0.69em 1.3em;
+    padding: 0.69em 1.3em !important;
     text-decoration: none;
     font-size: 1em;
     line-height: 1.875em;
     border: none;
     font-family: Arial, Helvetica, sans-serif;
-    cursor: pointer;
+    cursor: pointer !important;
 }
 
 .navbar_item:hover {
@@ -98,7 +102,7 @@
     justify-content: flex-end;
 }
 
-.navbar_search a {
+.navbar_search_a{
     padding: 0.4em 0.5em 0.2em 0.4em;
     color: #ffffff;
     font-size: 30px;
@@ -107,14 +111,15 @@
 }
 
 .navbar_avatar {
-    /* padding-top: 0px; */
+    padding-top: 2px;
     border-radius: 2.1px;
     margin-top: 0.6875em;
     margin-right: 4.125em;
     cursor: pointer;
+    position: relative;
 }
 
-.class_movie {
+.class_movie, .class_video_song, .class_web_series, .class_documentry, .class_tv_show, .class_trailer, .class_short_film {
     width: 100vw;
     height: 25.625em;
     backdrop-filter: blur(4px);
@@ -124,86 +129,15 @@
     top: 3.125em;
     z-index: -1;
     display: none;
-    left: -335px;
-}
-.class_video_song {
-    width: 100vw;
-    height: 25.625em;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top: 3.125em;
-    z-index: -1;
-    display: none;
-    left: -400px;
-}
-.class_web_series {
-    width: 100vw;
-    height: 25.625em;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top: 3.125em;
-    z-index: -1;
-    display: none;
-    left: -500px;
-}
-.class_documentry {
-    width: 100vw;
-    height: 25.625em;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top: 3.125em;
-    z-index: -1;
-    display: none;
-    left: -605px;
-}
-.class_tv_show {
-    width: 100vw;
-    height: 25.625em;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top: 3.125em;
-    z-index: -1;
-    display: none;
-    left: -725px;
-}
-.class_trailer {
-    width: 100vw;
-    height: 25.625em;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top: 3.125em;
-    z-index: -1;
-    display: none;
-    left: -805px;
-}
-.class_short_film {
-    width: 100vw;
-    height: 25.625em;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
-    background-color: rgba(0, 0, 0, 0.85);
-    position: absolute;
-    top: 3.125em;
-    z-index: -1;
-    display: none;
-    left: -870px;
+    left: 0px;
 }
 
 .check1 {
-    position: relative;
+    /* position: relative; */
     display: inline-block;
-    padding: 10px;
+    /* padding: 10px; */
     cursor: pointer;
+    white-space: nowrap;
 }
 
 .check1:hover .class_movie,
@@ -238,7 +172,7 @@
 .top_right{
     width: 80%;
     position: relative;
-    left: 550px;
+    left: 475px;
     display: flex;
     gap: 25px;
 }
@@ -267,8 +201,7 @@
     height: 230px;
 }
 ::-webkit-scrollbar{
-    height: 2px;
-
+    height: 0px;
 }
 .check_center::-webkit-scrollbar-track{
     background-color: white;
@@ -292,5 +225,166 @@
     color: #000;
     padding: 10px;
 }
+.profile_hover{
+    width: 180px;
+    height: 287px;
+    background-color: rgba(20,20,20,0.85);
+    position: absolute;
+    top: 39px;
+    /* left: 926px; */
+    right: -66px;
+    display: none;
+}
+.awatar:hover .profile_hover{
+    display: block;
+}
+.profile_detail{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    border-bottom: solid 1px #4e4e4e;
+    padding: 15px;
+}
+.profile_image{
+    width: 50px;
+    height: 50px;
+}
+.profile_image img{
+    width: 100%;
+    height: 100%;
+}
+.profile_name{
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+}
+.profile_lists{
+    padding: 0px;
+}
+.profile_list{
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+    border-bottom: solid 1px #4e4e4e;
+    padding: 10px;
+}
+.profile_list_title{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+}
+.profile_list_icon{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+}
+.mantine-1qnd5i6{
+    background-color: #000 !important;
+}
+.mantine-19pz3dh{
+    background-color: #000 !important;
+}
+.mantine-1fholi4{
+    height: 3. !important;
+    min-height: 3.375rem !important;
+    width: 3.375rem !important;
+    min-width: 3.375rem !important;
+}
+.modal_search{
+    width: calc(100vw * 0.83455);
+    background: #fff;
+    margin: 0px 5px 0 5px;
+    display: flex;
+    border-radius: 6px;
+    height: 83px;
+    padding: 0 8px;
+    border-radius: 100px;
+    border: solid 1px rgba(255,255,255,0.1);
+    align-items: center;
+    margin-left: 7%;
+    background-color: #fff;
+    color: #222;
+    height: 60px;
+}
+.modal_search input{
+    font-size: 20px;
+    font-weight: normal;
+    color: #151515;
+    width: calc(100vw * 0.7760);
+    border: none;
+    padding: 0 10px 0 30px;
+    text-transform: capitalize;
+    outline: none;
+    line-height: 1;
+    letter-spacing: 0.2px;
+    background: none;
+}
+.modal_search_result{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    width: fit-content;
+    padding: 36px;
+    justify-content: center;
+}
+.modal_item{
+    height: 20em;
+    width: 20em;
+    margin-bottom: 5px;
+}
+.modal_item img{
+    width: 100%;
+    height: 100%;
+    border-radius: 0.625em;
+    transition: 0.25s cubic-bezier(0.33, 0.04, 0.63, 0.93);
+}
+.modal_item img:hover{
+    transform: scale(1.1);
+}
 
-      
+
+/* --------------------------media query for mobile----------------------------------------------- */
+
+@media screen and (max-width: 1024px) {
+    .navbar_image{
+        margin: 0.3125em 0 0 0;
+    }
+    .navbar_avatar{
+        margin-right: 0px;
+    }
+    .navbar_items{
+        overflow-x: scroll;
+        margin-bottom: -4px;
+    }
+    .check2{
+        flex-direction: column;
+        top: -192px;
+        left: -100px;
+    }
+    .check_center{
+        width: 100vw;
+        left: 5px;
+        margin-top: 30px;
+    }
+    .top_right{
+        width: 80%;
+        position: relative;
+        left: 0px;
+        display: flex;
+        gap: 25px;
+        top: 10px;
+    }
+    .navbar_search_a{
+        padding: 0.4em 0em 0.2em 0.4em;
+    }
+      .profile_hover {
+        width: 300px;
+        /* left: 45px; */
+        right: 0px;
+      }
+}

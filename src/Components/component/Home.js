@@ -12,6 +12,41 @@ const Home = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const manStore = useSelector((state) => state.others.mainDataReducer.showdata);
+  // const movie=useSelector
+  const movie=useSelector(state=>state.persisted.AddItems.movie)
+  // selectedShow = movie.find(item => item._id === id);
+
+
+const tvshow=useSelector(state=>state.persisted.AddItems.tvshow)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const webseries=useSelector(state=>state.persisted.AddItems.webseries)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const documentary=useSelector(state=>state.persisted.AddItems.documentary)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+const trailer=useSelector(state=>state.persisted.AddItems.trailer)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const videosong=useSelector(state=>state.persisted.AddItems.videosong)
+// const selectedShow = movie.find(item => item._id === id);
+
+
+
+const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
+// const selectedShow = movie.find(item => item._id === id);
+// const manStore=useSelector(state=>state.others.mainDataReducer.showdata)
+  const str=useSelector(state=>state)
+  console.log('home/16',str)
+  console.log('home/15',manStore)
 
   useEffect(() => {
     try {
@@ -50,7 +85,7 @@ const Home = () => {
         slideGap="md"
         align="start"
       >
-        {manStore && manStore.map((item, index) => (
+        {movie && movie.map((item, index) => (
           <Carousel.Slide key={item._id}>
             <HeroImageRight data={item} navigate={navigate} />
           </Carousel.Slide>
@@ -58,13 +93,13 @@ const Home = () => {
       </Carousel>
 
       <div className="carousel-section">
-        <CarouselSection title="Movies" items={manStore?.filter(item => item.type === 'movie')} navigate={navigate} />
-        <CarouselSection title="Web Series" items={manStore?.filter(item => item.type === 'web series')} navigate={navigate} />
-        <CarouselSection title="Documentary" items={manStore?.filter(item => item.type === 'documentary')} navigate={navigate} />
-        <CarouselSection title="Trailer" items={manStore?.filter(item => item.type === 'trailer')} navigate={navigate} />
-        <CarouselSection title="Video Song" items={manStore?.filter(item => item.type === 'video song')} navigate={navigate} />
-        <CarouselSection title="Short Film" items={manStore?.filter(item => item.type === 'short film')} navigate={navigate} />
-        <CarouselSection title="TV Shows" items={manStore?.filter(item => item.type === 'tv show')} navigate={navigate} />
+        <CarouselSection title="Movies" items={movie} navigate={navigate} />
+        <CarouselSection title="Web Series" items={webseries} navigate={navigate} />
+        <CarouselSection title="Documentary" items={documentary} navigate={navigate} />
+        <CarouselSection title="Trailer" items={trailer} navigate={navigate} />
+        <CarouselSection title="Video Song" items={videosong} navigate={navigate} />
+        <CarouselSection title="Short Film" items={shortfilm} navigate={navigate} />
+        <CarouselSection title="TV Shows" items={tvshow} navigate={navigate} />
       </div>
       </div>
     </>
@@ -73,6 +108,7 @@ const Home = () => {
 };
 
 const CarouselSection = ({ title, items, navigate }) => {
+  console.log('home/76',items)
   return (
     <div className={`carousel-container`}>
       <h1 style={{color:'white',paddingLeft:'15px',paddingBottom:'5px'}}>{title}</h1>
@@ -102,7 +138,7 @@ const CarouselSection = ({ title, items, navigate }) => {
                   src={item.thumbnail}
                   height={235}
                   alt="No way!"
-                  width={160}
+                  width='100%'
                 />
               </Card.Section>
             </Card>
