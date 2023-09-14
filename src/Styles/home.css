@@ -6,6 +6,18 @@
   .main-container{
   background-color: black;
   }
+  /* .mantine-carousel__control {
+    color: white;
+    background-color: red;
+  } */
+  /* .mantine-carousel__controls-offset {
+    background-color: white;
+  } */
+  /* .mantine{
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  } */
 
   .custom-card {
     background-color: transparent;

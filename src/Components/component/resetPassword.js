@@ -1,5 +1,6 @@
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import axios from 'axios';
 const ResetPassword=()=>{
     const store=useSelector(state=>state.persisted.resetPassword)
     const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
@@ -16,25 +17,63 @@ const ResetPassword=()=>{
             case 'password':return dispatch({type:'passwordret',payload:e.target.value})
         }
     }
-    const doPost=(e)=>{
-        e.preventDefault()
-        try{
-             (async()=>{
-                const response=await fetch('https://academics.newtonschool.co/api/v1/user/updateMyPassword',
-                {method:"PATCH",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8','Authorization':`Bearer ${token}`},
-                body:JSON.stringify({"name":store.name,"email":store.email,"passwordCurrent":store.passwordCurrent,"password":store.password,"appType":"ott"})
-            }
-                )
-                const data=await response.json()
-                console.log(data)
-                if(data.status=='success'){
-                  navigate('/login')
-                }
-             })()
-        }catch(err){
-         console.log(err)
-        }
-    } 
+    // const doPost=(e)=>{
+    //     e.preventDefault()
+    //     try{
+    //          (async()=>{
+    //             const response=await fetch('https://academics.newtonschool.co/api/v1/user/updateMyPassword',
+    //             {method:"PATCH",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8','Authorization':`Bearer ${token}`},
+    //             body:JSON.stringify({name:store.name,email:store.email,passwordCurrent:store.passwordCurrent,password:store.password,"appType":"ott"})
+    //         }
+    //             )
+    //             const data=await response.json()
+    //             console.log('reset/29',data)
+    //             if(data.status=='success'){
+    //               navigate('/login')
+    //             }
+    //          })()
+    //     }catch(err){
+    //      console.log(err)
+    //     }
+    // }
+    
+    // Import Axios at the top of your file
+
+const doPost = async (e) => {
+  e.preventDefault();
+
+  try {
+    const url = 'https://academics.newtonschool.co/api/v1/user/updateMyPassword';
+    const config = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'projectId': 'xybcw190kyb8',
+        'Authorization': `Bearer ${token}`,
+      },
+    };
+
+    const dataToSend = {
+      name: store.name,
+      email: store.email,
+      passwordCurrent: store.passwordCurrent,
+      password: store.password,
+      appType: 'ott',
+    };
+
+    const response = await axios.patch(url, dataToSend, config);
+    const data = response.data;
+
+    console.log('reset/29', data);
+
+    if (data.status === 'success') {
+      navigate('/login');
+    }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
     return(
       <div style={{height:'100vh',width:'100vw',backgroundRepeat:'no-repeat',backgroundSize:'cover', backgroundImage:`url(https://w0.peakpx.com/wallpaper/848/320/HD-wallpaper-hanuman-pc-cool-hanuman.jpg)`}}>
          <div style={{display:"flex",justifyContent:'center',alignItems:'center',position:'relative',top:'100px'}}>

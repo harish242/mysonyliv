@@ -262,7 +262,7 @@ const Show = () => {
                       </span>
                       <span>Subscribe Now</span>
                     </div>
-                    <div className="show_body_subscribe_div2" style={{ display: 'block',overflow:'hidden',whiteSpace: 'nowrap', textOverflow:'ellipsis'}}>
+                    <div className="show_body_subscribe_div2" style={{ display: 'block',overflow:'hidden',whiteSpace: ' nowrap', textOverflow:'ellipsis'}}>
                       <span >Stream Live Sports and Ad-Free Originals</span>
                     </div>
                   </button>

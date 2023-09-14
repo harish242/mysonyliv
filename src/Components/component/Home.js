@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import '../../Styles/home.css'
 import { Card, Image, Text } from "@mantine/core";
 import store from "../react-redux/store";
-
+import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 const Home = () => {
   const [datai, setData] = useState([]);
   const navigate = useNavigate()
@@ -120,6 +120,10 @@ const CarouselSection = ({ title, items, navigate }) => {
       loop
       align="start"
       slidesToScroll={8}
+      controlsOffset="xl"
+      color="red"
+      nextControlIcon={<IconArrowRight size={16} />}
+
     >
       {items && items.map((item) => (
         <Carousel.Slide key={item._id}>

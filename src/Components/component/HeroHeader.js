@@ -212,6 +212,7 @@ export function HeroImageRight(props) {
                 mt={51}
                 style={{ width: "fit-content", marginTop: 20, zIndex: 1000 }}
                 onClick={() => HandleToggles(datat.data._id)}
+                position="center"
               >
                 {isToggled ? (
                   <span>
@@ -250,8 +251,8 @@ export function HeroImageRight(props) {
                 More Details
               </Button>
 
-              <div style={{ position: "absolute", top: "450px" }}>
-                <Modal opened={opened} onClose={close} withCloseButton={false} >
+              <div className='mantine' style={{ position: "absolute", top: "450px" }}>
+                <Modal opened={opened} onClose={close} withCloseButton={false} centered >
                   Added To Whishlist
                 </Modal>
               </div>
