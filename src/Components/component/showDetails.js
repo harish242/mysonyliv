@@ -223,6 +223,8 @@ const Show = () => {
                   fontWeight: "bold",
                   position: "relative",
                   top: "50px",
+                  // left:'100px'
+                  marginLeft:'100px'
                 }}
               >
                 <div>
@@ -293,7 +295,7 @@ const Show = () => {
                     )}
                     <span>My List</span>
                   </button>
-                  <div style={{ position: "absolute", top: "450px" }}>
+                  <div style={{ position: "absolute", top: "100px" }}>
                     <Modal
                       opened={opened}
                       onClose={close}
