@@ -111,12 +111,16 @@ a{
 }
 
 .navbar_avatar {
+    width: 28px; 
+    height: 28px;
+    /* border-radius: 50%; */
     padding-top: 2px;
     border-radius: 2.1px;
     margin-top: 0.6875em;
     margin-right: 4.125em;
     cursor: pointer;
     position: relative;
+
 }
 
 .class_movie, .class_video_song, .class_web_series, .class_documentry, .class_tv_show, .class_trailer, .class_short_film {
@@ -230,9 +234,9 @@ a{
     height: 287px;
     background-color: rgba(20,20,20,0.85);
     position: absolute;
-    top: 39px;
+    top: 49px;
     /* left: 926px; */
-    right: -66px;
+    right: 2px;
     display: none;
 }
 .awatar:hover .profile_hover{
@@ -283,6 +287,7 @@ a{
     color: white;
     font-size: 12px;
 }
+
 .mantine-1qnd5i6{
     background-color: #000 !important;
 }
@@ -351,27 +356,27 @@ a{
 /* --------------------------media query for mobile----------------------------------------------- */
 
 @media screen and (max-width: 1024px) {
-    .navbar_image{
-        margin: 0.3125em 0 0 0;
+    .navbar_search_a {
+        padding: 0.4em 0em 0.2em 0.4em;
     }
-    .navbar_avatar{
-        margin-right: 0px;
+    .navbar_avatar {
+        margin-right: 10px;
     }
-    .navbar_items{
+    .navbar_items {
         overflow-x: scroll;
         margin-bottom: -4px;
     }
-    .check2{
+    .check2 {
         flex-direction: column;
         top: -192px;
         left: -100px;
     }
-    .check_center{
+    .check_center {
         width: 100vw;
         left: 5px;
         margin-top: 30px;
     }
-    .top_right{
+    .top_right {
         width: 80%;
         position: relative;
         left: 0px;
@@ -379,12 +384,12 @@ a{
         gap: 25px;
         top: 10px;
     }
-    .navbar_search_a{
+    .navbar_search_a {
         padding: 0.4em 0em 0.2em 0.4em;
     }
-      .profile_hover {
+    .profile_hover {
         width: 300px;
         /* left: 45px; */
-        right: 0px;
-      }
+        right: 0;
+    }
 }

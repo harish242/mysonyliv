@@ -7,3 +7,6 @@ export const LogOut=()=>{
   dispatch({type:'token',payload:null})
   return <div>LogOut</div>
 }
+export const logout=()=>{
+  return 21
+}

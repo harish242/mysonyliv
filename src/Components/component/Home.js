@@ -7,7 +7,9 @@ import '../../Styles/home.css'
 import { Card, Image, Text } from "@mantine/core";
 import store from "../react-redux/store";
 import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
+import Autoplay from 'embla-carousel-autoplay';
 const Home = () => {
+  
   const [datai, setData] = useState([]);
   const navigate = useNavigate()
   const dispatch = useDispatch();

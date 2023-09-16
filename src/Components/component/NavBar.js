@@ -168,8 +168,8 @@ const Navbar = () => {
                         ))}
                     </div>
                 </Modal>
-                <div className='navbar_avatar awatar'>
-                    <img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?h=28&w=28&q=high&fr=webp' />
+                <div className='awatar'>
+                    <img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?h=28&w=28&q=high&fr=webp' className='navbar_avatar'/>
                     <div className='profile_hover'>
                       
                         <div className='profile_detail'>

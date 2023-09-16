@@ -17,6 +17,7 @@ import Show from '../src/Components/component/showDetails'
 import Accordions from "./Components/otherComfol/accodrian";
 import { LogOut } from "./Components/component/logout";
 import axios from 'axios';
+import Demo from "./Components/component/matladu";
 // import { useHistory } from "react-router-dom";
 
 
@@ -106,6 +107,7 @@ export default function App() {
       <Route path='/showdetails/:id' element={<LayOut><Show/></LayOut>}/>
       <Route path='/accod' element={<Accordions/>}/>
       <Route path='/logout' element={<LogOut/>}/>
+      <Route path='/demo' element={<Demo/>}/>
                         </>
                     ) : (
 <Route path="/*" element={<Navigate to="/login" />} />
