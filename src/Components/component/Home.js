@@ -94,7 +94,7 @@ const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
         ))}
       </Carousel>
 
-      <div className="carousel-section">
+      <div className="carousel-section" style={{marginTop:'0px'}}>
         <CarouselSection title="Movies" items={movie} navigate={navigate} />
         <CarouselSection title="Web Series" items={webseries} navigate={navigate} />
         <CarouselSection title="Documentary" items={documentary} navigate={navigate} />

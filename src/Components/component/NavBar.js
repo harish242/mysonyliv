@@ -169,7 +169,10 @@ const Navbar = () => {
                     </div>
                 </Modal>
                 <div className='awatar'>
+                    {/* <div style={{height:'45%',width:'45%'}}> */}
                     <img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?h=28&w=28&q=high&fr=webp' className='navbar_avatar'/>
+
+                    {/* </div> */}
                     <div className='profile_hover'>
                       
                         <div className='profile_detail'>

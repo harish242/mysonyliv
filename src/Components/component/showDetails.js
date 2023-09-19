@@ -11,10 +11,13 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Card, Image } from "@mantine/core";
 import axios from "axios";
 import { useDisclosure } from "@mantine/hooks";
-
 import { Modal, Group } from "@mantine/core";
+import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
+import Demo from './matladu'
+
 
 const Show = () => {
+  // ...
   const [detail, setDetail] = useState("");
   const { id } = useParams();
   const [opened, { open, close }] = useDisclosure(false);
@@ -22,7 +25,7 @@ const Show = () => {
   const navigate = useNavigate();
   const showDetail = useSelector((state) => state.others.mainDataReducer);
   // const showDetails=showDetail?.showdata
-  // console.log('sD/24',showDetails)
+  console.log("sD/27", detail);
 
   const token = useSelector((state) => state.persisted.localJwtReducer.tokens);
   console.log("sd/24", token);
@@ -66,7 +69,8 @@ const Show = () => {
     ...manStore,
   ];
   const selectedShow = showDetails.find((item) => item._id === id);
-  console.log("sd/62", movie);
+
+  console.log("sd/73", movie);
 
   // const movie = showDetails?.filter(item => item.type === 'movie');
   // const videoSong = showDetails?.filter(item => item.type === 'video song');
@@ -118,7 +122,7 @@ const Show = () => {
           }
         );
         const datai = await response.json();
-        console.log("showD/107", datai);
+        console.log("showD/125", datai);
         const finalD = datai.data;
 
         setDetail(finalD);
@@ -129,201 +133,124 @@ const Show = () => {
   }, [id]);
 
   return (
-    <main style={{ backgroundColor: "black" }}>
+    <>
+    <main className="show-container">
       <div
-        className="show_container"
+        className="con"
         style={{
-          backgroundImage: `url(${detail?.thumbnail})`,
-          backgroundSize: "cover",
-          height: "90vh",
-          margin: "0px",
-          padding: "0px",
-          // marginBottom:'200px'
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+          marginTop:'13px'
         }}
       >
-        <div style={{ width: "100%", height: "90%" }}>
-          <div className="show_body_container" style={{ width: "100%" }}>
-            <div className="show_main_image">
-              <div className="show_body_text">
-                <h1
-                  style={{
-                    color: "#d9be39",
-                    fontSize: "30px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  {detail?.title}
-                </h1>
-                <div className="show_body_text_p1">
-                  <p
-                    style={{
-                      color: "#d9be39",
-                      fontSize: "30px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {detail?.type}
-                  </p>
-                  <span className="dot"></span>
-                  <p style={{ color: "#d9be39" }}>{detail?.createdAt}</p>
-                  <span className="dot"></span>
-                  {detail?.keywords && detail.keywords.length >= 3 && (
-                    <p style={{ color: "#d9be39", fontWeight: "bold" }}>
-                      {detail.keywords[0]}, {detail.keywords[1]},{" "}
-                      {detail.keywords[2]}
-                    </p>
-                  )}
-                </div>
-                <div className="show_body_text_description">
-                  <p style={{ color: "#d9be39", fontWeight: "bold" }}>
-                    {detail?.description}
-                  </p>
-                </div>
-                <div className="show_body_text_p2">
-                  <span
-                    className="show_body_text_p2_1"
-                    style={{
-                      color: "#d9be39",
-                      fontSize: "30px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Director:
+        <div className="show-content" >
+          <div className="show-header">
+            <h1>{detail?.title}</h1>
+            <p className="show-type">{detail?.type}</p>
+            <p className="show-created-at">{detail?.createdAt}</p>
+            {detail?.keywords && detail.keywords.length >= 3 && (
+              <p className="show-keywords">
+                {detail.keywords[0]}, {detail.keywords[1]}, {detail.keywords[2]}
+              </p>
+            )}
+          </div>
+          <div className="show-description">
+            <p>{detail?.description}</p>
+          </div>
+          <div className="show-details">
+            <div className="show-director">
+              <span className="show-details-title">Director:</span>
+              <span className="show-details-value">{detail?.director}</span>
+            </div>
+            <div className="show-cast">
+              <span className="show-details-title">Cast:</span>
+              <div className="show-cast-list">
+                {detail?.cast?.map((item) => (
+                  <span className="show-cast-item" key={item}>
+                    {item}
                   </span>
-                  <span
-                    className="show_body_text_p2_2"
-                    style={{
-                      color: "#d9be39",
-                      fontSize: "30px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    {detail?.director}
-                  </span>
-                </div>
-                <div className="show_body_text_p2">
-                  <span
-                    className="show_body_text_p2_1"
-                    style={{
-                      color: "#d9be39",
-                      fontSize: "20px",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Cast:
-                    {detail?.cast?.map((item) => (
-                      <span>{item}</span>
-                    ))}
-                  </span>
-                </div>
-              </div>
-              <div
-                className="show_body_button"
-                style={{
-                  fontWeight: "bold",
-                  position: "relative",
-                  top: "50px",
-                  // left:'100px'
-                  marginLeft:'100px'
-                }}
-              >
-                <div>
-                  <button
-                    className="show_body_watch"
-                    onClick={() => {
-                      console.log("Button clicked");
-                      navigate(`/video/${id}`, { state: detail });
-                    }}
-                  >
-                    <span className="show_body_watch_image">
-                      <img
-                        src="https://images.slivcdn.com/UI_icons/New_Final_Icons_30052020/web_play_icon.png?h=24&w=24&q=high&fr=webp"
-                        alt="Play Icon"
-                      />
-                    </span>
-                    <span className="show_body_watch_text">
-                      Watch Free Preview
-                    </span>
-                  </button>
-                  <button
-                    className="show_body_subscribe"
-                    style={{
-                      marginTop: "20px",
-                      position: "relative",
-                      left: "-2px",
-                    }}
-                  >
-                    <div
-                      className="show_body_subscribe_div1"
-                      onClick={() => navigate("/subscription")}
-                    >
-                      <span>
-                        <LiaCrownSolid
-                          style={{ width: "20px", height: "10px" }}
-                        />
-                      </span>
-                      <span>Subscribe Now</span>
-                    </div>
-                    <div className="show_body_subscribe_div2" style={{ display: 'block',overflow:'hidden',whiteSpace: ' nowrap', textOverflow:'ellipsis'}}>
-                      <span >Stream Live Sports and Ad-Free Originals</span>
-                    </div>
-                  </button>
-                  <button
-                    className="show_body_list"
-                    onClick={handleAddToWatchlist}
-                  >
-                    {isToggled ? (
-                      <span>
-                        <FiCheck
-                          style={{
-                            width: "30px",
-                            height: "23px",
-                            fontWeight: "700",
-                          }}
-                        />
-                      </span>
-                    ) : (
-                      <span>
-                        <BsPlusLg
-                          style={{
-                            width: "23px",
-                            height: "23px",
-                            fontWeight: "700",
-                          }}
-                        />
-                      </span>
-                    )}
-                    <span>My List</span>
-                  </button>
-                  <div style={{ position: "absolute", top: "100px" }}>
-                    <Modal
-                      opened={opened}
-                      onClose={close}
-                      withCloseButton={false}
-                    >
-                      Added To Whishlist
-                    </Modal>
-                  </div>
-                </div>
-                {/* <div><br/></div> */}
+                ))}
               </div>
             </div>
           </div>
+          <div className="show-buttons">
+            <button
+              className="show-button watch-button"
+              onClick={() => {
+                navigate(`/video/${id}`, { state: detail });
+              }}
+            >
+              <img
+                src="https://images.slivcdn.com/UI_icons/New_Final_Icons_30052020/web_play_icon.png?h=24&w=24&q=high&fr=webp"
+                alt="Play Icon"
+                className="play-icon"
+              />
+              Watch Free Preview
+            </button>
+            <button
+              className="show-button list-button"
+              onClick={handleAddToWatchlist}
+            >
+              {isToggled ? (
+                <FiCheck className="check-icon" />
+              ) : (
+                <BsPlusLg className="plus-icon" />
+              )}
+              My List
+            </button>
+            <button
+              className="show-button subscribe-button"
+              onClick={() => navigate("/subscription")}
+              style={{marginTop:'10px'}}
+            >
+              {/* <div className="subscribe-button"> */}
+              <div className="subscribe-button-content">
+                <LiaCrownSolid className="crown-icon" />
+                Subscribe Now
+              </div>
+              <div className="subscribe-description">
+                Stream Live Sports and Ad-Free Originals
+              </div>
+              {/* </div> */}
+            </button>
+            {/* <div style={{display:'flex'}}> */}
+
+            {/* </div> */}
+
+            <div className="modal-container">
+              <Modal opened={opened} onClose={close} withCloseButton={false}>
+                Added To Wishlist
+              </Modal>
+            </div>
+          </div>
+        </div>
+        <div
+          className="show-background-image"
+          // style={{
+           
+          //   // backgroundSize:'cover'
+          // }}
+        >
+          <img src={detail?.thumbnail} />
         </div>
       </div>
 
+      {/* Render carousels for different types of content */}
+      
+      
+    
+    </main>
+    <div className="carousel-section">
       {detail && detail?.type === "movie" && movie?.length > 0 && (
         <div
           className={`carousel-container`}
           style={{ margin: "0px", padding: "0px", position: "relative" }}
         >
           <h1
-            style={{
-              color: "white",
-              paddingLeft: "20px",
-              paddingBottom: "5px",
-              margin: "0px",
-            }}
+       
+            className="head"
           >
             Movies
           </h1>
@@ -334,12 +261,14 @@ const Show = () => {
             slideGap="md"
             loop
             align="start"
-            slidesToScroll={8}
+            slidesToScroll={2}
+            controlsOffset="xl"
+            color="red"
+            nextControlIcon={<IconArrowRight size={16} />}
           >
             {movie &&
               movie?.map((item) => (
                 <Carousel.Slide key={item._id}>
-                  {/* Wrap the Card component with a div */}
                   <div className="hover-card">
                     <Card
                       shadow="sm"
@@ -353,7 +282,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width={178}
+                          width={1}
                         />
                       </Card.Section>
                     </Card>
@@ -369,12 +298,8 @@ const Show = () => {
           style={{ padding: "0px", margin: "0px" }}
         >
           <h1
-            style={{
-              color: "white",
-              paddingLeft: "20px",
-              paddingBottom: "5px",
-              margin: "0px",
-            }}
+        
+            className="head"
           >
             Web Series
           </h1>
@@ -390,7 +315,6 @@ const Show = () => {
             {webseries &&
               webseries?.map((item) => (
                 <Carousel.Slide key={item._id}>
-                  {/* Wrap the Card component with a div */}
                   <div className="hover-card">
                     <Card
                       shadow="sm"
@@ -417,12 +341,8 @@ const Show = () => {
       {detail && detail?.type === "trailer" && trailer?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
-            style={{
-              color: "white",
-              paddingLeft: "20px",
-              paddingBottom: "5px",
-              margin: "0px",
-            }}
+        
+            className="head"
           >
             Trailer
           </h1>
@@ -438,7 +358,6 @@ const Show = () => {
             {trailer &&
               trailer?.map((item) => (
                 <Carousel.Slide key={item._id}>
-                  {/* Wrap the Card component with a div */}
                   <div className="hover-card">
                     <Card
                       shadow="sm"
@@ -465,12 +384,8 @@ const Show = () => {
       {detail && detail?.type === "short film" && shortfilm?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
-            style={{
-              color: "white",
-              paddingLeft: "20px",
-              paddingBottom: "5px",
-              margin: "0px",
-            }}
+         
+            className="head"
           >
             Short film
           </h1>
@@ -486,7 +401,6 @@ const Show = () => {
             {shortfilm &&
               shortfilm?.map((item) => (
                 <Carousel.Slide key={item._id}>
-                  {/* Wrap the Card component with a div */}
                   <div className="hover-card">
                     <Card
                       shadow="sm"
@@ -513,12 +427,8 @@ const Show = () => {
       {detail && detail?.type === "tv show" && tvshow?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
-            style={{
-              color: "white",
-              paddingLeft: "20px",
-              paddingBottom: "5px",
-              margin: "0px",
-            }}
+         
+            className="head"
           >
             Tv Show
           </h1>
@@ -534,7 +444,6 @@ const Show = () => {
             {tvshow &&
               tvshow?.map((item) => (
                 <Carousel.Slide key={item._id}>
-                  {/* Wrap the Card component with a div */}
                   <div className="hover-card">
                     <Card
                       shadow="sm"
@@ -561,12 +470,8 @@ const Show = () => {
       {detail && detail?.type === "documentary" && documentary?.length > 0 && (
         <div className={`carousel-container`}>
           <h1
-            style={{
-              color: "white",
-              paddingLeft: "20px",
-              paddingBottom: "5px",
-              margin: "0px",
-            }}
+          
+            className="head"
           >
             Documentary
           </h1>
@@ -582,7 +487,6 @@ const Show = () => {
             {documentary &&
               documentary?.map((item) => (
                 <Carousel.Slide key={item._id}>
-                  {/* Wrap the Card component with a div */}
                   <div className="hover-card">
                     <Card
                       shadow="sm"
@@ -609,12 +513,8 @@ const Show = () => {
       {detail && detail?.type === "video song" && videosong?.length > 0 && (
         <div className={`carousel-container`} style={{ background: "black" }}>
           <h1
-            style={{
-              color: "white",
-              paddingLeft: "20px",
-              paddingBottom: "5px",
-              margin: "0px",
-            }}
+          
+            className="head"
           >
             Video Songs
           </h1>
@@ -625,12 +525,11 @@ const Show = () => {
             slideGap="md"
             loop
             align="start"
-            slidesToScroll={8}
+            slidesToScroll={2}
           >
             {videosong &&
               videosong?.map((item) => (
                 <Carousel.Slide key={item._id}>
-                  {/* Wrap the Card component with a div */}
                   <div className="hover-card">
                     <Card
                       shadow="sm"
@@ -644,7 +543,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width={178}
+                          width={17}
                         />
                       </Card.Section>
                     </Card>
@@ -654,7 +553,8 @@ const Show = () => {
           </Carousel>
         </div>
       )}
-    </main>
+      </div>
+    </>
   );
 };
 
