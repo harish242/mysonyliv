@@ -142,40 +142,40 @@ const Show = () => {
           display: "flex",
           justifyContent: "space-around",
           flexWrap: "wrap",
-          marginTop:'13px'
+          marginTop:'45px'
         }}
       >
         <div className="show-content" >
           <div className="show-header">
-            <h1>{detail?.title}</h1>
-            <p className="show-type">{detail?.type}</p>
-            <p className="show-created-at">{detail?.createdAt}</p>
+            <h1 style={{color:'#f2bc04'}}>{detail?.title}</h1>
+            <p className="show-type" style={{color:'#735a19'}}>{detail?.type}</p>
+            <p className="show-created-at" style={{color:'#735a19'}}>{detail?.createdAt}</p>
             {detail?.keywords && detail.keywords.length >= 3 && (
-              <p className="show-keywords">
+              <p className="show-keywords" style={{color:'#735a19'}}>
                 {detail.keywords[0]}, {detail.keywords[1]}, {detail.keywords[2]}
               </p>
             )}
           </div>
-          <div className="show-description">
-            <p>{detail?.description}</p>
+          <div className="show-description" >
+            <p style={{color:'#f2bc04'}}>{detail?.description}</p>
           </div>
-          <div className="show-details">
+          <div className="show-details" style={{color:'#735a19'}}>
             <div className="show-director">
-              <span className="show-details-title">Director:</span>
-              <span className="show-details-value">{detail?.director}</span>
+              <span className="show-details-title" style={{color:'#f2bc04'}}>Director:</span>
+              <span className="show-details-value" style={{color:'#735a19'}}>{detail?.director}</span>
             </div>
-            <div className="show-cast">
-              <span className="show-details-title">Cast:</span>
+            <div className="show-cast" style={{color:'#f2bc04'}}>
+              <span className="show-details-title" style={{color:'#f2bc04'}}>Cast:</span>
               <div className="show-cast-list">
                 {detail?.cast?.map((item) => (
-                  <span className="show-cast-item" key={item}>
+                  <span className="show-cast-item" key={item} style={{color:'#735a19'}}>
                     {item}
                   </span>
                 ))}
               </div>
             </div>
           </div>
-          <div className="show-buttons">
+          <div className="show-buttons" style={{color:'#f2bc04'}}>
             <button
               className="show-button watch-button"
               onClick={() => {
@@ -255,16 +255,13 @@ const Show = () => {
             Movies
           </h1>
           <Carousel
-            withIndicators
-            height={250}
-            slideSize="15%"
-            slideGap="md"
-            loop
-            align="start"
-            slidesToScroll={2}
-            controlsOffset="xl"
-            color="red"
-            nextControlIcon={<IconArrowRight size={16} />}
+              withIndicators
+              height={250}
+              slideSize="15%"
+              slideGap="md"
+              loop
+              align="start"
+              slidesToScroll={8}
           >
             {movie &&
               movie?.map((item) => (
@@ -282,7 +279,7 @@ const Show = () => {
                           src={item.thumbnail}
                           height={235}
                           alt="No way!"
-                          width={1}
+                          width={178}
                         />
                       </Card.Section>
                     </Card>
@@ -540,10 +537,10 @@ const Show = () => {
                     >
                       <Card.Section>
                         <Image
-                          src={item.thumbnail}
-                          height={235}
-                          alt="No way!"
-                          width={17}
+                         src={item.thumbnail}
+                         height={235}
+                         alt="No way!"
+                         width={178}
                         />
                       </Card.Section>
                     </Card>

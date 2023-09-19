@@ -96,12 +96,13 @@ const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
 
       <div className="carousel-section" style={{marginTop:'0px'}}>
         <CarouselSection title="Movies" items={movie} navigate={navigate} />
-        <CarouselSection title="Web Series" items={webseries} navigate={navigate} />
         <CarouselSection title="Documentary" items={documentary} navigate={navigate} />
         <CarouselSection title="Trailer" items={trailer} navigate={navigate} />
         <CarouselSection title="Video Song" items={videosong} navigate={navigate} />
         <CarouselSection title="Short Film" items={shortfilm} navigate={navigate} />
         <CarouselSection title="TV Shows" items={tvshow} navigate={navigate} />
+        <CarouselSection title="Web Series" items={webseries} navigate={navigate} />
+
       </div>
       </div>
     </>
@@ -144,7 +145,7 @@ const CarouselSection = ({ title, items, navigate }) => {
                   src={item.thumbnail}
                   height={235}
                   alt="No way!"
-                  width={178}
+                  width={180}
                 />
               </Card.Section>
             </Card>
