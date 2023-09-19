@@ -14,6 +14,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { Modal, Group } from "@mantine/core";
 import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import Demo from './matladu'
+import { rem } from '@mantine/core';
 
 
 const Show = () => {
@@ -255,13 +256,15 @@ const Show = () => {
             Movies
           </h1>
           <Carousel
-              withIndicators
+              // withIndicators
               height={250}
               slideSize="15%"
               slideGap="md"
               loop
               align="start"
               slidesToScroll={8}
+              nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+              previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
           >
             {movie &&
               movie?.map((item) => (
@@ -301,13 +304,15 @@ const Show = () => {
             Web Series
           </h1>
           <Carousel
-            withIndicators
+            // withIndicators
             height={250}
             slideSize="15%"
             slideGap="md"
             loop
             align="start"
             slidesToScroll={8}
+            nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+            previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
           >
             {webseries &&
               webseries?.map((item) => (
@@ -344,13 +349,15 @@ const Show = () => {
             Trailer
           </h1>
           <Carousel
-            withIndicators
+            // withIndicators
             height={250}
             slideSize="15%"
             slideGap="md"
             loop
             align="start"
             slidesToScroll={8}
+            nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+            previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
           >
             {trailer &&
               trailer?.map((item) => (
@@ -387,13 +394,15 @@ const Show = () => {
             Short film
           </h1>
           <Carousel
-            withIndicators
+            // withIndicators
             height={250}
             slideSize="15%"
             slideGap="md"
             loop
             align="start"
             slidesToScroll={8}
+            nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+            previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
           >
             {shortfilm &&
               shortfilm?.map((item) => (
@@ -430,13 +439,15 @@ const Show = () => {
             Tv Show
           </h1>
           <Carousel
-            withIndicators
+            // withIndicators
             height={250}
             slideSize="15%"
             slideGap="md"
             loop
             align="start"
             slidesToScroll={8}
+             nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+        previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
           >
             {tvshow &&
               tvshow?.map((item) => (
@@ -448,6 +459,7 @@ const Show = () => {
                       component="a"
                       key={item._id}
                       onClick={() => navigate(`/showdetails/${item._id}`)}
+                      
                     >
                       <Card.Section>
                         <Image
@@ -473,13 +485,15 @@ const Show = () => {
             Documentary
           </h1>
           <Carousel
-            withIndicators
+            // withIndicators
             height={250}
             slideSize="15%"
             slideGap="md"
             loop
             align="start"
             slidesToScroll={8}
+            nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+            previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
           >
             {documentary &&
               documentary?.map((item) => (
@@ -516,13 +530,15 @@ const Show = () => {
             Video Songs
           </h1>
           <Carousel
-            withIndicators
+            // withIndicators
             height={250}
             slideSize="15%"
             slideGap="md"
             loop
             align="start"
             slidesToScroll={2}
+            nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+            previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
           >
             {videosong &&
               videosong?.map((item) => (

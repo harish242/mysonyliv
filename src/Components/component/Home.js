@@ -8,6 +8,7 @@ import { Card, Image, Text } from "@mantine/core";
 import store from "../react-redux/store";
 import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import Autoplay from 'embla-carousel-autoplay';
+import { rem } from '@mantine/core';
 const Home = () => {
   
   const [datai, setData] = useState([]);
@@ -81,11 +82,13 @@ const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
       <Carousel
         maw="100%"
         mx="auto"
-        withIndicators
+        // withIndicators
         height={600}
         dragFree
         slideGap="md"
         align="start"
+        nextControlIcon={<IconArrowRight style={{ width: rem(16), height: rem(16) }} />}
+        previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
       >
         {movie && movie.map((item, index) => (
           <Carousel.Slide key={item._id}>
@@ -126,6 +129,8 @@ const CarouselSection = ({ title, items, navigate }) => {
       controlsOffset="xl"
       color="red"
       nextControlIcon={<IconArrowRight size={16} />}
+      previousControlIcon={<IconArrowLeft style={{ width: rem(16), height: rem(16) }} />}
+
 
     >
       {items && items.map((item) => (
