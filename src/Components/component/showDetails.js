@@ -148,28 +148,28 @@ const Show = () => {
       >
         <div className="show-content" >
           <div className="show-header">
-            <h1 style={{color:'#f2bc04'}}>{detail?.title}</h1>
-            <p className="show-type" style={{color:'#735a19'}}>{detail?.type}</p>
-            <p className="show-created-at" style={{color:'#735a19'}}>{detail?.createdAt}</p>
+            <h1 style={{color:'white',fontWeight:'bold'}}>{detail?.title}</h1>
+            <p className="show-type" style={{color:'white',opacity:'0.8'}}>{detail?.type}</p>
+            <p className="show-created-at" style={{color:'white',opacity:'0.8'}}>{detail?.createdAt}</p>
             {detail?.keywords && detail.keywords.length >= 3 && (
-              <p className="show-keywords" style={{color:'#735a19'}}>
+              <p className="show-keywords" style={{color:'white',opacity:'0.8'}}>
                 {detail.keywords[0]}, {detail.keywords[1]}, {detail.keywords[2]}
               </p>
             )}
           </div>
           <div className="show-description" >
-            <p style={{color:'#f2bc04'}}>{detail?.description}</p>
+            <p style={{color:'white',fontWeight:'bold'}}>{detail?.description}</p>
           </div>
-          <div className="show-details" style={{color:'#735a19'}}>
+          <div className="show-details" style={{color:'white'}}>
             <div className="show-director">
-              <span className="show-details-title" style={{color:'#f2bc04'}}>Director:</span>
-              <span className="show-details-value" style={{color:'#735a19'}}>{detail?.director}</span>
+              <span className="show-details-title" style={{color:'white',opacity:'0.5'}}>Director:</span>
+              <span className="show-details-value" style={{color:'white'}}>{detail?.director}</span>
             </div>
-            <div className="show-cast" style={{color:'#f2bc04'}}>
-              <span className="show-details-title" style={{color:'#f2bc04'}}>Cast:</span>
+            <div className="show-cast" style={{color:'white'}}>
+              <span className="show-details-title" style={{color:'white',opacity:'0.5'}}>Cast:</span>
               <div className="show-cast-list">
                 {detail?.cast?.map((item) => (
-                  <span className="show-cast-item" key={item} style={{color:'#735a19'}}>
+                  <span className="show-cast-item" key={item} style={{color:'white'}}>
                     {item}
                   </span>
                 ))}
@@ -182,36 +182,40 @@ const Show = () => {
               onClick={() => {
                 navigate(`/video/${id}`, { state: detail });
               }}
+              style={{margin:'15px',color:'black',fontWeight:'bold'}}
             >
               <img
                 src="https://images.slivcdn.com/UI_icons/New_Final_Icons_30052020/web_play_icon.png?h=24&w=24&q=high&fr=webp"
                 alt="Play Icon"
                 className="play-icon"
+                style={{opacity:'0.8'}}
               />
               Watch Free Preview
             </button>
             <button
               className="show-button list-button"
               onClick={handleAddToWatchlist}
+              style={{margin:'15px',paddingLeft:'21.5px',color:'black',fontWeight:'bold'}}
             >
+
               {isToggled ? (
-                <FiCheck className="check-icon" />
+                <FiCheck className="check-icon"  />
               ) : (
                 <BsPlusLg className="plus-icon" />
               )}
-              My List
+              {/* My List */}
             </button>
             <button
               className="show-button subscribe-button"
               onClick={() => navigate("/subscription")}
-              style={{marginTop:'10px'}}
+              style={{marginTop:'10px',marginBottom:'20px'}}
             >
               {/* <div className="subscribe-button"> */}
               <div className="subscribe-button-content">
                 <LiaCrownSolid className="crown-icon" />
                 Subscribe Now
               </div>
-              <div className="subscribe-description">
+              <div className="subscribe-description" style={{marginTop:'0px',marginLeft:'5px'}}>
                 Stream Live Sports and Ad-Free Originals
               </div>
               {/* </div> */}

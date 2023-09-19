@@ -105,7 +105,6 @@ const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
         <CarouselSection title="Short Film" items={shortfilm} navigate={navigate} />
         <CarouselSection title="TV Shows" items={tvshow} navigate={navigate} />
         <CarouselSection title="Web Series" items={webseries} navigate={navigate} />
-
       </div>
       </div>
     </>

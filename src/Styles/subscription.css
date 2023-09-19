@@ -1,0 +1,42 @@
+/* Default styles for larger screens */
+.subscription-container {
+    background-color: black;
+    height: 100vh;
+    width: 100vw;
+    /* Add other default styles here */
+  }
+  
+  .responsive-table {
+    color: black;
+    margin-top: 50px;
+    background-color: transparent;
+    /* Add other default styles for the table here */
+  }
+  
+  .responsive-header {
+    /* Add styles for header cells here */
+  }
+  
+  /* Media query for smaller screens like iPhone SE */
+  @media (max-width: 768px) {
+    .subscription-container {
+      /* Add styles for smaller screens here */
+      padding: 20px; /* Example: Add padding for better spacing */
+    }
+  
+    .responsive-table {
+      /* Add styles for smaller screens here */
+      width: 100%; /* Example: Make the table full-width */
+    }
+  
+    .responsive-header {
+      /* Add styles for header cells on smaller screens here */
+      font-size: 14px; /* Example: Reduce font size for smaller screens */
+    }
+  
+    /* Add styles for table cells on smaller screens here */
+    tbody td {
+      font-size: 12px; /* Example: Reduce font size for smaller screens */
+    }
+  }
+  
