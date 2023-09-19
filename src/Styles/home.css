@@ -13,14 +13,16 @@ height:100vh;
   /* background-color: red; */
 } 
 .mantine-carousel__controls-offset {
-  background-color: white;
+  /* background-color: white; */
 } 
 .mantine{
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
 } 
-.carousel-section{}
+.carousel-section{
+  background-color: black !important;
+}
 
 .custom-card {
   background-color: transparent;
