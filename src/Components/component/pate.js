@@ -58,7 +58,7 @@ export default function Demo({ rat }) {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="cardno"
                 type="number"
-                placeholder="Card Number"
+                placeholder="enter 16 digits"
                 value={formData.cardno} // Set the value attribute to control the input
               />
             </div>
@@ -70,7 +70,7 @@ export default function Demo({ rat }) {
                 className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="cvv"
                 type="password"
-                placeholder="CVV"
+                placeholder="enter 3 digits"
                 value={formData.cvv} // Set the value attribute to control the input
               />
               <p className="text-red-500 text-xs italic">{err}</p>
