@@ -7,12 +7,15 @@ import { Provider } from "react-redux";
 import store from '../src/Components/react-redux/store'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore } from 'redux-persist'
+// import { ThemeProvider } from '@mui/material';
+// import theme from '../src/Components/component/createTheme';
 
 let persistor = persistStore(store)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+
      <Provider store={store}>
       <PersistGate persistor={persistor}>
       <App />

@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 const Navbar = () => {
     // const userName = JSON.parse(localStorage.getItem('user'))
     const userName = useSelector((state) => state.persisted.resetPassword.userdetails.data?.name);
+    const payments=useSelector((state)=>state.persisted.localJwtReducer.payment)
     console.log('navbar/20',userName)
     const navigate = useNavigate();
     const [input, setInput] = useState("");
@@ -94,7 +95,7 @@ const Navbar = () => {
     };
     console.log('navbar/92',result)
     return (
-        <div className='navbar_container'>
+        <div className='navbar_container' style={{width:'100%'}}>
             <div className='navbar_logo'>
                 <div className='navbar_image'>
                     <Link to='/home'>
@@ -103,7 +104,7 @@ const Navbar = () => {
                 </div>
                 <div className='navbar_subscription'>
                     <Link to='/subscription'>
-                        <button className='navbar_subscription_button'>Subscribe<img src='https://images.slivcdn.com/UI_icons/smart_hook/arrow_image.png?h=8&w=4&q=high&fr=webp' /></button>
+                        <button className='navbar_subscription_button' disabled={!payments}>Subscribe<img src='https://images.slivcdn.com/UI_icons/smart_hook/arrow_image.png?h=8&w=4&q=high&fr=webp' /></button>
                     </Link>
                 </div>
                 <div className='navbar_logo_seperator_div'>
@@ -118,9 +119,9 @@ const Navbar = () => {
                             {activeCategory === category.type && (
                                 <div className={`${category.class}`}>
                                     <div className='check2'>
-                                        <Link to={`/data?type=${category.type}`}>
-                                            <div className='top_left'>All {category.name} <span className='fa_icon'><FaArrowRight /></span></div>
-                                        </Link>
+                                        {/* <Link to={`/data?type=${category.type}`}> */}
+                                            <div className='top_left'>{category.name} <span className='fa_icon'><FaArrowRight /></span></div>
+                                        {/* </Link> */}
                                         <div className='top_right'>
                                             <button className={`top_right_btn ${activeKeyword === 'romance' ? 'active' : ''}`} onClick={() => filterByKeyword('romance')}>Romance</button>
                                             <button className={`top_right_btn ${activeKeyword === 'thriller' ? 'active' : ''}`} onClick={() => filterByKeyword('thriller')}>Thriller</button>
@@ -180,12 +181,27 @@ const Navbar = () => {
                             <div className='profile_name'>{userName}</div>
                         </div>
                         <div className='profile_lists'>
+                               
+                                    {payments?(
+                                        <>
                             <Link to='/subscription'>
-                                <div className='profile_list'>
-                                    <div><img src='https://images.slivcdn.com/UI_icons/Subscribe_Now.png?h=22&w=22&q=high&fr=webp' /></div>
-                                    <div className='profile_list_title'>Subscribe Now</div>
+                            <div className='profile_list'>
+                                        <div><img src='https://images.slivcdn.com/UI_icons/Subscribe_Now.png?h=22&w=22&q=high&fr=webp' /></div>
+                                         <div className='profile_list_title'>Subscribe Now</div>
                                 </div>
+
                             </Link>
+
+                                         </>
+                                         
+                                    ):(  <>
+                            <div className='profile_list' style={{cursor:'pointer'}}>
+
+                                        <div><img src='https://images.slivcdn.com/UI_icons/Subscribe_Now.png?h=22&w=22&q=high&fr=webp' /></div>
+                                         <div className='profile_list_title'>Subscribed</div>
+                                         </div>
+                                         </>)}
+                                   
                             <Link to="/additem">
                                 <div className='profile_list'>
                                     <div><img src='https://images.slivcdn.com/UI_icons/mylist_non_selecte.png?h=22&w=22&q=high&fr=webp' /></div>

@@ -22,6 +22,8 @@ const Show = () => {
   const [detail, setDetail] = useState("");
   const { id } = useParams();
   const [opened, { open, close }] = useDisclosure(false);
+  const payments=useSelector((state)=>state.persisted.localJwtReducer.payment)
+
 
   const navigate = useNavigate();
   const showDetail = useSelector((state) => state.others.mainDataReducer);
@@ -209,6 +211,7 @@ const Show = () => {
               className="show-button subscribe-button"
               onClick={() => navigate("/subscription")}
               style={{marginTop:'10px',marginBottom:'20px'}}
+              disabled={!payments}
             >
               {/* <div className="subscribe-button"> */}
               <div className="subscribe-button-content">

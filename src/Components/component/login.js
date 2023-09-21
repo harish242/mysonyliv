@@ -1,6 +1,8 @@
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 const Login=()=>{
+    const [err,setErr]=useState('')
     const store=useSelector(state=>state.persisted.localJwtReducer.tokens)
     console.log('login/5',store)
     const MainStore=useSelector(state=>state.others.loginReducer)
@@ -34,6 +36,8 @@ const Login=()=>{
 
                 if(data.status==='success'){
                   navigate('/home')
+                }else if(data.status==='fail'){
+                  setErr('Incorrect EmailId or Password')
                 }
                 console.log('login/37token',token)
              })()
@@ -41,6 +45,8 @@ const Login=()=>{
          console.log(err)
         }
     } 
+
+    console.log('login/49',err)
     return(
         <div style={{display:"flex",justifyContent:'center',alignItems:'center',height:'100vh',width:'100vw',backgroundImage:'url(https://www.gadgetmouse.com/wp-content/uploads/2021/07/SonyLIV-featured.png)',backgroundRepeat:'no-repeat',backgroundSize:'cover'}}>
         <div class="w-full max-w-xs" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', padding: '20px', borderRadius: '10px' }}>
@@ -56,11 +62,11 @@ const Login=()=>{
         Password
       </label>
       <input class="shadow appearance-none border border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"/>
-      {/* <p class="text-red-500 text-xs italic">Please choose a password.</p> */}
+      <p class="text-red-500 text-xs italic" style={{fontSize:'16px',color:'#FFB000'}}>{err}</p>
     </div>
     <div class="flex items-center justify-between">
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-        Login In
+        LogIn
       </button>
       <a class="inline-block align-baseline font-bold text-lg text-blue-600 hover:text-blue-800" href="/">
         Register

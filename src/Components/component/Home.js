@@ -77,7 +77,7 @@ const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
 
   return (
     <>
-   <div className="main-container">
+   <div className="main-container" style={{width:'100vw'}}>
 
       <Carousel
         maw="100%"

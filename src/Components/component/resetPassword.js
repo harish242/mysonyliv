@@ -1,7 +1,9 @@
 import { useDispatch,useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { useState } from 'react';
 import axios from 'axios';
 const ResetPassword=()=>{
+  const [err,setErr]=useState('')
     const store=useSelector(state=>state.persisted.resetPassword)
     const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
     console.log('resetpass/5',store)
@@ -68,6 +70,8 @@ const doPost = async (e) => {
 
     if (data.status === 'success') {
       navigate('/login');
+    }else if(data.status==='fail'){
+      setErr('Incorrect EmailId or Password')
     }
   } catch (err) {
     console.log(err);
@@ -101,8 +105,8 @@ const doPost = async (e) => {
       <label class="block text-black text-lg font-bold mb-2" for="password">
         Password
       </label>
-      <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none  bg-transparent focus:shadow-outline" id="password" type="password" placeholder="******************"/>
-      {/* <p class="text-red-500 text-xs italic">Please choose a password.</p> */}
+      <input class="shadow appearance-none border border-black rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none bg-transparent focus:shadow-outline" id="password" type="password" placeholder="******************"/>
+      <p class="text-red-500 text-xs italic">{err}</p>
     </div>
     <div class="flex items-center justify-between">
       <button class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

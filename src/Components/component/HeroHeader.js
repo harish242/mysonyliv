@@ -172,7 +172,7 @@ export function HeroImageRight(props) {
     <div
       className={classes.root}
       style={{
-        backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 30%, #062343 100%), url(${datat.data.thumbnail})`,
+        backgroundImage: `linear-gradient(250deg, rgba(130, 201, 30, 0) 30%, #062343 70%), url(${datat.data.thumbnail})`,
         height: 800,
       }}
     >
