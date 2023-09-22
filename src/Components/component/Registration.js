@@ -90,11 +90,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 export function Regis() {
     const store = useSelector(state => state.others.regisReducer);
 //   let pathName=window.location.href
   const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
+  const [regfail,setFailregis]=useState('')
 
 console.log('regis/99',token)
     const navigate = useNavigate();
@@ -122,15 +124,18 @@ console.log('regis/99',token)
                 headers: { 'Content-Type': 'application/json', 'projectId': 'xybcw190kyb8' },
                 body: JSON.stringify({ ...store, "appType": "ott" })
             });
-            if (!response.ok) {
-                const errorMessage = `Fetch error: ${response.statusText}`;
-                console.error(errorMessage);
-                throw new Error(errorMessage);
-            }
+            // if (!response.ok) {
+            //     const errorMessage = `Fetch error: ${response.statusText}`;
+            //     console.error("regis/127",errorMessage);
+            //     throw new Error(errorMessage);
+            // }
             const data = await response.json();
 
             if (data.status === 'success') {
                 navigate('/login');
+            }else if(data.status==='fail'){
+            //   console.log('master',data.message)
+            setFailregis(data.message)
             }
             console.log(data);
         } catch (err) {
@@ -162,11 +167,15 @@ console.log('regis/99',token)
                             </label>
                             <input className="shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
                         </div>
-                        <div className="mb-6">
+                        <div className="mb-6" style={{marginBottom:'0px'}}>
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
                                 Password
                             </label>
                             <input className="shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-white mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+                        </div>
+                        <div style={{marginBottom:'10px'}}>
+                        <p style={{color:'red'}}>{regfail}</p>
+
                         </div>
                         <div className="flex flex-col md:flex-row items-center justify-between">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0" type="submit">
@@ -175,6 +184,7 @@ console.log('regis/99',token)
                             {/* <Link to="/login" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                                 Update Password?
                             </Link> */}
+                           
                         </div>
                     </form>
                     <p className="text-center text-gray-500 text-md" style={{color:'white'}}>

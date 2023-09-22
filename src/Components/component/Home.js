@@ -48,7 +48,7 @@ const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
 // const selectedShow = movie.find(item => item._id === id);
 // const manStore=useSelector(state=>state.others.mainDataReducer.showdata)
   const str=useSelector(state=>state)
-  console.log('home/16',str)
+  console.log('home/51',str)
   console.log('home/15',manStore)
 
   useEffect(() => {

@@ -68,9 +68,10 @@ const Login=()=>{
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
         LogIn
       </button>
-      <a class="inline-block align-baseline font-bold text-lg text-blue-600 hover:text-blue-800" href="/">
-        Register
-      </a>
+      {/* <a class="inline-block align-baseline font-bold text-lg text-blue-600 hover:text-blue-800" href="/"> */}
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={()=>navigate('/')}>Register</button>
+        
+      {/* </a> */}
     </div>
   </form>
   <p class="text-center text-gray-500 text-xs">
