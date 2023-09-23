@@ -9,27 +9,61 @@ export default function Demo({ rat }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [successModalOpened, setSuccessModalOpened] = useState(false);
   const [formData, setFormData] = useState({ cardno: '', cvv: '', date: '' });
-  const [err, setErr] = useState('');
+  const [err, setErr] = useState({cardErr:'',cvvErr:'',dateErr:''});
   const [isLoading, setIsLoading] = useState(false); // State for loader
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  let{cardErr,cvvErr,dateErr}=err;
 
   const handlePayment = (e) => {
     e.preventDefault();
-    if (formData.cardno.length !== 16 || formData.cvv.length !== 3 || formData.date === '') {
-      setErr('Enter correct values');
-    } else {
-      setErr('');
-      setIsLoading(true); // Show loader
-      // Simulate a delay for demonstration purposes (replace this with your actual payment processing logic)
-      setTimeout(() => {
-        console.log('Payment submitted:', formData);
-        close();
-        setSuccessModalOpened(true);
-        setIsLoading(false); // Hide loader after payment processing is complete
-        dispatch({ type: 'successpayment', payload: false });
-      }, 3000); // 2 seconds delay
+
+    // Convert the input date to a JavaScript Date object
+    const inputDate = new Date(formData.date);
+  
+    // Get the current date
+    const currentDate = new Date();
+  
+    let cardErr = '';
+    let cvvErr = '';
+    let dateErr = '';
+  
+    // Validate card number
+    if (formData.cardno.length !== 16) {
+      cardErr = 'Enter a 16-digit card number';
     }
+  
+    // Validate CVV
+    if (formData.cvv.length !== 3) {
+      cvvErr = 'Enter a 3-digit CVV';
+    }
+  
+    // Validate Expiry Date
+    if (!formData.date) {
+      dateErr = 'Enter an expiry date';
+    } else if (inputDate <= currentDate) {
+      dateErr = 'Enter a valid future expiry date';
+    }
+  
+    // Set the error messages
+    setErr({ cardErr, cvvErr, dateErr });
+  
+    // If any of the error messages are not empty, do not proceed with payment
+    if (cardErr || cvvErr || dateErr) {
+      setIsLoading(false); // Hide loader
+      return;
+    }
+  
+    setIsLoading(true); // Show loader
+  
+    // Simulate a delay for demonstration purposes (replace this with your actual payment processing logic)
+    setTimeout(() => {
+      console.log('Payment submitted:', formData);
+      close();
+      setSuccessModalOpened(true);
+      setIsLoading(false); // Hide loader after payment processing is complete
+      dispatch({ type: 'successpayment', payload: false });
+    }, 3000); // 3 seconds delay
   };
 
   const handleInput = (e) => {
@@ -65,6 +99,8 @@ export default function Demo({ rat }) {
                 placeholder="enter 16 digits"
                 value={formData.cardno}
               />
+              <p className="text-red-500 text-xs italic">{cardErr}</p>
+
             </div>
             <div className="mb-6">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="cvv">
@@ -77,7 +113,7 @@ export default function Demo({ rat }) {
                 placeholder="enter 3 digits"
                 value={formData.cvv}
               />
-              {/* <p className="text-red-500 text-xs italic">{err}</p> */}
+              <p className="text-red-500 text-xs italic">{cvvErr}</p>
             </div>
             <div className="mb-6">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="date">
@@ -90,7 +126,7 @@ export default function Demo({ rat }) {
                 placeholder="valid thru"
                 value={formData.date}
               />
-              <p className="text-red-500 text-xs italic">{err}</p>
+              <p className="text-red-500 text-xs italic">{dateErr}</p>
             </div>
             <div className="flex items-center justify-center">
               {isLoading ? (<>
