@@ -28,44 +28,44 @@ export default function App() {
   // const history = useHistory();
   const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
 
-  const categories = [
-    { name: "Movie", type: "movie", class: "class_movie" },
-    { name: "Video Song", type: "video song", class: "class_video_song" },
-    { name: "Web Series", type: "web series", class: "class_web_series" },
-    { name: "Documentary", type: "documentary", class: "class_documentry" },
-    { name: "TV Show", type: "tv show", class: "class_tv_show" },
-    { name: "Trailer", type: "trailer", class: "class_trailer" },
-    { name: "Short Film", type: "short film", class: "class_short_film" },
-  ];
+  // const categories = [
+  //   { name: "Movie", type: "movie", class: "class_movie" },
+  //   { name: "Video Song", type: "video song", class: "class_video_song" },
+  //   { name: "Web Series", type: "web series", class: "class_web_series" },
+  //   { name: "Documentary", type: "documentary", class: "class_documentry" },
+  //   { name: "TV Show", type: "tv show", class: "class_tv_show" },
+  //   { name: "Trailer", type: "trailer", class: "class_trailer" },
+  //   { name: "Short Film", type: "short film", class: "class_short_film" },
+  // ];
 
-  const [activeCategory, setActiveCategory] = useState(categories[0].type);
+  // const [activeCategory, setActiveCategory] = useState(categories[0].type);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      for(let i=0;i<categories.length;i++){
-        const showId=categories[i].type
-        try {
-          const response = await axios.get(
-            `https://academics.newtonschool.co/api/v1/ott/show?filter={"type" : "${showId}"}`,
-            {
-              headers: {
-                projectId: "sjp136jp4txm",
-              },
-            }
-          );
-          console.log('App/49',response)
-          dispatch({ type: showId, payload: response.data.data });
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     for(let i=0;i<categories.length;i++){
+  //       const showId=categories[i].type
+  //       try {
+  //         const response = await axios.get(
+  //           `https://academics.newtonschool.co/api/v1/ott/show?filter={"type" : "${showId}"}`,
+  //           {
+  //             headers: {
+  //               projectId: "sjp136jp4txm",
+  //             },
+  //           }
+  //         );
+  //         console.log('App/49',response)
+  //         dispatch({ type: showId, payload: response.data.data });
 
-        }catch(err){
-          console.log(err)
-        }
-        // fetchData()
-      }
+  //       }catch(err){
+  //         console.log(err)
+  //       }
+  //       // fetchData()
+  //     }
     
-    }
-    fetchData()
+  //   }
+  //   fetchData()
     
-  },[])
+  // },[])
   useEffect(() => {
     try {
       (async () => {

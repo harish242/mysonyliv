@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import '../../Styles/HeroHeader.css'
 import {
   createStyles,
   Container,
@@ -203,40 +204,41 @@ export function HeroImageRight(props) {
                 alignItems: "center",
               }}
             >
-              <Button
-                variant="gradient"
-                gradient={{ from: "pink", to: "yellow" }}
-                size="xl"
-                className={classes.add}
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                mt={51}
-                style={{ width: "fit-content", marginTop: 20, zIndex: 1000 }}
-                onClick={() => HandleToggles(datat.data._id)}
-                position="center"
-              >
-                {isToggled ? (
-                  <span>
-                    <FiCheck
-                      style={{
-                        width: "23px",
-                        height: "23px",
-                        fontWeight: "700",
-                      }}
-                    />
-                  </span>
-                ) : (
-                  <span>
-                    <BsPlusLg
-                      style={{
-                        width: "23px",
-                        height: "23px",
-                        fontWeight: "700",
-                      }}
-                    />
-                  </span>
-                )}
-                Add To Whishlist
-              </Button>
+             <Button
+  variant="gradient"
+  gradient={{ from: "pink", to: "yellow" }}
+  size="xl"
+  className={classes.add}
+  style={{
+    width: "fit-content",
+    marginTop: 20,
+    backgroundColor: "rgba(0, 0, 0, 0.3)", // Apply opacity to the background
+  }}
+  onClick={() => HandleToggles(datat.data._id)}
+>
+  {isToggled ? (
+    <span>
+      <FiCheck
+        style={{
+          width: "23px",
+          height: "23px",
+          fontWeight: "700",
+        }}
+      />
+    </span>
+  ) : (
+    <span>
+      <BsPlusLg
+        style={{
+          width: "23px",
+          height: "23px",
+          fontWeight: "700",
+        }}
+      />
+    </span>
+  )}
+  <span style={{ zIndex: 2000, color: "white" }}>Add To Wishlist</span>
+</Button>
 
               <Button
                 variant="gradient"
@@ -246,7 +248,8 @@ export function HeroImageRight(props) {
                 mt={20}
                 class="bg-black hover:bg-blue-700 text-white font-bold py-2.5 px-6 rounded"
                 onClick={() => navigate(`/showdetails/${datat.data._id}`)}
-                style={{marginTop:'20px'}}
+                style={{marginTop:'20px',backgroundColor:
+                "rgba(0, 0, 0, 0.3)"}}
               >
                 More Details
               </Button>

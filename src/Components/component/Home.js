@@ -9,6 +9,7 @@ import store from "../react-redux/store";
 import { IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { rem } from '@mantine/core';
+import axios from "axios";
 const Home = () => {
   
   const [datai, setData] = useState([]);
@@ -50,6 +51,45 @@ const shortfilm=useSelector(state=>state.persisted.AddItems.shortfilm)
   const str=useSelector(state=>state)
   console.log('home/51',str)
   console.log('home/15',manStore)
+  const categories = [
+    { name: "Movie", type: "movie", class: "class_movie" },
+    { name: "Video Song", type: "video song", class: "class_video_song" },
+    { name: "Web Series", type: "web series", class: "class_web_series" },
+    { name: "Documentary", type: "documentary", class: "class_documentry" },
+    { name: "TV Show", type: "tv show", class: "class_tv_show" },
+    { name: "Trailer", type: "trailer", class: "class_trailer" },
+    { name: "Short Film", type: "short film", class: "class_short_film" },
+  ];
+
+  const [activeCategory, setActiveCategory] = useState(categories[0].type);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log('home/68',"iam runing")
+      for(let i=0;i<categories.length;i++){
+        const showId=categories[i].type
+        try {
+          const response = await axios.get(
+            `https://academics.newtonschool.co/api/v1/ott/show?filter={"type" : "${showId}"}`,
+            {
+              headers: {
+                projectId: "sjp136jp4txm",
+              },
+            }
+          );
+          console.log('App/49',response)
+          dispatch({ type: showId, payload: response.data.data });
+
+        }catch(err){
+          console.log(err)
+        }
+        // fetchData()
+      }
+    
+    }
+    fetchData()
+    
+  },[dispatch])
 
   useEffect(() => {
     try {
