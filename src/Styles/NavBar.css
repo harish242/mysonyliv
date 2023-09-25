@@ -404,4 +404,12 @@ a{
         /* left: 45px; */
         right: 0;
     }
+    .manage {
+        position: absolute;
+        top: 50px;
+        left: 25%;
+    }
+    .profile_hover{
+        width:190px;
+    }
 }
