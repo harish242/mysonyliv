@@ -69,6 +69,7 @@ export function Regis() {
         e.preventDefault();
 
         if (!validateForm()) {
+            setFailregis('')
             // Form validation failed
             return;
         }
@@ -84,7 +85,10 @@ export function Regis() {
 
             if (data.status === 'success') {
                 setShowLoginText(true); // Show "Login" text on successful registration
-                // navigate('/login');
+                setFailregis('')
+                setEmail('')
+                setPassword('')
+                setPassword('')
             } else if (data.status === 'fail') {
                 setFailregis(data.message);
             }
@@ -100,17 +104,18 @@ export function Regis() {
         if (showLoginText) {
             timer = setTimeout(() => {
                 setShowLoginText(false);
-            }, 3000);
+                navigate('/login');
+            }, 2000);
         }
         return () => {
             clearTimeout(timer);
         };
-    }, [showLoginText]);
+    }, [showLoginText,navigate]);
 
     return (
         <div className="min-h-screen bg-cover" style={{ backgroundImage: 'url(https://platinmods.com/attachments/sonyliv-jarvismods-png.240209/)' }}>
                {showLoginText && (
-                        <p className="text-center text-gray-500 text-md" style={{ color: 'white',position:'relative',top:'30px' }}>
+                        <p className="text-center text-gray-500 text-md" style={{ color: 'white',fontWeight:'bold',fontSize:'16px',position:'relative',top:'30px' }}>
                             Successfully registered! Please <Link to="/login"><span style={{ color: 'red', fontWeight: 'bold', fontSize: '20px', textDecoration: 'underline' }}>Login</span></Link>...
                         </p>
                     )}

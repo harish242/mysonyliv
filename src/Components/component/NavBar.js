@@ -63,7 +63,7 @@ const Navbar = () => {
        dispatch({type:'clear'})
       navigate("/");
 
-      }, 20000);
+      }, 2000);
     }
     const categories = [
         { name: 'Movie', type: 'movie', class: 'class_movie' },
