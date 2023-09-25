@@ -109,6 +109,18 @@ a{
     font-weight: 700;
     margin-right: 20px;
 }
+.manage {
+    position: absolute;
+    top: 50px;
+    left: 10%;
+    transform: translateX(-50%);
+    background-color: #00FF00;
+    padding: 10px 20px;
+    /* border-radius: 5px; */
+    color: #fff;
+    font-size: 16px;
+    z-index: 1; 
+  }
 
 .navbar_avatar {
     width: 28px; 

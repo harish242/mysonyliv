@@ -16,6 +16,8 @@ const Home = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
   const manStore = useSelector((state) => state.others.mainDataReducer.showdata);
+
+  
   // const movie=useSelector
   const movie=useSelector(state=>state.persisted.AddItems.movie)
   // selectedShow = movie.find(item => item._id === id);

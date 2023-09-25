@@ -16,6 +16,7 @@ const Navbar = () => {
     // const userName = JSON.parse(localStorage.getItem('user'))
     const userName = useSelector((state) => state.persisted.resetPassword.userdetails.data?.name);
     const payments=useSelector((state)=>state.persisted.localJwtReducer.payment)
+    const [isLoggingOut,setIsLoggingOut]=useState(false)
     console.log('navbar/20',userName)
     const navigate = useNavigate();
     const [input, setInput] = useState("");
@@ -52,8 +53,17 @@ const Navbar = () => {
     //     navigate('/')
     // };
     const handleLogout = () => {
-      dispatch({ type: "NUllIFY_STATE" });
+      
+      setIsLoggingOut(true); // Show the logout success message
+
+      setTimeout(() => {
+        setIsLoggingOut(false); // Hide the logout success message after 2 seconds
+        // Redirect the user to the login page or another page
+        dispatch({ type: "NUllIFY_STATE" });
+       dispatch({type:'clear'})
       navigate("/");
+
+      }, 20000);
     }
     const categories = [
         { name: 'Movie', type: 'movie', class: 'class_movie' },
@@ -95,143 +105,151 @@ const Navbar = () => {
     };
     console.log('navbar/92',result)
     return (
-        <div className='navbar_container' style={{width:'100%'}}>
-            <div className='navbar_logo'>
-                <div className='navbar_image'>
-                    <Link to='/home'>
-                        <img src='https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp' />
-                    </Link>
-                </div>
-                <div className='navbar_subscription'>
-                    <Link to='/subscription'>
-                        <button className='navbar_subscription_button' disabled={!payments}>Subscribe<img src='https://images.slivcdn.com/UI_icons/smart_hook/arrow_image.png?h=8&w=4&q=high&fr=webp' /></button>
-                    </Link>
-                </div>
-                <div className='navbar_logo_seperator_div'>
-                    <div className='navbar_logo_seperator'></div>
-                </div>
-            </div>
-            <div className='navbar_items'>
-                {categories.map(category => (
-                    <span key={category.type}>
-                        <a href='#' className={`navbar_item check1`} onMouseEnter={() => handleCategoryChange(category.type)}>
-                            {category.name}
-                            {activeCategory === category.type && (
-                                <div className={`${category.class}`}>
-                                    <div className='check2'>
-                                        {/* <Link to={`/data?type=${category.type}`}> */}
-                                            <div className='top_left'>{category.name} <span className='fa_icon'><FaArrowRight /></span></div>
-                                        {/* </Link> */}
-                                        <div className='top_right'>
-                                            <button className={`top_right_btn ${activeKeyword === 'romance' ? 'active' : ''}`} onClick={() => filterByKeyword('romance')}>Romance</button>
-                                            <button className={`top_right_btn ${activeKeyword === 'thriller' ? 'active' : ''}`} onClick={() => filterByKeyword('thriller')}>Thriller</button>
-                                            <button className={`top_right_btn ${activeKeyword === 'action' ? 'active' : ''}`} onClick={() => filterByKeyword('action')}>Action</button>
-                                            <button className={`top_right_btn ${activeKeyword === 'fantasy' ? 'active' : ''}`} onClick={() => filterByKeyword('fantasy')}>Fantasy</button>
-                                        </div>
-                                    </div>
-                                    <div className='check_center'>
-                                        <div className='filtered_data'>
-                                            {filteredData?.map(item => (
-                                                <div key={item._id} className='filtered_item' onClick={() => navigate(`/showdetails/${item._id}`)}>
-                                                    {/* <Link to={`/showdetails/${item._id}`}> */}
-                                                        <img src={item.thumbnail} alt={item.title} />
-                                                    {/* </Link> */}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </a>
-                    </span>
-                ))}
-            </div>
-            <div className='navbar_search'>
-                <a href='#' className='navbar_search_a'><AiOutlineSearch onClick={open} /></a>
-                <Modal
-                    opened={opened}
-                    onClose={close}
-                    // title="This is a fullscreen modal"
-                    fullScreen
-                    transitionProps={{ transition: 'fade', duration: 200 }}
-                >
-                    <div className='modal_search'>
-                        <input type='text' placeholder='Search for movies, shows, sports etc.' value={input}
-                            onChange={(e) => handleChange(e.target.value)} />
-                    </div>
-                    <div className='modal_search_result'>
-                        {result?.map(item => (
-                            <div key={item._id} className='modal_item'>
-                                <Link to={`/show/${item._id}`}>
-                                    <img src={item.thumbnail} alt={item.title} onClick={close} />
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-                </Modal>
-                <div className='awatar'>
-                    {/* <div style={{height:'45%',width:'45%'}}> */}
-                    <img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?h=28&w=28&q=high&fr=webp' className='navbar_avatar'/>
-
-                    {/* </div> */}
-                    <div className='profile_hover'>
-                      
-                        <div className='profile_detail'>
-                            <div className='profile_image'><img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?w=132&q=high&fr=webp' /></div>
-                            <div className='profile_name'>{userName}</div>
-                        </div>
-                        <div className='profile_lists'>
-                               
-                                    {payments?(
-                                        <>
-                            <Link to='/subscription'>
-                            <div className='profile_list'>
-                                        <div><img src='https://images.slivcdn.com/UI_icons/Subscribe_Now.png?h=22&w=22&q=high&fr=webp' /></div>
-                                         <div className='profile_list_title'>Subscribe Now</div>
-                                </div>
-
-                            </Link>
-
-                                         </>
-                                         
-                                    ):(  <>
-                            <div className='profile_list' style={{cursor:'pointer'}}>
-
-                                        <div><img src='https://images.slivcdn.com/UI_icons/Subscribe_Now.png?h=22&w=22&q=high&fr=webp' /></div>
-                                         <div className='profile_list_title'>Subscribed</div>
+        <>
+       
+         <div className='navbar_container' style={{width:'100%'}}>
+             
+             <div className='navbar_logo'>
+                 <div className='navbar_image'>
+                     <Link to='/home'>
+                         <img src='https://images.slivcdn.com/UI_icons/sonyliv_new_revised_header_logo.png?w=40&q=high&fr=webp' />
+                     </Link>
+                 </div>
+                 <div className='navbar_subscription'>
+                     <Link to='/subscription'>
+                         <button className='navbar_subscription_button' disabled={!payments}>Subscribe<img src='https://images.slivcdn.com/UI_icons/smart_hook/arrow_image.png?h=8&w=4&q=high&fr=webp' /></button>
+                     </Link>
+                 </div>
+                 <div className='navbar_logo_seperator_div'>
+                     <div className='navbar_logo_seperator'></div>
+                 </div>
+             </div>
+             <div className='navbar_items'>
+                 {categories.map(category => (
+                     <span key={category.type}>
+                         <a href='#' className={`navbar_item check1`} onMouseEnter={() => handleCategoryChange(category.type)}>
+                             {category.name}
+                             {activeCategory === category.type && (
+                                 <div className={`${category.class}`}>
+                                     <div className='check2'>
+                                         {/* <Link to={`/data?type=${category.type}`}> */}
+                                             <div className='top_left'>{category.name} <span className='fa_icon'><FaArrowRight /></span></div>
+                                         {/* </Link> */}
+                                         <div className='top_right'>
+                                             <button className={`top_right_btn ${activeKeyword === 'romance' ? 'active' : ''}`} onClick={() => filterByKeyword('romance')}>Romance</button>
+                                             <button className={`top_right_btn ${activeKeyword === 'thriller' ? 'active' : ''}`} onClick={() => filterByKeyword('thriller')}>Thriller</button>
+                                             <button className={`top_right_btn ${activeKeyword === 'action' ? 'active' : ''}`} onClick={() => filterByKeyword('action')}>Action</button>
+                                             <button className={`top_right_btn ${activeKeyword === 'fantasy' ? 'active' : ''}`} onClick={() => filterByKeyword('fantasy')}>Fantasy</button>
                                          </div>
-                                         </>)}
-                                   
-                            <Link to="/additem">
-                                <div className='profile_list'>
-                                    <div><img src='https://images.slivcdn.com/UI_icons/mylist_non_selecte.png?h=22&w=22&q=high&fr=webp' /></div>
-                                    <div className='profile_list_title'>My List</div>
-                                </div>
-                            </Link>
-                            {/* <Link to='/'>
-                                <div className='profile_list'>
-                                    <div className='profile_list_icon'><BiLogIn /></div>
-                                    <div className='profile_list_title'>Login</div>
-                                </div>
-                            </Link> */}
-                            <Link to='/resetpass'>
-                                <div className='profile_list'>
-                                    <div className='profile_list_icon'><MdSystemUpdateAlt /></div>
-                                    <div className='profile_list_title'>Update Password</div>
-                                </div>
-                            </Link>
-                            <Link>
-                            <div className='profile_list'>
-                                <div><img src='https://images.slivcdn.com/UI_icons/NEW_22052020/Iphone_Icons/logOut@3x.png?h=22&w=22&q=high&fr=webp' /></div>
-                                <div className='profile_list_title' onClick={handleLogout}>Logout</div>
-                            </div>
-                            </Link>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                     </div>
+                                     <div className='check_center'>
+                                         <div className='filtered_data'>
+                                             {filteredData?.map(item => (
+                                                 <div key={item._id} className='filtered_item' onClick={() => navigate(`/showdetails/${item._id}`)}>
+                                                     {/* <Link to={`/showdetails/${item._id}`}> */}
+                                                         <img src={item.thumbnail} alt={item.title} />
+                                                     {/* </Link> */}
+                                                 </div>
+                                             ))}
+                                         </div>
+                                     </div>
+                                 </div>
+                             )}
+                         </a>
+                     </span>
+                 ))}
+             </div>
+             <div className='navbar_search'>
+                 <a href='#' className='navbar_search_a'><AiOutlineSearch onClick={open} /></a>
+                 <Modal
+                     opened={opened}
+                     onClose={close}
+                     // title="This is a fullscreen modal"
+                     fullScreen
+                     transitionProps={{ transition: 'fade', duration: 200 }}
+                 >
+                     <div className='modal_search'>
+                         <input type='text' placeholder='Search for movies, shows, sports etc.' value={input}
+                             onChange={(e) => handleChange(e.target.value)} />
+                     </div>
+                     <div className='modal_search_result'>
+                         {result?.map(item => (
+                             <div key={item._id} className='modal_item'>
+                                 <Link to={`/show/${item._id}`}>
+                                     <img src={item.thumbnail} alt={item.title} onClick={close} />
+                                 </Link>
+                             </div>
+                         ))}
+                     </div>
+                 </Modal>
+                 <div className='awatar'>
+                     {/* <div style={{height:'45%',width:'45%'}}> */}
+                     <img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?h=28&w=28&q=high&fr=webp' className='navbar_avatar'/>
+ 
+                     {/* </div> */}
+                     <div className='profile_hover'>
+                       
+                         <div className='profile_detail'>
+                             <div className='profile_image'><img src='https://images.slivcdn.com/UI_icons/Multiprofile/profile-00.png?w=132&q=high&fr=webp' /></div>
+                             <div className='profile_name'>{userName}</div>
+                         </div>
+                         <div className='profile_lists'>
+                                
+                                     {payments?(
+                                         <>
+                             <Link to='/subscription'>
+                             <div className='profile_list'>
+                                         <div><img src='https://images.slivcdn.com/UI_icons/Subscribe_Now.png?h=22&w=22&q=high&fr=webp' /></div>
+                                          <div className='profile_list_title'>Subscribe Now</div>
+                                 </div>
+ 
+                             </Link>
+ 
+                                          </>
+                                          
+                                     ):(  <>
+                             <div className='profile_list' style={{cursor:'pointer'}}>
+ 
+                                         <div><img src='https://images.slivcdn.com/UI_icons/Subscribe_Now.png?h=22&w=22&q=high&fr=webp' /></div>
+                                          <div className='profile_list_title'>Subscribed</div>
+                                          </div>
+                                          </>)}
+                                    
+                             <Link to="/additem">
+                                 <div className='profile_list'>
+                                     <div><img src='https://images.slivcdn.com/UI_icons/mylist_non_selecte.png?h=22&w=22&q=high&fr=webp' /></div>
+                                     <div className='profile_list_title'>My List</div>
+                                 </div>
+                             </Link>
+                             {/* <Link to='/'>
+                                 <div className='profile_list'>
+                                     <div className='profile_list_icon'><BiLogIn /></div>
+                                     <div className='profile_list_title'>Login</div>
+                                 </div>
+                             </Link> */}
+                             <Link to='/resetpass'>
+                                 <div className='profile_list'>
+                                     <div className='profile_list_icon'><MdSystemUpdateAlt /></div>
+                                     <div className='profile_list_title'>Update Password</div>
+                                 </div>
+                             </Link>
+                             <Link>
+                             <div className='profile_list'>
+                                 <div><img src='https://images.slivcdn.com/UI_icons/NEW_22052020/Iphone_Icons/logOut@3x.png?h=22&w=22&q=high&fr=webp' /></div>
+                                 <div className='profile_list_title' onClick={handleLogout}>Logout</div>
+                             </div>
+                             </Link>
+                            
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         {isLoggingOut && (
+          <span className="manage" style={{ fontSize: '16px', color: 'white' }}>Logged out successfully</span>
+        )}
+        </>
+       
     );
 }
 

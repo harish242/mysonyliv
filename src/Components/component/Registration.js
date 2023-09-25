@@ -1,157 +1,119 @@
-
-// import { useDispatch,useSelector } from 'react-redux';
-// import { Link, useNavigate } from 'react-router-dom';
-// import { Navigate } from 'react-router-dom';
-
-// export function Regis() {
-//     const store=useSelector(state=>state.others.regisReducer)
-//     const navigate=useNavigate()
-
-//     console.log('regis/7',store)
-//     const dispatch=useDispatch()
-//     const handleInput=(e)=>{
-//         const idn=e.target.id
-//         console.log(idn)
-//         switch(idn){
-//             case 'username':return dispatch({type:'usernamegis',payload:e.target.value})
-//             case 'email':return dispatch({type:'emailgis',payload:e.target.value})
-//             case 'password':return dispatch({type:'passwordgis',payload:e.target.value})
-//         }
-//     } 
-//     const doPost=(e)=>{
-//         e.preventDefault()
-//         try{
-//              (async()=>{
-//                 const response=await fetch('https://academics.newtonschool.co/api/v1/user/signup',
-//                 {method:"POST",headers:{ 'Content-Type': 'application/json','projectId': 'xybcw190kyb8'},
-//                 body:JSON.stringify({...store,"appType":"ott"})
-//             }
-//                 )
-//                 if (!response.ok) {
-//                   const errorMessage = `Fetch error: ${response.statusText}`;
-//                   console.error(errorMessage);
-//                   throw new Error(errorMessage);
-//                 }
-//                 const data=await response.json()
-
-//                 if(data.status==='success'){
-//                   navigate('/login')
-//                 }
-//                 console.log(data)
-//              })()
-//         }catch(err){
-//          console.log(err)
-//         }
-//     }
-//   return(
-//     <div style={{height:'100vh',width:'100vw',backgroundImage:'url(https://platinmods.com/attachments/sonyliv-jarvismods-png.240209/)',backgroundRepeat:'no-repeat',backgroundSize:'cover'}}>
-//       <div style={{display:"flex",justifyContent:'center',alignItems:'center',position:'relative',top:'100px'}}>
-// <div class="w-full max-w-xs" style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', padding: '20px', borderRadius: '10px' ,position:'relative',left:'400px'}}>
-//   <form  onChange={handleInput} onSubmit={doPost}>
-//     <div class="mb-4">
-//       <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-//         Username
-//       </label>
-//       <input  class="shadow appearance-none border border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"/>
-//     </div>
-//     <div class="mb-4">
-//       <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-//         Email
-//       </label>
-//       <input class="shadow appearance-none border border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email"/>
-//     </div>
-//     <div class="mb-6">
-//       <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-//         Password
-//       </label>
-//       <input class="shadow appearance-none border border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"/>
-//       {/* <p class="text-red-500 text-xs italic">Please choose a password.</p> */}
-//     </div>
-//     <div class="flex items-center justify-between">
-//       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-//         Sign In
-//       </button>
-//       <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/login">
-//         Update Password?
-//       </a>
-//     </div>
-//   </form>
-//   <p class="text-center text-gray-5000 text-md">
-//     &copy;2020 Already have an account?<Link
-//      to='/login'>login</Link>
-//   </p>
-// </div>
-// </div>
-//     </div>
-
-//   )
-// }
-
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export function Regis() {
     const store = useSelector(state => state.others.regisReducer);
-//   let pathName=window.location.href
-  const token=useSelector(state=>state.persisted.localJwtReducer.tokens)
-  const [regfail,setFailregis]=useState('')
+    const token = useSelector(state => state.persisted.localJwtReducer.tokens);
+    const [regfail, setFailregis] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPasswordError, setShowPasswordError] = useState(false);
+    const [showLoginText, setShowLoginText] = useState(false); // State for showing "Login" text
+    const [usernameError, setUsernameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
-console.log('regis/99',token)
     const navigate = useNavigate();
-
     const dispatch = useDispatch();
-
 
     const handleInput = (e) => {
         const idn = e.target.id;
+        if (e.target.id === "password") {
+            setPassword(e.target.value);
+            setShowPasswordError(false); // Reset the password error when typing
+        }
+
         switch (idn) {
             case 'username':
-                return dispatch({ type: 'usernamegis', payload: e.target.value });
+                setUsername(e.target.value);
+                break;
             case 'email':
-                return dispatch({ type: 'emailgis', payload: e.target.value });
+                setEmail(e.target.value);
+                break;
             case 'password':
-                return dispatch({ type: 'passwordgis', payload: e.target.value });
+                setPassword(e.target.value);
+                break;
         }
+    };
+
+    const validateForm = () => {
+        let isValid = true;
+
+        if (username.trim() === '') {
+            setUsernameError('Please enter a username');
+            isValid = false;
+        } else {
+            setUsernameError('');
+        }
+
+        if (email.trim() === '') {
+            setEmailError('Please enter an email');
+            isValid = false;
+        } else {
+            setEmailError('');
+        }
+
+        if (password.trim() === '') {
+            setPasswordError('Please enter a password');
+            isValid = false;
+        } else {
+            setPasswordError('');
+        }
+
+        return isValid;
     };
 
     const doPost = async (e) => {
         e.preventDefault();
+
+        if (!validateForm()) {
+            // Form validation failed
+            return;
+        }
+
         try {
             const response = await fetch('https://academics.newtonschool.co/api/v1/user/signup', {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json', 'projectId': 'xybcw190kyb8' },
-                body: JSON.stringify({ ...store, "appType": "ott" })
+                body: JSON.stringify({ "name":username,"email":email,"password":password, "appType": "ott" })
             });
-            // if (!response.ok) {
-            //     const errorMessage = `Fetch error: ${response.statusText}`;
-            //     console.error("regis/127",errorMessage);
-            //     throw new Error(errorMessage);
-            // }
+
             const data = await response.json();
 
             if (data.status === 'success') {
-                navigate('/login');
-            }else if(data.status==='fail'){
-            //   console.log('master',data.message)
-            setFailregis(data.message)
+                setShowLoginText(true); // Show "Login" text on successful registration
+                // navigate('/login');
+            } else if (data.status === 'fail') {
+                setFailregis(data.message);
             }
             console.log(data);
         } catch (err) {
             console.error(err);
         }
     };
-    // useEffect(()=>{
-    //     if(token){
-    //         navigate(pathName)
-    //     }else{
-    //         navigate('/')
-    //     }
-    // },[token,navigate])
+
+    // Use useEffect to hide the "Login" text after 2 seconds
+    useEffect(() => {
+        let timer;
+        if (showLoginText) {
+            timer = setTimeout(() => {
+                setShowLoginText(false);
+            }, 3000);
+        }
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [showLoginText]);
 
     return (
         <div className="min-h-screen bg-cover" style={{ backgroundImage: 'url(https://platinmods.com/attachments/sonyliv-jarvismods-png.240209/)' }}>
+               {showLoginText && (
+                        <p className="text-center text-gray-500 text-md" style={{ color: 'white',position:'relative',top:'30px' }}>
+                            Successfully registered! Please <Link to="/login"><span style={{ color: 'red', fontWeight: 'bold', fontSize: '20px', textDecoration: 'underline' }}>Login</span></Link>...
+                        </p>
+                    )}
             <div className="flex justify-center items-center h-screen">
                 <div className="w-full max-w-md bg-white bg-opacity-30 p-6 rounded-lg">
                     <form onChange={handleInput} onSubmit={doPost}>
@@ -160,35 +122,37 @@ console.log('regis/99',token)
                                 Username
                             </label>
                             <input className="shadow appearance-none border bg-transparent rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username" />
+                            <p className="text-red-500 text-xs italic">{usernameError}</p>
                         </div>
                         <div className="mb-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
                                 Email
                             </label>
                             <input className="shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email" />
+                            <p className="text-red-500 text-xs italic">{emailError}</p>
                         </div>
-                        <div className="mb-6" style={{marginBottom:'0px'}}>
+                        <div className="mb-6" style={{ marginBottom: '0px' }}>
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
                                 Password
                             </label>
                             <input className="shadow bg-transparent appearance-none border rounded w-full py-2 px-3 text-white mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************" />
+                            <p className="text-red-500 text-xs italic">{passwordError}</p>
                         </div>
-                        <div style={{marginBottom:'10px'}}>
-                        <p style={{color:'red'}}>{regfail}</p>
-
-                        </div>
+                        {showPasswordError && (
+                            <div style={{ marginBottom: '10px' }}>
+                                <p style={{ color: 'red' }}>Please enter your password</p>
+                            </div>
+                        )}
+                        {<p style={{color:'red'}}>{regfail}</p>}
                         <div className="flex flex-col md:flex-row items-center justify-between">
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-2 md:mb-0" type="submit">
                                 Register
                             </button>
-                            {/* <Link to="/login" className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                                Update Password?
-                            </Link> */}
-                           
                         </div>
                     </form>
-                    <p className="text-center text-gray-500 text-md" style={{color:'white'}}>
-                        &copy; 2020 Already have an account? <Link to="/login"><span style={{color:'red',fontWeight:'bold',fontSize:'20px',textDecoration:'underline'}}>Login</span></Link>
+                 
+                    <p className="text-center text-gray-500 text-md" style={{ color: 'white' }}>
+                        &copy; 2020 Already have an account? <Link to="/login"><span style={{ color: 'red', fontWeight: 'bold', fontSize: '20px', textDecoration: 'underline' }}>Login</span></Link>
                     </p>
                 </div>
             </div>

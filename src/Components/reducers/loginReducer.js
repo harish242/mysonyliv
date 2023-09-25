@@ -8,6 +8,7 @@ const loginReducer=(state=initialValuea,action)=>{
         // case 'token':return {...state,tokens:action.payload}
         case 'email':return {...state,email:action.payload}
         case 'password': return {...state,password:action.payload}
+        case 'clear':return initialValuea
         default:return state
     }
 }

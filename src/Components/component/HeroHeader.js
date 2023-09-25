@@ -178,7 +178,9 @@ export function HeroImageRight(props) {
       }}
     >
       <Container size="lg">
+
         <div className={classes.inner}>
+          
           <div className={classes.content}>
             <Title className={classes.title}>
               !{" "}
