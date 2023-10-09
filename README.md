@@ -1,33 +1,33 @@
-# SonyLiv - Your Ultimate Streaming Destination
+# My Streaming App
 
-Welcome to SonyLiv, where entertainment meets innovation!
+Welcome to My Streaming App! This project aims to create a streaming platform with the following features and functionalities:
 
-![SonyLiv Logo](link-to-logo-image.png)
+## Project Checklist
 
-## Introduction
-
-SonyLiv is a cutting-edge streaming platform designed to provide you with an exceptional entertainment experience. With an extensive collection of movies, TV shows, video songs, and more, SonyLiv offers a seamless streaming experience for viewers worldwide. Whether you're a developer interested in contributing to the project or a user looking to explore our streaming service, this README has you covered.
+- [x] Navigation Bar Design
+- [x] Home Page Design
+- [x] User Registration and Login
+- [x] Content Details and Playback
+- [x] Watchlist and Favorites
+- [x] Content Categories
+- [x] User Profile and Settings
+- [x] Search Functionality
+- [x] Subscription
 
 ## Getting Started
+
+Follow these instructions to get your project up and running.
 
 ### Prerequisites
 
 Before you begin, ensure you have met the following requirements:
 
-- Node.js and npm installed on your machine.
-- A modern web browser.
+- Node.js installed on your machine
+- NPM (Node Package Manager) installed
 
 ### Installation
 
-To set up SonyLiv locally, follow these steps:
+To install the project dependencies, run:
 
-1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/yourusername/sonyliv.git
-
-
-
-
-
-
+```bash
+npm install
