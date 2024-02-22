@@ -126,9 +126,10 @@ const Navbar = () => {
              </div>
              <div className='navbar_items'>
                  {categories.map(category => (
-                     <span key={category.type}>
-                         <a href='#' className={`navbar_item check1`} onMouseEnter={() => handleCategoryChange(category.type)}>
-                             {category.name}
+                     <span key={category?.type}>
+                         <a href='#' className={`navbar_item check1`} onMouseEnter={() => handleCategoryChange(category?.type)}>
+                             {category?.name}
+                             {console.log('jfkshskhdakakjakdajdakj')}
                              {activeCategory === category.type && (
                                  <div className={`${category.class}`}>
                                      <div className='check2'>
@@ -145,9 +146,9 @@ const Navbar = () => {
                                      <div className='check_center'>
                                          <div className='filtered_data'>
                                              {filteredData?.map(item => (
-                                                 <div key={item._id} className='filtered_item' onClick={() => navigate(`/showdetails/${item._id}`)}>
+                                                 <div key={item._id} className='filtered_item' onClick={() => navigate(`/showdetails/${item?._id}`)}>
                                                      {/* <Link to={`/showdetails/${item._id}`}> */}
-                                                         <img src={item.thumbnail} alt={item.title} />
+                                                         <img src={item?.thumbnail} alt={item?.title} />
                                                      {/* </Link> */}
                                                  </div>
                                              ))}

@@ -7,7 +7,7 @@ export function VideoDetails() {
     const fullData=useSelector(state=>state.others.mainDataReducer.showdata)
     const {id}=useParams()
     console.log('vd/9',details)
-    const url=details.state.video_url
+    const url=details?.state?.video_url
 
     // const urlt=details?.state?.videoURL
     // console.log('video/10',fullData) 
